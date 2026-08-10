@@ -119,20 +119,29 @@ def analyze(tree: Dict[str, Any]) -> Dict[str, Any]:
         "items": operations,
     }
 
+# --------------------------------------------------------------------------
+# Portable contract (see _core.py). SPEC lets a harness discover, gate and
+# order this analyzer without hardcoding anything about it. cli_main enforces
+# the declared inputs BEFORE analyze() runs, so a starved analyzer reports
+# insufficient_input instead of a misleading zero.
+# --------------------------------------------------------------------------
+import os as _os  # noqa: E402
+import sys as _sys  # noqa: E402
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+
+from _core import Spec as _Spec, cli_main as _cli_main  # noqa: E402
+
+SPEC = _Spec(
+    id='interface_api_complexity',
+    sno=14,
+    name='Interface / API Complexity',
+    tier='coupling',
+    requires=['units'],
+    requires_any=['types', 'params'],
+    optional=['dependency_graph'],
+    summary='Size and shape of the exposed contract surface.'
+)
 
 if __name__ == "__main__":
-    import json
-    demo = {
-        "language": "java",
-        "units": [
-            {"id": "OrderApi.create", "name": "create", "owner_type": "OrderApi",
-             "params": ["customerId", "items", "coupon", "address", "payment"],
-             "meta": {"http": "POST /orders", "schemas": ["OrderDTO", "AddressDTO"]}},
-            {"id": "OrderApi.get", "name": "get", "owner_type": "OrderApi",
-             "params": ["id"], "meta": {"http": "GET /orders/{id}", "schemas": ["OrderDTO"]}},
-        ],
-        "types": [{"id": "OrderApi", "name": "OrderApi", "kind": "interface",
-                   "methods": ["OrderApi.create", "OrderApi.get"]}],
-        "dependency_graph": {"edges": [{"from": "OrderApi", "to": "PaymentGateway", "kind": "api"}]},
-    }
-    print(json.dumps(analyze(demo), indent=2))
+    raise SystemExit(_cli_main(analyze, SPEC))

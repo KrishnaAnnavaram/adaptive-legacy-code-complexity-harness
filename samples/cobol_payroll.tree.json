@@ -1,0 +1,235 @@
+{
+  "_comment": "Reference Normalized Tree. Exercises every field the 20 analyzers read, so it doubles as the contract example and the pipeline smoke test. Shape is language-neutral - the same structure would carry PL/SQL package members or Java methods; only the values change.",
+
+  "language": "cobol",
+  "source_file": "src/PAYROLL.cbl",
+  "target_language": "java",
+
+  "units": [
+    {
+      "id": "PAYROLL.MAIN",
+      "name": "MAIN",
+      "owner_type": "PAYROLL",
+      "loc": 420,
+      "comment_lines": 8,
+      "start_line": 120,
+      "end_line": 539,
+      "params": [],
+      "references": ["WS-EMP-REC", "WS-TOTAL", "WS-STATUS", "WS-DATE"],
+      "globals": ["WS-EMP-REC", "WS-TOTAL", "WS-STATUS", "WS-DATE"],
+      "writes": ["WS-TOTAL", "WS-STATUS"],
+      "halstead": { "volume": 4820.5 },
+      "meta": { "static": true, "nondeterministic": true, "constructor_params": 0 },
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          { "node_type": "PERFORM_UNTIL", "line": 140, "children": [
+            { "node_type": "IF", "line": 145, "children": [
+              { "node_type": "AND", "line": 145, "children": [] },
+              { "node_type": "EXEC_SQL", "line": 150, "children": [] },
+              { "node_type": "IF", "line": 155, "children": [
+                { "node_type": "CALL", "target": "PAYROLL.CALC-TAX", "line": 158, "children": [] },
+                { "node_type": "GOTO", "line": 160, "children": [] }
+              ]}
+            ]},
+            { "node_type": "ELSE", "line": 170, "children": [
+              { "node_type": "DISPLAY", "line": 172, "children": [] }
+            ]},
+            { "node_type": "FILE", "line": 180, "children": [] }
+          ]},
+          { "node_type": "CASE", "line": 200, "children": [
+            { "node_type": "CASE", "line": 202, "children": [] },
+            { "node_type": "CASE", "line": 206, "children": [] },
+            { "node_type": "CASE", "line": 210, "children": [] },
+            { "node_type": "DEFAULT", "line": 214, "children": [] }
+          ]},
+          { "node_type": "ALTER", "line": 260, "children": [] },
+          { "node_type": "PLATFORM", "line": 300, "children": [] },
+          { "node_type": "RETURN", "line": 538, "children": [] }
+        ]
+      },
+      "sql": [
+        { "kind": "select", "tables": ["EMPLOYEE", "DEPARTMENT"], "joins": 1, "line": 150 },
+        { "kind": "update", "tables": ["PAYROLL_RUN"], "line": 220 },
+        { "kind": "insert", "tables": ["AUDIT_LOG"], "line": 240 },
+        { "kind": "ddl", "dynamic": true, "line": 262 }
+      ],
+      "cursors": [ { "name": "C-EMP", "explicit": true, "closed": false } ],
+      "transactions": [ { "kind": "commit" }, { "kind": "autonomous" } ],
+      "platform_calls": [ { "name": "CICS-SEND-MAP", "kind": "screen" } ],
+      "dynamic_constructs": [ { "kind": "alter" } ],
+      "config_reads": [
+        { "key": "PAY.REGION", "source": "env", "default": false },
+        { "key": "PAY.CUTOFF", "source": "file", "default": true },
+        { "key": "PAY.MODE", "source": "registry", "default": false }
+      ],
+      "feature_flags": [ { "name": "NEW-TAX-RULES" } ],
+      "conditional_compilation": [ { "flag": "REGION-EU" }, { "flag": "DEBUG-TRACE" } ],
+      "literals": [
+        { "value": "jdbc:db2://prod01:50000/PAYDB", "kind": "connection" },
+        { "value": "/prod/payroll/in", "kind": "path" },
+        { "value": "PAYADM/Pa55w0rd", "kind": "credential" },
+        { "value": "0.075", "kind": "number" }
+      ]
+    },
+
+    {
+      "id": "PAYROLL.CALC-TAX",
+      "name": "CALC-TAX",
+      "owner_type": "PAYROLL",
+      "loc": 180,
+      "comment_lines": 2,
+      "start_line": 540,
+      "end_line": 719,
+      "params": ["GROSS-PAY", "TAX-CODE", "REGION", "PERIOD", "OUT-TAX"],
+      "references": ["WS-TOTAL", "TAX-TABLE", "GROSS-PAY"],
+      "globals": ["WS-TOTAL", "TAX-TABLE"],
+      "writes": ["WS-TOTAL"],
+      "halstead": { "volume": 1980.0 },
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          { "node_type": "IF", "line": 550, "children": [
+            { "node_type": "IF", "line": 555, "children": [
+              { "node_type": "IF", "line": 560, "children": [
+                { "node_type": "IF", "line": 565, "children": [
+                  { "node_type": "OR", "line": 565, "children": [] }
+                ]}
+              ]}
+            ]}
+          ]},
+          { "node_type": "PERFORM_UNTIL", "line": 600, "children": [
+            { "node_type": "EXEC_SQL", "line": 605, "children": [] },
+            { "node_type": "IF", "line": 610, "children": [] }
+          ]},
+          { "node_type": "RETURN", "line": 718, "children": [] }
+        ]
+      },
+      "sql": [
+        { "kind": "select", "tables": ["TAX_TABLE"], "line": 605 }
+      ],
+      "literals": [ { "value": "40", "kind": "number" } ]
+    },
+
+    {
+      "id": "PAYROLL.LOAD-RATES",
+      "name": "LOAD-RATES",
+      "owner_type": "PAYROLL",
+      "loc": 65,
+      "comment_lines": 12,
+      "start_line": 720,
+      "end_line": 784,
+      "params": ["RATE-TABLE"],
+      "references": ["RATE-TABLE"],
+      "writes": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          { "node_type": "FOR", "line": 730, "bounded": true, "children": [
+            { "node_type": "IF", "line": 735, "children": [] }
+          ]},
+          { "node_type": "RETURN", "line": 783, "children": [] }
+        ]
+      },
+      "config_reads": [ { "key": "PAY.CUTOFF", "source": "file", "default": true } ]
+    },
+
+    {
+      "id": "REPORT.RENDER",
+      "name": "RENDER",
+      "owner_type": "REPORT",
+      "loc": 240,
+      "comment_lines": 3,
+      "start_line": 10,
+      "end_line": 249,
+      "params": ["RUN-ID"],
+      "references": ["WS-TOTAL", "RPT-BUF"],
+      "globals": ["WS-TOTAL"],
+      "writes": ["RPT-BUF"],
+      "halstead": { "volume": 2600.0 },
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          { "node_type": "PERFORM_UNTIL", "line": 30, "children": [
+            { "node_type": "PERFORM_UNTIL", "line": 40, "children": [
+              { "node_type": "EXEC_SQL", "line": 45, "children": [] },
+              { "node_type": "SCREEN", "line": 50, "children": [] }
+            ]}
+          ]},
+          { "node_type": "CALL", "target": "PAYROLL.CALC-TAX", "line": 90, "children": [] },
+          { "node_type": "RETURN", "line": 248, "children": [] }
+        ]
+      },
+      "sql": [ { "kind": "select", "tables": ["PAYROLL_RUN", "EMPLOYEE"], "joins": 1, "line": 45 } ],
+      "platform_calls": [ { "name": "CICS-SEND-TEXT", "kind": "screen" } ],
+      "literals": [ { "value": "https://reports.internal/api", "kind": "url" } ]
+    },
+
+    {
+      "id": "AUDIT.WRITE",
+      "name": "WRITE-AUDIT",
+      "owner_type": "AUDIT",
+      "loc": 45,
+      "comment_lines": 6,
+      "start_line": 10,
+      "end_line": 54,
+      "params": ["EVENT", "DETAIL"],
+      "references": ["AUD-BUF"],
+      "writes": ["AUD-BUF"],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          { "node_type": "IF", "line": 20, "children": [] },
+          { "node_type": "EXEC_SQL", "line": 30, "children": [] },
+          { "node_type": "RETURN", "line": 53, "children": [] }
+        ]
+      },
+      "sql": [ { "kind": "insert", "tables": ["AUDIT_LOG"], "line": 30 } ],
+      "transactions": [ { "kind": "commit" } ]
+    }
+  ],
+
+  "types": [
+    { "id": "PAYROLL", "name": "PAYROLL", "kind": "class", "module": "PAYROLL",
+      "fields": ["WS-EMP-REC", "WS-TOTAL", "WS-STATUS", "WS-DATE"],
+      "methods": ["PAYROLL.MAIN", "PAYROLL.CALC-TAX", "PAYROLL.LOAD-RATES"],
+      "extends": [], "implements": [] },
+    { "id": "REPORT", "name": "REPORT", "kind": "class", "module": "REPORT",
+      "fields": ["RPT-BUF"], "methods": ["REPORT.RENDER"],
+      "extends": ["PAYROLL"], "implements": [] },
+    { "id": "AUDIT", "name": "AUDIT", "kind": "class", "module": "AUDIT",
+      "fields": ["AUD-BUF"], "methods": ["AUDIT.WRITE"],
+      "extends": [], "implements": [] }
+  ],
+
+  "call_graph": {
+    "nodes": ["PAYROLL.MAIN", "PAYROLL.CALC-TAX", "PAYROLL.LOAD-RATES",
+              "REPORT.RENDER", "AUDIT.WRITE"],
+    "edges": [
+      { "from": "PAYROLL.MAIN", "to": "PAYROLL.CALC-TAX" },
+      { "from": "PAYROLL.MAIN", "to": "PAYROLL.LOAD-RATES" },
+      { "from": "PAYROLL.MAIN", "to": "AUDIT.WRITE" },
+      { "from": "PAYROLL.CALC-TAX", "to": "AUDIT.WRITE" },
+      { "from": "REPORT.RENDER", "to": "PAYROLL.CALC-TAX" },
+      { "from": "REPORT.RENDER", "to": "AUDIT.WRITE" },
+      { "from": "PAYROLL.CALC-TAX", "to": "PAYROLL.MAIN" }
+    ]
+  },
+
+  "dependency_graph": {
+    "nodes": ["PAYROLL", "REPORT", "AUDIT", "DB2", "CICS", "payroll.cfg"],
+    "edges": [
+      { "from": "REPORT", "to": "PAYROLL", "kind": "internal" },
+      { "from": "PAYROLL", "to": "AUDIT", "kind": "internal" },
+      { "from": "AUDIT", "to": "PAYROLL", "kind": "internal" },
+      { "from": "REPORT", "to": "AUDIT", "kind": "internal" },
+      { "from": "PAYROLL", "to": "DB2", "kind": "db" },
+      { "from": "PAYROLL", "to": "CICS", "kind": "platform" },
+      { "from": "REPORT", "to": "CICS", "kind": "platform" },
+      { "from": "PAYROLL", "to": "payroll.cfg", "kind": "config" }
+    ]
+  },
+
+  "layers": { "presentation": 0, "business": 1, "data": 2 },
+  "module_layer": { "REPORT": "presentation", "PAYROLL": "business", "AUDIT": "data" }
+}
