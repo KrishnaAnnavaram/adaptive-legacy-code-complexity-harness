@@ -32,7 +32,7 @@ Output artifact  Configuration Complexity Report (returned as a dict).
 INPUT CONTRACT (subset of the Normalized Tree used here)
 --------------------------------------------------------------------------------
 tree = {
-  "language": "java",
+  "language": "cobol",                             # example only; any language
   "units": [ {
       "id","name","owner_type","loc",
       "config_reads": [ {"key":str,"source":"file|env|db|arg|registry|copybook",

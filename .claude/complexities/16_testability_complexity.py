@@ -25,7 +25,7 @@ Output artifact  Testability Complexity Report (returned as a dict).
 INPUT CONTRACT (subset of the Normalized Tree used here)
 --------------------------------------------------------------------------------
 tree = {
-  "language": "java",
+  "language": "plsql",                             # example only; any language
   "units": [ {
       "id","name","owner_type","loc",
       "params":     [name, ...],

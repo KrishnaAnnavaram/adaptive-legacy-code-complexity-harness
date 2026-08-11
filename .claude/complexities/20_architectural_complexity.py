@@ -29,7 +29,7 @@ Output artifact  Architectural Complexity Report (returned as a dict).
 INPUT CONTRACT (subset of the Normalized Tree used here)
 --------------------------------------------------------------------------------
 tree = {
-  "language": "java",
+  "language": "plsql",                             # example only; any language
   "units": [ {"id","name","owner_type"}, ... ],
   "types": [ {"id","name","kind":"class|interface|abstract|record"}, ... ],  # optional
   "call_graph":       {"nodes":[unit_id,...], "edges":[{"from","to"}, ...]},
