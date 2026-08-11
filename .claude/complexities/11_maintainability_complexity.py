@@ -2,73 +2,60 @@
 Complexity #11 - Maintainability Complexity  (DERIVED)
 ======================================================
 
-What is it?      Overall difficulty of maintaining the code over time.
-Why needed?      Supports takeover, modernization and technical-debt assessment.
-How it works?    Combines size (LOC), logic complexity (cyclomatic), Halstead
-                 volume and comment density into the industry Maintainability
-                 Index (MI), then derives an L1-L5 level.  Derived transparently
-                 from underlying metrics - not invented.
-Input required   Underlying static metrics, all read from the Normalized Tree.
-Output artifact  Maintainability Report (returned as a dict).
+What is it?      The overall difficulty of maintaining a unit over time, on the
+                 standard 0-100 Maintainability Index scale.
+Why needed?      It is the single number stakeholders ask for, and the one an AI
+                 must NOT invent. Its value is that it is DERIVED transparently
+                 from measurable inputs - size, branching, volume, comments - so
+                 every point traces to something real rather than to a judgement.
+How it works?    Maintainability Index (SEI/Microsoft variant):
+                     MI = MAX(0, 171 - 5.2*ln(V) - 0.23*CC - 16.2*ln(LOC)) * 100/171
+                 plus a bounded comment-density bonus. V = Halstead volume,
+                 CC = cyclomatic complexity (shared with #01 via Tree.cyclomatic
+                 so the two never disagree), LOC = lines of code. Higher MI is
+                 easier to maintain, so the level scale is inverted.
+Input required   units[].cfg, units[].loc  (halstead, comment_lines refine it)
+Output artifact  Maintainability Report (uniform envelope).
 
---------------------------------------------------------------------------------
-INPUT CONTRACT (subset of the Normalized Tree used here)
---------------------------------------------------------------------------------
-tree = {
-  "language": "java",
-  "units": [ {
-       "id","name","loc",
-       "cfg": {"node_type","children":[...]},        # for cyclomatic complexity
-       "halstead": {"volume": float},                # optional; estimated if absent
-       "comment_lines": int                          # optional
-  }, ... ]
-}
+Theory: Oman & Hagemeister 1992; SEI Maintainability Index.
 
-Maintainability Index (Microsoft / SEI variant, clamped to 0-100):
-    MI = MAX(0, (171 - 5.2*ln(V) - 0.23*CC - 16.2*ln(LOC)) * 100 / 171)
-where V = Halstead volume, CC = cyclomatic complexity, LOC = lines of code.
-A comment-density bonus is added (SEI extension).  Higher MI = easier to maintain.
+LANGUAGE NEUTRALITY
+    Every input is language-neutral: a line count, a decision count from the CFG,
+    an optional Halstead volume. Bands are the same everywhere because the MI
+    scale is already normalized to 0-100.
 """
 
 from __future__ import annotations
+
 import math
+import os
+import sys
 from typing import Any, Dict, List
 
-# Decision nodes that add to cyclomatic complexity.
-_DECISION = {"IF", "ELIF", "FOR", "WHILE", "DO_WHILE", "CASE", "CATCH", "TERNARY", "AND", "OR"}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# MI is "higher = better", so bands run the opposite direction to other analyzers.
-# Level = maintenance *complexity*, so low MI => high complexity (L5).
-_MI_BANDS = [(85, "L1"), (70, "L2"), (50, "L3"), (30, "L4")]  # else L5
+from _core import (  # noqa: E402
+    Spec, Tree, cli_main, insufficient, level_from_inverted, result, worst,
+)
 
+SPEC = Spec(
+    id="maintainability_complexity", sno=11, name="Maintainability Complexity",
+    tier="composite", requires=["units", "cfg", "loc"],
+    optional=["halstead", "comment_lines"], depends_on=[1, 7],
+    direction="lower_is_worse",
+    summary="Maintainability Index derived from size, branching, volume and comments.",
+)
 
-def _level_from_mi(mi: float) -> str:
-    for threshold, level in _MI_BANDS:
-        if mi >= threshold:
-            return level
-    return "L5"
-
-
-def _cyclomatic(cfg: Dict[str, Any]) -> int:
-    """Cyclomatic complexity = 1 + number of decision points in the CFG tree."""
-    if not cfg:
-        return 1
-    count = 1
-    stack = [cfg]
-    while stack:
-        node = stack.pop()
-        if node.get("node_type") in _DECISION:
-            count += 1
-        stack.extend(node.get("children", []) or [])
-    return count
+# MI is higher-is-better, so these thresholds are DESCENDING and read with
+# level_from_inverted: MI>=85 -> L1 (easy) ... MI<30 -> L5 (severe).
+BANDS = (85, 70, 50, 30)
 
 
 def _halstead_volume(unit: Dict[str, Any], cc: int, loc: int) -> float:
-    """Use provided Halstead volume, else estimate from size & branching."""
-    vol = (unit.get("halstead", {}) or {}).get("volume")
+    """Use the parser's Halstead volume if present, else estimate from size."""
+    vol = (unit.get("halstead") or {}).get("volume")
     if vol and vol > 0:
         return float(vol)
-    # Rough proxy: each LOC contributes operators/operands; branch-heavy code weighs more.
     approx = max(1.0, loc) * (3.0 + 0.5 * cc)
     return approx * math.log2(max(2.0, approx))
 
@@ -78,94 +65,77 @@ def _mi(loc: int, cc: int, volume: float, comment_ratio: float) -> float:
     volume = max(1.0, volume)
     raw = 171 - 5.2 * math.log(volume) - 0.23 * cc - 16.2 * math.log(loc)
     mi = max(0.0, raw) * 100.0 / 171.0
-    # SEI comment bonus: up to +50 * a bounded sine term.
-    mi += 50.0 * math.sin(math.sqrt(2.4 * comment_ratio))
+    mi += 50.0 * math.sin(math.sqrt(2.4 * comment_ratio))     # SEI comment bonus
     return max(0.0, min(100.0, mi))
 
 
-def analyze(tree: Dict[str, Any]) -> Dict[str, Any]:
-    items: List[Dict[str, Any]] = []
-    total_loc = 0
+def analyze(tree_raw: Dict[str, Any]) -> Dict[str, Any]:
+    tree = Tree(tree_raw)
+    degraded = tree.require(SPEC)
 
-    for u in tree.get("units", []):
-        loc = int(u.get("loc", 0) or 0)
-        total_loc += loc
-        cc = _cyclomatic(u.get("cfg") or {})
-        volume = _halstead_volume(u, cc, loc)
-        comment_lines = int(u.get("comment_lines", 0) or 0)
-        comment_ratio = (comment_lines / loc) if loc else 0.0
+    items: List[Dict[str, Any]] = []
+    for unit in tree.units:
+        loc = int(unit.get("loc", 0) or 0)
+        if not loc and unit.get("start_line") and unit.get("end_line"):
+            loc = unit["end_line"] - unit["start_line"] + 1
+        cc = Tree.cyclomatic(unit.get("cfg") or {})       # shared with #01
+        volume = _halstead_volume(unit, cc, loc)
+        comment_lines = int(unit.get("comment_lines", 0) or 0)
+        comment_ratio = comment_lines / loc if loc else 0.0
         mi = _mi(loc, cc, volume, comment_ratio)
         items.append({
-            "unit": u["id"],
-            "name": u.get("name", u["id"]),
+            "unit": unit.get("id"),
+            "name": unit.get("name", unit.get("id")),
+            "owner_type": unit.get("owner_type"),
             "loc": loc,
             "cyclomatic": cc,
             "halstead_volume": round(volume, 1),
             "comment_ratio": round(comment_ratio, 3),
             "maintainability_index": round(mi, 1),
-            "level": _level_from_mi(mi),
+            "score": round(mi, 1),
+            "level": level_from_inverted(mi, BANDS),
         })
 
-    if items:
-        # LOC-weighted mean MI: big units dominate maintainability of the whole.
-        weight = sum(max(1, i["loc"]) for i in items)
-        weighted_mi = sum(i["maintainability_index"] * max(1, i["loc"]) for i in items) / weight
-        worst = min(items, key=lambda i: i["maintainability_index"])
-        overall = _level_from_mi(weighted_mi)
-        hard = [i for i in items if i["maintainability_index"] < 50]
-    else:
-        weighted_mi = 100.0
-        worst = None
-        overall = "L1"
-        hard = []
+    if not items:
+        insufficient("tree contains no units")
 
-    return {
-        "complexity": "Maintainability Complexity",
-        "sno": 11,
-        "language": tree.get("language", "unknown"),
-        "derived_from": ["LOC", "Cyclomatic Complexity", "Halstead Volume", "Comment Density"],
-        "summary": {
-            "level": overall,
-            "score": round(weighted_mi, 1),
-            "headline": (f"Weighted Maintainability Index {round(weighted_mi, 1)}/100; "
-                         f"{len(hard)} hard-to-maintain unit(s)"),
-        },
-        "metrics": {
+    weight = sum(max(1, i["loc"]) for i in items)
+    weighted_mi = sum(i["maintainability_index"] * max(1, i["loc"]) for i in items) / weight
+    worst_unit = min(items, key=lambda i: i["maintainability_index"])
+    hard = [i for i in items if i["maintainability_index"] < 50]
+
+    return result(
+        SPEC, tree,
+        level=worst(i["level"] for i in items),
+        score=round(weighted_mi, 1),
+        headline=(f"{len(items)} unit(s); LOC-weighted Maintainability Index "
+                  f"{round(weighted_mi, 1)}/100; {len(hard)} hard-to-maintain unit(s)"),
+        metrics={
             "units": len(items),
-            "total_loc": total_loc,
+            "total_loc": sum(i["loc"] for i in items),
             "weighted_maintainability_index": round(weighted_mi, 1),
-            "worst_unit": worst["unit"] if worst else None,
-            "worst_index": worst["maintainability_index"] if worst else None,
+            "worst_unit": worst_unit["unit"],
+            "worst_index": worst_unit["maintainability_index"],
             "hard_to_maintain_units": len(hard),
+            "bands_applied": list(BANDS),
         },
-        "hotspots": sorted(hard, key=lambda i: i["maintainability_index"])[:10],
-        "items": items,
-    }
+        confidence=1.0 if not degraded else round(max(0.7, 1.0 - 0.15 * len(degraded)), 2),
+        confidence_reasons=(
+            [f"optional input '{f}' absent - "
+             + ("Halstead volume estimated from size and branching" if f == "halstead"
+                else "comment bonus omitted")
+             for f in degraded]),
+        hotspots=sorted(hard, key=lambda i: i["maintainability_index"])[:10],
+        items=items,
+        extra={"derived_from": ["LOC", "Cyclomatic Complexity", "Halstead Volume",
+                                "Comment Density"],
+               "interpretation": (
+                   "The Maintainability Index is a transparent composite, not a "
+                   "verdict. Read the components: a low MI driven by LOC is a "
+                   "split-the-unit problem; one driven by cyclomatic complexity is "
+                   "a simplify-the-logic problem.")},
+    )
 
-# --------------------------------------------------------------------------
-# Portable contract (see _core.py). SPEC lets a harness discover, gate and
-# order this analyzer without hardcoding anything about it. cli_main enforces
-# the declared inputs BEFORE analyze() runs, so a starved analyzer reports
-# insufficient_input instead of a misleading zero.
-# --------------------------------------------------------------------------
-import os as _os  # noqa: E402
-import sys as _sys  # noqa: E402
-
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-
-from _core import Spec as _Spec, cli_main as _cli_main  # noqa: E402
-
-SPEC = _Spec(
-    id='maintainability_complexity',
-    sno=11,
-    name='Maintainability Complexity',
-    tier='composite',
-    requires=['units', 'cfg', 'loc'],
-    optional=['halstead', 'comment_lines'],
-    depends_on=[1, 7],
-    direction='lower_is_worse',
-    summary='Maintainability Index from size, branching, volume and comments.'
-)
 
 if __name__ == "__main__":
-    raise SystemExit(_cli_main(analyze, SPEC))
+    raise SystemExit(cli_main(analyze, SPEC))
