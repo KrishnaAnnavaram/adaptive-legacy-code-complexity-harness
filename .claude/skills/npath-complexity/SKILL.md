@@ -7,7 +7,7 @@ description: >
   sequential if statements give v(G) = 11 and NPath = 1,024. That gap is why
   "we have full branch coverage" and "we tested the combinations" are
   different claims, and why some units cannot be exhaustively tested at all.
-  Implemented deterministically by `.claude/scripts/06_npath_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/06_npath_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
 ---
 
 # 06 - NPath Complexity
@@ -86,8 +86,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/06_npath_complexity.py TREE.json
-python .claude/scripts/06_npath_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/06_npath_complexity.py
-python .claude/scripts/06_npath_complexity.py --spec
+python .claude/complexities/06_npath_complexity.py TREE.json
+python .claude/complexities/06_npath_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/06_npath_complexity.py
+python .claude/complexities/06_npath_complexity.py --spec
 ```

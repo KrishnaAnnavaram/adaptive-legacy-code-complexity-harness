@@ -4,7 +4,7 @@ description: >
   Measures how widely a change to one component can ripple through the
   system ("blast radius"). Estimates change risk, regression scope and
   modernization effort: answers "if I change this, what else can break?".
-  Implemented deterministically by `.claude/scripts/10_change_impact_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/10_change_impact_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
 ---
 
 # 10 - Change Impact Complexity
@@ -90,8 +90,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/10_change_impact_complexity.py TREE.json
-python .claude/scripts/10_change_impact_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/10_change_impact_complexity.py
-python .claude/scripts/10_change_impact_complexity.py --spec
+python .claude/complexities/10_change_impact_complexity.py TREE.json
+python .claude/complexities/10_change_impact_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/10_change_impact_complexity.py
+python .claude/complexities/10_change_impact_complexity.py --spec
 ```

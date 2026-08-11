@@ -34,8 +34,8 @@ import sys
 from typing import Any, Dict, List, Optional, Tuple
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-#: Analyzers live beside this file in .claude/scripts/, mirroring the
-#: plsql_to_brd layout where every executable step sits under .claude/scripts.
+#: Analyzers live beside this file in .claude/complexities/, mirroring the
+#: plsql_to_brd layout where every executable step sits under .claude/complexities.
 ANALYZER_DIR = HERE
 REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, ANALYZER_DIR)
@@ -245,7 +245,9 @@ def main() -> int:
         keep = {int(x) for x in args.only.split(",")}
         analyzers = [a for a in analyzers if a[0].sno in keep]
 
-    with open(args.tree, "r", encoding="utf-8") as fh:
+    # utf-8-sig strips a BOM when present, plain utf-8 otherwise. Windows
+    # tooling writes BOMs by default and a plain utf-8 read fails on them.
+    with open(args.tree, "r", encoding="utf-8-sig") as fh:
         tree_raw = json.load(fh)
 
     print(f"Running {len(analyzers)} analyzer(s) on {args.tree}", file=sys.stderr)

@@ -4,7 +4,7 @@ description: >
   Complexity introduced by inheritance hierarchies. Deep or wide inheritance
   makes behavior hard to trace (you must follow the chain to know what a
   class actually does).
-  Implemented deterministically by `.claude/scripts/13_inheritance_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/13_inheritance_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
 ---
 
 # 13 - Inheritance Complexity
@@ -88,8 +88,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/13_inheritance_complexity.py TREE.json
-python .claude/scripts/13_inheritance_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/13_inheritance_complexity.py
-python .claude/scripts/13_inheritance_complexity.py --spec
+python .claude/complexities/13_inheritance_complexity.py TREE.json
+python .claude/complexities/13_inheritance_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/13_inheritance_complexity.py
+python .claude/complexities/13_inheritance_complexity.py --spec
 ```

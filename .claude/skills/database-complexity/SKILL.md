@@ -6,7 +6,7 @@ description: >
   architecture. Business rules live in SQL, transaction boundaries are
   implicit, and schema coupling - not branch count - decides whether a unit
   can be moved. Control-flow metrics are blind to all of it.
-  Implemented deterministically by `.claude/scripts/15_database_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 5 (hazard).
+  Implemented deterministically by `.claude/complexities/15_database_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 5 (hazard).
 ---
 
 # 15 - Database Complexity
@@ -112,8 +112,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/15_database_complexity.py TREE.json
-python .claude/scripts/15_database_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/15_database_complexity.py
-python .claude/scripts/15_database_complexity.py --spec
+python .claude/complexities/15_database_complexity.py TREE.json
+python .claude/complexities/15_database_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/15_database_complexity.py
+python .claude/complexities/15_database_complexity.py --spec
 ```

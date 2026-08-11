@@ -4,7 +4,7 @@ description: >
   Measures how closely related the responsibilities inside a class / module
   are. Low cohesion signals mixed responsibilities and hard-to-maintain code
   (a class doing too many unrelated things).
-  Implemented deterministically by `.claude/scripts/08_cohesion_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/08_cohesion_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
 ---
 
 # 08 - Cohesion Complexity
@@ -89,8 +89,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/08_cohesion_complexity.py TREE.json
-python .claude/scripts/08_cohesion_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/08_cohesion_complexity.py
-python .claude/scripts/08_cohesion_complexity.py --spec
+python .claude/complexities/08_cohesion_complexity.py TREE.json
+python .claude/complexities/08_cohesion_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/08_cohesion_complexity.py
+python .claude/complexities/08_cohesion_complexity.py --spec
 ```

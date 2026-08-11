@@ -7,7 +7,7 @@ description: >
   is what drives planning. Ten thousand lines spread evenly over 200 units
   is a very different job from the same ten thousand lines with 80% in three
   units - and the average complexity is identical in both cases.
-  Implemented deterministically by `.claude/scripts/07_structural_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 1 (size).
+  Implemented deterministically by `.claude/complexities/07_structural_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 1 (size).
 ---
 
 # 07 - Structural Complexity
@@ -86,8 +86,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/07_structural_complexity.py TREE.json
-python .claude/scripts/07_structural_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/07_structural_complexity.py
-python .claude/scripts/07_structural_complexity.py --spec
+python .claude/complexities/07_structural_complexity.py TREE.json
+python .claude/complexities/07_structural_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/07_structural_complexity.py
+python .claude/complexities/07_structural_complexity.py --spec
 ```

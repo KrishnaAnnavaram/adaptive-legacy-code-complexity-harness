@@ -8,7 +8,7 @@ description: >
   metric that only reads the code. It is also the leading cause of migration
   failures that pass every test and then break in production, because the
   new platform's configuration surface was never mapped.
-  Implemented deterministically by `.claude/scripts/18_configuration_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 5 (hazard).
+  Implemented deterministically by `.claude/complexities/18_configuration_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 5 (hazard).
 ---
 
 # 18 - Configuration Complexity
@@ -110,8 +110,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/18_configuration_complexity.py TREE.json
-python .claude/scripts/18_configuration_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/18_configuration_complexity.py
-python .claude/scripts/18_configuration_complexity.py --spec
+python .claude/complexities/18_configuration_complexity.py TREE.json
+python .claude/complexities/18_configuration_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/18_configuration_complexity.py
+python .claude/complexities/18_configuration_complexity.py --spec
 ```

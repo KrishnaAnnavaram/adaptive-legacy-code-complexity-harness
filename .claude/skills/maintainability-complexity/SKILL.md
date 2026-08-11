@@ -3,7 +3,7 @@ name: maintainability-complexity
 description: >
   Overall difficulty of maintaining the code over time. Supports takeover,
   modernization and technical-debt assessment.
-  Implemented deterministically by `.claude/scripts/11_maintainability_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
+  Implemented deterministically by `.claude/complexities/11_maintainability_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
 ---
 
 # 11 - Maintainability Complexity
@@ -97,8 +97,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/11_maintainability_complexity.py TREE.json
-python .claude/scripts/11_maintainability_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/11_maintainability_complexity.py
-python .claude/scripts/11_maintainability_complexity.py --spec
+python .claude/complexities/11_maintainability_complexity.py TREE.json
+python .claude/complexities/11_maintainability_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/11_maintainability_complexity.py
+python .claude/complexities/11_maintainability_complexity.py --spec
 ```

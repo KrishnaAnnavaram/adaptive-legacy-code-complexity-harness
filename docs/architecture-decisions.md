@@ -64,7 +64,7 @@ standalone and is unusable as a library.
 
 ## AD-04 — Self-describing skills, no registry
 
-**Decision.** Skills are discovered by scanning `.claude/scripts/[0-9][0-9]_*.py`
+**Decision.** Skills are discovered by scanning `.claude/complexities/[0-9][0-9]_*.py`
 and reading each module's `SPEC`. There is no list to maintain.
 
 **Why.** A hardcoded list is a second place to update, and the failure mode is

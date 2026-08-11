@@ -7,7 +7,7 @@ description: >
   tells you how many tests you need; this tells you whether the unit can be
   mechanically restructured at all. For COBOL, RPG and PL/I it is the single
   highest-value structural number, well above v(G).
-  Implemented deterministically by `.claude/scripts/03_control_flow_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/03_control_flow_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
 ---
 
 # 03 - Control Flow Complexity
@@ -86,8 +86,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/03_control_flow_complexity.py TREE.json
-python .claude/scripts/03_control_flow_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/03_control_flow_complexity.py
-python .claude/scripts/03_control_flow_complexity.py --spec
+python .claude/complexities/03_control_flow_complexity.py TREE.json
+python .claude/complexities/03_control_flow_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/03_control_flow_complexity.py
+python .claude/complexities/03_control_flow_complexity.py --spec
 ```

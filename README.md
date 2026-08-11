@@ -15,11 +15,12 @@ and consolidating results into a unified code complexity artifact.
 ```
 .claude/
   agents/1_complexity_agent.md       the orchestrating agent
-  skills/<complexity>/SKILL.md       20 skills, one per complexity
-  scripts/
+  skills/<complexity>/SKILL.md       20 skills, one per complexity — what & why
+  complexities/
     _core.py                         the shared contract
     01_..20_*.py                     deterministic implementation per skill
     run_pipeline.py                  discover → order → gate → run → merge
+    _superseded_style_a/             Style-A originals, preserved
 docs/
   system-overview.md                 start here
   analyzer-contract.md               how to build a complexity
@@ -31,9 +32,10 @@ tools/
   tree_bridge.py                     converts legacy Style-A trees
 ```
 
-Skills **describe**, scripts **implement**. A `SKILL.md` states what the complexity
-measures, which tree fields it consumes, what it emits and how it fails; the matching
-script is the deterministic implementation.
+**`skills/` describes, `complexities/` implements.** A `SKILL.md` states what the
+complexity measures, which tree fields it consumes, what it emits and how it fails; the
+matching `NN_*.py` is the deterministic implementation. Both are generated from the same
+source, so they cannot drift apart.
 
 ---
 
@@ -71,14 +73,14 @@ scores COBOL, PL/SQL and Java.
 
 ```bash
 # all twenty
-python .claude/scripts/run_pipeline.py samples/cobol_payroll.tree.json -o out
+python .claude/complexities/run_pipeline.py samples/cobol_payroll.tree.json -o out
 
 # one skill, standalone or piped
-python .claude/scripts/17_runtime_complexity.py tree.json
-cat tree.json | python .claude/scripts/01_cyclomatic_complexity.py
+python .claude/complexities/17_runtime_complexity.py tree.json
+cat tree.json | python .claude/complexities/01_cyclomatic_complexity.py
 
 # what is installed and what each needs
-python .claude/scripts/run_pipeline.py --list
+python .claude/complexities/run_pipeline.py --list
 ```
 
 Embedded in any harness:
@@ -139,7 +141,7 @@ that cannot detect anything — the canary is how you tell the difference.
 ## Add complexity #21
 
 ```bash
-cp .claude/scripts/01_cyclomatic_complexity.py .claude/scripts/21_my_complexity.py
+cp .claude/complexities/01_cyclomatic_complexity.py .claude/complexities/21_my_complexity.py
 mkdir .claude/skills/my-complexity
 ```
 

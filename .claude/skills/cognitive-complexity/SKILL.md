@@ -7,7 +7,7 @@ description: >
   nest of ifs can score the same v(G), yet one is skimmable and the other is
   not. Cognitive complexity is the metric that separates them, and it is the
   one that correlates with how long a change actually takes.
-  Implemented deterministically by `.claude/scripts/02_cognitive_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/02_cognitive_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
 ---
 
 # 02 - Cognitive Complexity
@@ -79,8 +79,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/02_cognitive_complexity.py TREE.json
-python .claude/scripts/02_cognitive_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/02_cognitive_complexity.py
-python .claude/scripts/02_cognitive_complexity.py --spec
+python .claude/complexities/02_cognitive_complexity.py TREE.json
+python .claude/complexities/02_cognitive_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/02_cognitive_complexity.py
+python .claude/complexities/02_cognitive_complexity.py --spec
 ```

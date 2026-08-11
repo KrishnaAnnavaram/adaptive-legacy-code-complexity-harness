@@ -5,7 +5,7 @@ description: >
   move. A unit can be internally simple and still be impossible to extract
   because forty things call it. Every decomposition, service-extraction and
   strangler-fig plan is really a coupling argument.
-  Implemented deterministically by `.claude/scripts/04_coupling_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/04_coupling_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
 ---
 
 # 04 - Coupling Complexity
@@ -77,8 +77,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/04_coupling_complexity.py TREE.json
-python .claude/scripts/04_coupling_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/04_coupling_complexity.py
-python .claude/scripts/04_coupling_complexity.py --spec
+python .claude/complexities/04_coupling_complexity.py TREE.json
+python .claude/complexities/04_coupling_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/04_coupling_complexity.py
+python .claude/complexities/04_coupling_complexity.py --spec
 ```

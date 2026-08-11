@@ -7,7 +7,7 @@ description: >
   complexity is blindest to - twenty flat branches and four branches nested
   four deep can score the same v(G), and only one of them is genuinely hard
   to follow.
-  Implemented deterministically by `.claude/scripts/05_nesting_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/05_nesting_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
 ---
 
 # 05 - Nesting Complexity
@@ -78,8 +78,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/05_nesting_complexity.py TREE.json
-python .claude/scripts/05_nesting_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/05_nesting_complexity.py
-python .claude/scripts/05_nesting_complexity.py --spec
+python .claude/complexities/05_nesting_complexity.py TREE.json
+python .claude/complexities/05_nesting_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/05_nesting_complexity.py
+python .claude/complexities/05_nesting_complexity.py --spec
 ```

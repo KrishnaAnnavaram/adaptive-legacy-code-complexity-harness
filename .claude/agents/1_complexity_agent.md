@@ -9,7 +9,7 @@ description: >
   support, orders them into a professional execution sequence, runs each one,
   and consolidates every report into a single unified complexity artifact.
   Holds no hardcoded list of skills — they are discovered from
-  .claude/scripts/ and self-describe through their SPEC. Tree generation is
+  .claude/complexities/ and self-describe through their SPEC. Tree generation is
   NOT in scope; that belongs to the upstream inventory and parser agents.
 tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'todo']
 ---
@@ -43,7 +43,7 @@ the tree fields it consumed and the confidence it holds in the result.
 
 Twenty skills, one per complexity, each defined in
 `.claude/skills/<name>/SKILL.md` and implemented deterministically by the
-matching `.claude/scripts/NN_*.py`.
+matching `.claude/complexities/NN_*.py`.
 
 | Band | # | Skill |
 |---|---|---|
@@ -69,7 +69,7 @@ matching `.claude/scripts/NN_*.py`.
 | | 19 | `migration-complexity` |
 
 Do not hardcode this table when running. Discover skills by scanning
-`.claude/scripts/[0-9][0-9]_*.py` and reading each module's `SPEC`. The table is
+`.claude/complexities/[0-9][0-9]_*.py` and reading each module's `SPEC`. The table is
 documentation, not configuration — a skill added tomorrow joins the run with no
 edit here.
 
@@ -84,7 +84,7 @@ edit here.
 | `ONLY` | Comma-separated `sno` list to limit the run, e.g. `1,3,17` | No |
 | `LANGUAGE` | Override `tree.language` when the tree does not declare it | No |
 
-> The tree format is documented at the top of `.claude/scripts/_core.py` and in
+> The tree format is documented at the top of `.claude/complexities/_core.py` and in
 > [`docs/analyzer-contract.md`](../../docs/analyzer-contract.md). If you have a
 > tree in the older recursive `{kind, children[]}` shape, convert it first with
 > `tools/tree_bridge.py`.
@@ -95,10 +95,10 @@ edit here.
 
 ```
 0. Validate TREE exists and parses as JSON.
-   Validate .claude/scripts/ contains at least one NN_*.py exporting SPEC.
+   Validate .claude/complexities/ contains at least one NN_*.py exporting SPEC.
 
 1. DISCOVER
-   Scan .claude/scripts/[0-9][0-9]_*.py. Import each. Require SPEC and
+   Scan .claude/complexities/[0-9][0-9]_*.py. Import each. Require SPEC and
    analyze(). Skip anything missing either, and say so — never guess.
 
 2. ORDER
@@ -133,11 +133,11 @@ edit here.
    State coverage prominently: N of 20 measured, and WHY the rest were not.
 ```
 
-Implemented by `.claude/scripts/run_pipeline.py`:
+Implemented by `.claude/complexities/run_pipeline.py`:
 
 ```bash
-python .claude/scripts/run_pipeline.py TREE.json -o out
-python .claude/scripts/run_pipeline.py --list
+python .claude/complexities/run_pipeline.py TREE.json -o out
+python .claude/complexities/run_pipeline.py --list
 ```
 
 ---

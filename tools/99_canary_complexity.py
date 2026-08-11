@@ -24,7 +24,7 @@ from typing import Any, Dict
 
 sys.path.insert(0, os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    ".claude", "scripts"))
+    ".claude", "complexities"))
 
 from _core import Spec  # noqa: E402
 

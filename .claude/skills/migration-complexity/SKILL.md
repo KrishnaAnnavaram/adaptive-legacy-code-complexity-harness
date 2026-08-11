@@ -8,7 +8,7 @@ description: >
   complexity: a 4,000-line unit of plain nested IFs is tedious but
   mechanical, while a 200-line unit with dynamic SQL and a platform call may
   be untranslatable by any automated means. Blockers, not size, drive cost.
-  Implemented deterministically by `.claude/scripts/19_migration_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
+  Implemented deterministically by `.claude/complexities/19_migration_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
 ---
 
 # 19 - Migration Complexity
@@ -126,8 +126,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/19_migration_complexity.py TREE.json
-python .claude/scripts/19_migration_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/19_migration_complexity.py
-python .claude/scripts/19_migration_complexity.py --spec
+python .claude/complexities/19_migration_complexity.py TREE.json
+python .claude/complexities/19_migration_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/19_migration_complexity.py
+python .claude/complexities/19_migration_complexity.py --spec
 ```

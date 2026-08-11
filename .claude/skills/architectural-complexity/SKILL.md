@@ -8,7 +8,7 @@ description: >
   cut? A codebase of clean units can still be architecturally unsplittable,
   and a codebase of ugly units can decompose cleanly along good module
   lines.
-  Implemented deterministically by `.claude/scripts/20_architectural_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/20_architectural_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
 ---
 
 # 20 - Architectural Complexity
@@ -119,8 +119,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/20_architectural_complexity.py TREE.json
-python .claude/scripts/20_architectural_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/20_architectural_complexity.py
-python .claude/scripts/20_architectural_complexity.py --spec
+python .claude/complexities/20_architectural_complexity.py TREE.json
+python .claude/complexities/20_architectural_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/20_architectural_complexity.py
+python .claude/complexities/20_architectural_complexity.py --spec
 ```

@@ -7,7 +7,7 @@ description: >
   built, and it is the metric that most reliably predicts the true cost of a
   legacy rewrite. Two units with identical cyclomatic complexity can differ
   by an order of magnitude in test effort.
-  Implemented deterministically by `.claude/scripts/16_testability_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
+  Implemented deterministically by `.claude/complexities/16_testability_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
 ---
 
 # 16 - Testability Complexity
@@ -118,8 +118,8 @@ Returns the uniform envelope defined in [`docs/analyzer-contract.md`](../../../d
 ## Invocation
 
 ```bash
-python .claude/scripts/16_testability_complexity.py TREE.json
-python .claude/scripts/16_testability_complexity.py TREE.json -o report.json
-cat TREE.json | python .claude/scripts/16_testability_complexity.py
-python .claude/scripts/16_testability_complexity.py --spec
+python .claude/complexities/16_testability_complexity.py TREE.json
+python .claude/complexities/16_testability_complexity.py TREE.json -o report.json
+cat TREE.json | python .claude/complexities/16_testability_complexity.py
+python .claude/complexities/16_testability_complexity.py --spec
 ```

@@ -33,8 +33,8 @@ Mirrors the `plsql_to_brd` project convention.
   agents/
     1_complexity_agent.md          the single orchestrating agent
   skills/
-    <complexity-name>/SKILL.md     20 skills, one per complexity
-  scripts/
+    <complexity-name>/SKILL.md     20 skills, one per complexity — what & why
+  complexities/
     _core.py                       the shared contract
     01_..20_*.py                   deterministic implementation per skill
     run_pipeline.py                discover, order, run, consolidate
@@ -51,10 +51,10 @@ tools/
   tree_bridge.py                   converts legacy Style-A trees
 ```
 
-**Skills describe, scripts implement.** A `SKILL.md` states what the complexity
-measures, which tree fields it consumes, what it emits, and how it fails. The
-matching script is the deterministic implementation. They are generated from the
-same source, so they cannot drift apart.
+**`skills/` describes, `complexities/` implements.** A `SKILL.md` states what the
+complexity measures, which tree fields it consumes, what it emits, and how it
+fails. The matching `NN_*.py` is the deterministic implementation. Both are
+generated from the same source, so they cannot drift apart.
 
 ## The twenty complexities
 
@@ -116,13 +116,13 @@ so it cannot be forgotten by an individual author.
 
 ```bash
 # everything
-python .claude/scripts/run_pipeline.py samples/cobol_payroll.tree.json -o out
+python .claude/complexities/run_pipeline.py samples/cobol_payroll.tree.json -o out
 
 # one skill
-python .claude/scripts/17_runtime_complexity.py tree.json
+python .claude/complexities/17_runtime_complexity.py tree.json
 
 # what is installed, and what each needs
-python .claude/scripts/run_pipeline.py --list
+python .claude/complexities/run_pipeline.py --list
 
 # audit the skills themselves
 python tools/judge.py samples/cobol_payroll.tree.json --self-test
@@ -137,6 +137,6 @@ overall level L5   hotspots 3
 
 ## Extending
 
-Adding complexity #21 is: drop `21_x_complexity.py` into `.claude/scripts/`,
+Adding complexity #21 is: drop `21_x_complexity.py` into `.claude/complexities/`,
 add `.claude/skills/x-complexity/SKILL.md`. Nothing else changes — the agent and
 pipeline discover it. See [analyzer-contract.md](analyzer-contract.md).
