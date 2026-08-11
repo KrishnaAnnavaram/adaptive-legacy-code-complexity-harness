@@ -14,22 +14,37 @@ and consolidating results into a unified code complexity artifact.
 
 ```
 .claude/
-  agents/1_complexity_agent.md       the orchestrating agent
-  skills/<complexity>/SKILL.md       20 skills, one per complexity — what & why
+  agents/
+    0_inventory_agent.md            scans a Java repo -> inventory_artifact.json
+    1_complexity_agent.md           the complexity orchestrating agent
+  inventory/scanner.py              deterministic Java repo scanner (no skills — one job)
+  skills/<complexity>/SKILL.md      20 skills, one per complexity — what & why
   complexities/
-    _core.py                         the shared contract
-    01_..20_*.py                     deterministic implementation per skill
-    run_pipeline.py                  discover → order → gate → run → merge
-    _superseded_style_a/             Style-A originals, preserved
+    _core.py                        the shared contract
+    01_..20_*.py                    deterministic implementation per skill
+    run_pipeline.py                 discover → order → gate → run → merge
+    _superseded_style_a/            Style-A originals, preserved
 docs/
-  system-overview.md                 start here
-  analyzer-contract.md               how to build a complexity
-  architecture-decisions.md          why it is built this way
-samples/cobol_payroll.tree.json      reference tree, exercises every field
+  system-overview.md                start here
+  inventory-contract.md             schema of inventory_artifact.json
+  analyzer-contract.md              how to build a complexity
+  architecture-decisions.md         why it is built this way
+samples/cobol_payroll.tree.json     reference tree, exercises every field
 tools/
-  judge.py                           adversarial conformance audit
-  99_canary_complexity.py            defective on purpose; validates the judge
-  tree_bridge.py                     converts legacy Style-A trees
+  judge.py                          adversarial conformance audit
+  99_canary_complexity.py           defective on purpose; validates the judge
+  tree_bridge.py                    converts legacy Style-A trees
+```
+
+Pipeline: `0_inventory` scans a Java repo and emits `inventory_artifact.json`
+(schema: [`docs/inventory-contract.md`](docs/inventory-contract.md)) → an
+upstream parser agent (ANTLR/AST, owned separately) turns that into a
+Normalized Tree → `1_complexity` scores it. Inventory has no `skills/`
+directory: it is one deterministic scan, not twenty selectable analyses, so
+there is nothing to discover or choose among at runtime.
+
+```bash
+python .claude/inventory/scanner.py --repo-root <path-to-java-repo> -o out
 ```
 
 **`skills/` describes, `complexities/` implements.** A `SKILL.md` states what the
