@@ -516,10 +516,22 @@ def cli_main(analyze: Callable[[Dict[str, Any]], Dict[str, Any]], spec: Spec) ->
         i += 1
 
     if path:
-        with open(path, "r", encoding="utf-8") as fh:
+        # utf-8-sig transparently strips a byte-order mark when one is present
+        # and behaves exactly like utf-8 when it is not. Windows tooling
+        # (Notepad, PowerShell redirection, some exporters) writes BOMs by
+        # default, and a plain utf-8 read fails on them with an error that
+        # points at "line 1 column 1" rather than at the real cause.
+        with open(path, "r", encoding="utf-8-sig") as fh:
             tree_raw = json.load(fh)
     elif not sys.stdin.isatty():
-        tree_raw = json.load(sys.stdin)
+        # Read stdin as BYTES and decode with utf-8-sig. Decoding the text
+        # stream instead would apply the console's codepage first, which on
+        # Windows turns the BOM into mojibake that no string strip can undo.
+        try:
+            raw = sys.stdin.buffer.read().decode("utf-8-sig")
+        except AttributeError:          # stdin replaced by a text-only object
+            raw = sys.stdin.read().lstrip("﻿")
+        tree_raw = json.loads(raw)
     else:
         print(
             f"{spec.id}: no input.\n"
