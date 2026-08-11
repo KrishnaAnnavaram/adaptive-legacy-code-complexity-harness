@@ -34,7 +34,10 @@ import sys
 from typing import Any, Dict, List, Optional, Tuple
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ANALYZER_DIR = os.path.join(HERE, "complexities")
+#: Analyzers live beside this file in .claude/scripts/, mirroring the
+#: plsql_to_brd layout where every executable step sits under .claude/scripts.
+ANALYZER_DIR = HERE
+REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, ANALYZER_DIR)
 
 from _core import TIERS, Tree, run  # noqa: E402

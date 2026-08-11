@@ -1,3 +1,12 @@
+# ---------------------------------------------------------------------------
+# NEVER COMMIT. plsql_to_brd is a SEPARATE repository that happens to sit
+# inside this working directory. It has its own .git, so `git add .` would
+# either commit it as a broken submodule reference or pull its entire history
+# in. Neither is recoverable cleanly once pushed. Do not remove this rule.
+# ---------------------------------------------------------------------------
+plsql_to_brd/
+plsql-to-brd/
+
 # Pipeline and analyzer output. Reproducible from the tree plus analyzer
 # versions, so it is regenerated rather than committed.
 out/

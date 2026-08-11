@@ -42,7 +42,7 @@ import sys
 from typing import Any, Dict, List, Tuple
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ANALYZER_DIR = os.path.join(HERE, "complexities")
+ANALYZER_DIR = os.path.join(HERE, ".claude", "scripts")
 sys.path.insert(0, ANALYZER_DIR)
 
 from _core import Tree, run  # noqa: E402
