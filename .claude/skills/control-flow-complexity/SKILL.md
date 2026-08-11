@@ -7,7 +7,7 @@ description: >
   tells you how many tests you need; this tells you whether the unit can be
   mechanically restructured at all. For COBOL, RPG and PL/I it is the single
   highest-value structural number, well above v(G).
-  Implemented deterministically by `.claude/complexities/03_control_flow_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/03_control_flow_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 2 (structural).
 ---
 
 # 03 - Control Flow Complexity

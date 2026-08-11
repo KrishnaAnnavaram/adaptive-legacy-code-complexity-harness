@@ -1,0 +1,623 @@
+{
+  "contract_version": "2.0",
+  "id": "architectural_complexity",
+  "sno": 20,
+  "complexity": "Architectural Complexity",
+  "tier": "coupling",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L1",
+    "score": 7.2,
+    "headline": "50 module(s); 0 dependency cycle(s) covering 0 module(s); 0 layering violation(s); 1 hub unit(s)"
+  },
+  "metrics": {
+    "modules": 50,
+    "dependency_edges": 141,
+    "dependency_cycles": 0,
+    "modules_in_cycles": 0,
+    "layering_violations": 0,
+    "inverted_dependencies": 0,
+    "skipped_layers": 0,
+    "modules_in_zone_of_pain": 0,
+    "modules_in_zone_of_uselessness": 0,
+    "modules_on_main_sequence": 0,
+    "god_units": 1,
+    "avg_efferent_coupling": 2.82,
+    "max_afferent_coupling": 9,
+    "architectural_score": 7.2
+  },
+  "hotspots": [],
+  "items": [
+    {
+      "module": "Application",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 2,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.*",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.Bank",
+      "units": 10,
+      "afferent_coupling": 0,
+      "efferent_coupling": 6,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.BankAccount",
+      "units": 5,
+      "afferent_coupling": 2,
+      "efferent_coupling": 3,
+      "instability": 0.6,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.CurrentAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 1,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.SavingsAccount",
+      "units": 3,
+      "afferent_coupling": 1,
+      "efferent_coupling": 3,
+      "instability": 0.75,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Bank.StudentAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 1,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Data.FileIO",
+      "units": 2,
+      "afferent_coupling": 7,
+      "efferent_coupling": 6,
+      "instability": 0.462,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Exceptions.AccNotFound",
+      "units": 1,
+      "afferent_coupling": 3,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Exceptions.InvalidAmount",
+      "units": 1,
+      "afferent_coupling": 3,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Exceptions.MaxBalance",
+      "units": 1,
+      "afferent_coupling": 4,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "Exceptions.MaxWithdraw",
+      "units": 1,
+      "afferent_coupling": 4,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.AddAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 11,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.AddCurrentAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 13,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.AddSavingsAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 12,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.AddStudentAccount",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 12,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.DepositAcc",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 16,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.DisplayList",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 12,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.GUIForm",
+      "units": 1,
+      "afferent_coupling": 1,
+      "efferent_coupling": 1,
+      "instability": 0.5,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.Login",
+      "units": 2,
+      "afferent_coupling": 0,
+      "efferent_coupling": 9,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.Menu",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 15,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "GUI.WithdrawAcc",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 18,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.EventQueue",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.Font",
+      "units": 0,
+      "afferent_coupling": 9,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.Image",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.Point",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.SystemColor",
+      "units": 0,
+      "afferent_coupling": 6,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.event.ActionEvent",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.awt.event.ActionListener",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.FileInputStream",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.FileOutputStream",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.IOException",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.ObjectInputStream",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.ObjectOutputStream",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.io.Serializable",
+      "units": 0,
+      "afferent_coupling": 4,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.DefaultListModel",
+      "units": 0,
+      "afferent_coupling": 2,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.Icon",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.ImageIcon",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JButton",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JFrame",
+      "units": 0,
+      "afferent_coupling": 9,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JLabel",
+      "units": 0,
+      "afferent_coupling": 9,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JList",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JOptionPane",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JPanel",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JPasswordField",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JScrollPane",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.JTextField",
+      "units": 0,
+      "afferent_coupling": 6,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.ScrollPaneConstants",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.SwingConstants",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "javax.swing.border.EmptyBorder",
+      "units": 0,
+      "afferent_coupling": 8,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    }
+  ],
+  "confidence": {
+    "score": 0.9,
+    "reasons": [
+      "optional input 'layers' absent from tree"
+    ]
+  },
+  "inputs_used": [
+    "dependency_graph",
+    "types",
+    "call_graph",
+    "units"
+  ],
+  "inputs_missing_optional": [
+    "layers"
+  ],
+  "dimension_scores": {
+    "dependency_cycles": 0,
+    "zone_of_pain": 0.0,
+    "layering_violations": 0,
+    "hub_units": 3.0,
+    "coupling_density": 4.2
+  },
+  "cycles": [],
+  "layering_violations": [],
+  "god_units": [
+    {
+      "unit": "Bank.Bank.addAccount",
+      "name": "addAccount",
+      "fan_in": 3,
+      "fan_out": 7,
+      "information_flow": 441
+    }
+  ],
+  "decomposition_guidance": "Break dependency cycles first - modules inside a cycle cannot be extracted independently at any cost. Then address zone-of-pain modules, which are concrete and widely depended upon and will resist every change. Hub units are the natural seams once the cycles are gone.",
+  "caveats": [
+    "No layer declaration - layering violations not checked. Supply `layers` and `module_layer` to enable this dimension."
+  ]
+}

@@ -8,7 +8,7 @@ description: >
   query is trivially readable and will not survive a data-volume increase,
   and legacy modernization routinely moves code onto platforms with very
   different cost profiles.
-  Implemented deterministically by `.claude/complexities/17_runtime_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/17_runtime_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 2 (structural).
 ---
 
 # 17 - Runtime Complexity

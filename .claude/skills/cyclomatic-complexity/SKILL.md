@@ -5,7 +5,7 @@ description: >
   bound on how many test cases you need for full branch coverage, and the
   most widely understood complexity number in existence. Every estimate
   conversation starts here.
-  Implemented deterministically by `.claude/complexities/01_cyclomatic_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/01_cyclomatic_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 2 (structural).
 ---
 
 # 01 - Cyclomatic Complexity

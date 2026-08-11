@@ -6,13 +6,13 @@ WHAT THIS IS
 The second product-code component, between the inventory scanner and the
 complexity agent:
 
-    Java repo --0_inventory--> inventory_artifact.json
+    Java repo --1_inventory--> inventory_artifact.json
                                       |
                                       v   (this script)
                           Normalized Tree (normalized_tree.json)
                                       |
                                       v
-                          1_complexity --> complexity_artifact.json
+                          3_complexity --> complexity_artifact.json
 
 The inventory scanner answers *what types exist and where* (declaration level,
 regex, no method bodies). This parser starts where it stops: it reads each

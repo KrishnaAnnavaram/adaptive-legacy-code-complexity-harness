@@ -4,7 +4,7 @@ description: >
   Measures how widely a change to one component can ripple through the
   system ("blast radius"). Estimates change risk, regression scope and
   modernization effort: answers "if I change this, what else can break?".
-  Implemented deterministically by `.claude/complexities/10_change_impact_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/10_change_impact_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 10 - Change Impact Complexity

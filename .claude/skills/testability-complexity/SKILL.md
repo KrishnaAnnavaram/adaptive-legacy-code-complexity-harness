@@ -7,7 +7,7 @@ description: >
   built, and it is the metric that most reliably predicts the true cost of a
   legacy rewrite. Two units with identical cyclomatic complexity can differ
   by an order of magnitude in test effort.
-  Implemented deterministically by `.claude/complexities/16_testability_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
+  Implemented deterministically by `.claude/complexities/16_testability_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 6 (composite).
 ---
 
 # 16 - Testability Complexity

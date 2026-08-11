@@ -491,7 +491,7 @@ class InventoryBuilder:
             "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "repo_root": str(self.repo_root),
             "language": "java",
-            "agent_version": "0_inventory_java@1.0",
+            "agent_version": "1_inventory_java@1.0",
             "total_files_scanned": self.total_files_scanned,
         }
 

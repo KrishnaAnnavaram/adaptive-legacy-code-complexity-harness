@@ -58,8 +58,8 @@ adaptive-legacy-code-complexity-harness/
 │   │                               access to plsql_to_brd/.
 │   │
 │   ├── agents/                     WHO orchestrates
-│   │   ├── 0_inventory_agent.md      name: java-inventory
-│   │   └── 1_complexity_agent.md     name: complexity-analyzer
+│   │   ├── 1_inventory_agent.md      name: java-inventory
+│   │   └── 3_complexity_agent.md     name: complexity-analyzer
 │   │
 │   ├── rules/                      Path-scoped instructions. Load only when
 │   │   └── analyzer-code.md        touching *.py under complexities/ or tools/.

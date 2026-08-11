@@ -1,0 +1,1963 @@
+{
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "units": [
+    {
+      "id": "com.example.bank.Account.Account",
+      "name": "Account",
+      "owner_type": "com.example.bank.Account",
+      "loc": 5,
+      "start_line": 21,
+      "end_line": 25,
+      "params": [
+        "id",
+        "owner",
+        "opening"
+      ],
+      "references": [
+        "balance",
+        "id",
+        "owner"
+      ],
+      "writes": [
+        "balance",
+        "id",
+        "owner"
+      ],
+      "globals": [
+        "balance",
+        "id",
+        "owner"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 3,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Account.deposit",
+      "name": "deposit",
+      "owner_type": "com.example.bank.Account",
+      "loc": 5,
+      "start_line": 27,
+      "end_line": 31,
+      "params": [
+        "amount"
+      ],
+      "references": [
+        "balance"
+      ],
+      "writes": [
+        "balance"
+      ],
+      "globals": [
+        "balance"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "requirePositive",
+            "line": 28,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "audit",
+            "line": 30,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Account.withdraw",
+      "name": "withdraw",
+      "owner_type": "com.example.bank.Account",
+      "loc": 8,
+      "start_line": 33,
+      "end_line": 40,
+      "params": [
+        "amount"
+      ],
+      "references": [
+        "balance",
+        "owner"
+      ],
+      "writes": [
+        "balance"
+      ],
+      "globals": [
+        "balance",
+        "owner"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "requirePositive",
+            "line": 34,
+            "children": []
+          },
+          {
+            "node_type": "IF",
+            "line": 35,
+            "children": [
+              {
+                "node_type": "RAISE",
+                "line": 36,
+                "children": [
+                  {
+                    "node_type": "CALL",
+                    "name": "InsufficientFundsException",
+                    "line": 36,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node_type": "CALL",
+            "name": "audit",
+            "line": 39,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Account.getBalance",
+      "name": "getBalance",
+      "owner_type": "com.example.bank.Account",
+      "loc": 3,
+      "start_line": 42,
+      "end_line": 44,
+      "params": [],
+      "references": [
+        "balance"
+      ],
+      "writes": [],
+      "globals": [
+        "balance"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 43,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Account.getId",
+      "name": "getId",
+      "owner_type": "com.example.bank.Account",
+      "loc": 3,
+      "start_line": 46,
+      "end_line": 48,
+      "params": [],
+      "references": [
+        "id"
+      ],
+      "writes": [],
+      "globals": [
+        "id"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 47,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Account.audit",
+      "name": "audit",
+      "owner_type": "com.example.bank.Account",
+      "loc": 3,
+      "start_line": 51,
+      "end_line": 53,
+      "params": [
+        "event"
+      ],
+      "references": [
+        "auditTrail",
+        "owner"
+      ],
+      "writes": [],
+      "globals": [
+        "auditTrail",
+        "owner"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "add",
+            "line": 52,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.AccountType.AccountType",
+      "name": "AccountType",
+      "owner_type": "com.example.bank.AccountType",
+      "loc": 3,
+      "start_line": 12,
+      "end_line": 14,
+      "params": [
+        "threshold"
+      ],
+      "references": [
+        "threshold"
+      ],
+      "writes": [
+        "threshold"
+      ],
+      "globals": [
+        "threshold"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 1,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.AccountType.threshold",
+      "name": "threshold",
+      "owner_type": "com.example.bank.AccountType",
+      "loc": 3,
+      "start_line": 16,
+      "end_line": 18,
+      "params": [],
+      "references": [
+        "threshold"
+      ],
+      "writes": [],
+      "globals": [
+        "threshold"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 17,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.AccountType.forBalance",
+      "name": "forBalance",
+      "owner_type": "com.example.bank.AccountType",
+      "loc": 9,
+      "start_line": 20,
+      "end_line": 28,
+      "params": [
+        "balance"
+      ],
+      "references": [
+        "BASIC",
+        "threshold"
+      ],
+      "writes": [],
+      "globals": [
+        "BASIC",
+        "threshold"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "FOR",
+            "line": 22,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "values",
+                "line": 22,
+                "children": []
+              },
+              {
+                "node_type": "IF",
+                "line": 23,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "RETURN",
+            "line": 27,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": true,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Auditable.audit",
+      "name": "audit",
+      "owner_type": "com.example.bank.Auditable",
+      "loc": 1,
+      "start_line": 5,
+      "end_line": 5,
+      "params": [
+        "event"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": true
+      }
+    },
+    {
+      "id": "com.example.bank.Bank.addAccount",
+      "name": "addAccount",
+      "owner_type": "com.example.bank.Bank",
+      "loc": 3,
+      "start_line": 17,
+      "end_line": 19,
+      "params": [
+        "account"
+      ],
+      "references": [
+        "accounts"
+      ],
+      "writes": [],
+      "globals": [
+        "accounts"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "put",
+            "line": 18,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "getId",
+            "line": 18,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Bank.findAccount",
+      "name": "findAccount",
+      "owner_type": "com.example.bank.Bank",
+      "loc": 3,
+      "start_line": 21,
+      "end_line": 23,
+      "params": [
+        "id"
+      ],
+      "references": [
+        "accounts"
+      ],
+      "writes": [],
+      "globals": [
+        "accounts"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 22,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "get",
+                "line": 22,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Bank.transfer",
+      "name": "transfer",
+      "owner_type": "com.example.bank.Bank",
+      "loc": 16,
+      "start_line": 25,
+      "end_line": 40,
+      "params": [
+        "fromId",
+        "toId",
+        "amount"
+      ],
+      "references": [
+        "log"
+      ],
+      "writes": [],
+      "globals": [
+        "log"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "findAccount",
+            "line": 26,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "findAccount",
+            "line": 27,
+            "children": []
+          },
+          {
+            "node_type": "IF",
+            "line": 28,
+            "children": [
+              {
+                "node_type": "OR",
+                "line": 28,
+                "children": []
+              },
+              {
+                "node_type": "RETURN",
+                "line": 29,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "BLOCK",
+            "line": 31,
+            "meta": {
+              "try": true
+            },
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "withdraw",
+                "line": 32,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "deposit",
+                "line": 33,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "record",
+                "line": 34,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "Money",
+                "line": 34,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "round",
+                "line": 34,
+                "children": []
+              },
+              {
+                "node_type": "RETURN",
+                "line": 35,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "CATCH",
+            "line": 36,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "audit",
+                "line": 37,
+                "children": []
+              },
+              {
+                "node_type": "RETURN",
+                "line": 38,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Bank.classify",
+      "name": "classify",
+      "owner_type": "com.example.bank.Bank",
+      "loc": 3,
+      "start_line": 42,
+      "end_line": 44,
+      "params": [
+        "account"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 43,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "forBalance",
+                "line": 43,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "getBalance",
+                "line": 43,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Bank.describe",
+      "name": "describe",
+      "owner_type": "com.example.bank.Bank",
+      "loc": 12,
+      "start_line": 46,
+      "end_line": 57,
+      "params": [
+        "type"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "BLOCK",
+            "line": 47,
+            "meta": {
+              "switch": true
+            },
+            "children": [
+              {
+                "node_type": "CASE",
+                "line": 48,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy",
+      "name": "CompoundInterestPolicy",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "loc": 3,
+      "start_line": 8,
+      "end_line": 10,
+      "params": [
+        "base"
+      ],
+      "references": [
+        "base"
+      ],
+      "writes": [
+        "base"
+      ],
+      "globals": [
+        "base"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 1,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.CompoundInterestPolicy.rate",
+      "name": "rate",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "loc": 6,
+      "start_line": 13,
+      "end_line": 18,
+      "params": [
+        "month"
+      ],
+      "references": [
+        "base"
+      ],
+      "writes": [],
+      "globals": [
+        "base"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "IF",
+            "line": 14,
+            "children": [
+              {
+                "node_type": "RETURN",
+                "line": 15,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "RETURN",
+            "line": 17,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "rate",
+                "line": 17,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.CompoundInterestPolicy.monthsToReach",
+      "name": "monthsToReach",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "loc": 9,
+      "start_line": 20,
+      "end_line": 28,
+      "params": [
+        "target"
+      ],
+      "references": [
+        "base"
+      ],
+      "writes": [],
+      "globals": [
+        "base"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "DO_WHILE",
+            "line": 23,
+            "children": [
+              {
+                "node_type": "AND",
+                "line": 26,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "RETURN",
+            "line": 27,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.InsufficientFundsException.InsufficientFundsException",
+      "name": "InsufficientFundsException",
+      "owner_type": "com.example.bank.InsufficientFundsException",
+      "loc": 3,
+      "start_line": 6,
+      "end_line": 8,
+      "params": [
+        "message"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 1,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.InterestPolicy.rate",
+      "name": "rate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "loc": 1,
+      "start_line": 6,
+      "end_line": 6,
+      "params": [
+        "month"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": true
+      }
+    },
+    {
+      "id": "com.example.bank.InterestPolicy.annualRate",
+      "name": "annualRate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "loc": 7,
+      "start_line": 8,
+      "end_line": 14,
+      "params": [],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "FOR",
+            "line": 10,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "rate",
+                "line": 11,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "RETURN",
+            "line": 13,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Money.Money",
+      "name": "Money",
+      "owner_type": "com.example.bank.Money",
+      "loc": 7,
+      "start_line": 9,
+      "end_line": 15,
+      "params": [
+        "cents",
+        "currency"
+      ],
+      "references": [
+        "cents",
+        "currency"
+      ],
+      "writes": [
+        "cents",
+        "currency"
+      ],
+      "globals": [
+        "cents",
+        "currency"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "IF",
+            "line": 10,
+            "children": [
+              {
+                "node_type": "RAISE",
+                "line": 11,
+                "children": [
+                  {
+                    "node_type": "CALL",
+                    "name": "IllegalArgumentException",
+                    "line": 11,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 2,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Money.cents",
+      "name": "cents",
+      "owner_type": "com.example.bank.Money",
+      "loc": 3,
+      "start_line": 17,
+      "end_line": 19,
+      "params": [],
+      "references": [
+        "cents"
+      ],
+      "writes": [],
+      "globals": [
+        "cents"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 18,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Money.currency",
+      "name": "currency",
+      "owner_type": "com.example.bank.Money",
+      "loc": 3,
+      "start_line": 21,
+      "end_line": 23,
+      "params": [],
+      "references": [
+        "currency"
+      ],
+      "writes": [],
+      "globals": [
+        "currency"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 22,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Money.plus",
+      "name": "plus",
+      "owner_type": "com.example.bank.Money",
+      "loc": 3,
+      "start_line": 25,
+      "end_line": 27,
+      "params": [
+        "other"
+      ],
+      "references": [
+        "cents",
+        "currency"
+      ],
+      "writes": [],
+      "globals": [
+        "cents",
+        "currency"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 26,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "Money",
+                "line": 26,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.Money.toDouble",
+      "name": "toDouble",
+      "owner_type": "com.example.bank.Money",
+      "loc": 3,
+      "start_line": 29,
+      "end_line": 31,
+      "params": [],
+      "references": [
+        "cents"
+      ],
+      "writes": [],
+      "globals": [
+        "cents"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 30,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.SavingsAccount.SavingsAccount",
+      "name": "SavingsAccount",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "loc": 4,
+      "start_line": 12,
+      "end_line": 15,
+      "params": [
+        "id",
+        "owner",
+        "opening",
+        "policy"
+      ],
+      "references": [
+        "policy"
+      ],
+      "writes": [
+        "policy"
+      ],
+      "globals": [
+        "policy"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 4,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.SavingsAccount.applyInterest",
+      "name": "applyInterest",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "loc": 7,
+      "start_line": 17,
+      "end_line": 23,
+      "params": [
+        "months"
+      ],
+      "references": [
+        "policy"
+      ],
+      "writes": [],
+      "globals": [
+        "policy"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "FOR",
+            "line": 18,
+            "children": [
+              {
+                "node_type": "CALL",
+                "name": "rate",
+                "line": 19,
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_type": "CALL",
+            "name": "audit",
+            "line": 22,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.SavingsAccount.withdraw",
+      "name": "withdraw",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "loc": 4,
+      "start_line": 26,
+      "end_line": 29,
+      "params": [
+        "amount"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "TERNARY",
+            "line": 27,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "withdraw",
+            "line": 28,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.TransactionLog.record",
+      "name": "record",
+      "owner_type": "com.example.bank.TransactionLog",
+      "loc": 3,
+      "start_line": 14,
+      "end_line": 16,
+      "params": [
+        "from",
+        "to",
+        "amount"
+      ],
+      "references": [
+        "entries"
+      ],
+      "writes": [],
+      "globals": [
+        "entries"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "add",
+            "line": 15,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "Entry",
+            "line": 15,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.TransactionLog.totalFor",
+      "name": "totalFor",
+      "owner_type": "com.example.bank.TransactionLog",
+      "loc": 9,
+      "start_line": 18,
+      "end_line": 26,
+      "params": [
+        "account"
+      ],
+      "references": [
+        "entries"
+      ],
+      "writes": [],
+      "globals": [
+        "entries"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "Money",
+            "line": 19,
+            "children": []
+          },
+          {
+            "node_type": "FOR",
+            "line": 20,
+            "children": [
+              {
+                "node_type": "IF",
+                "line": 21,
+                "children": [
+                  {
+                    "node_type": "CALL",
+                    "name": "equals",
+                    "line": 21,
+                    "children": []
+                  },
+                  {
+                    "node_type": "OR",
+                    "line": 21,
+                    "children": []
+                  },
+                  {
+                    "node_type": "CALL",
+                    "name": "equals",
+                    "line": 21,
+                    "children": []
+                  },
+                  {
+                    "node_type": "CALL",
+                    "name": "plus",
+                    "line": 22,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node_type": "RETURN",
+            "line": 25,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.TransactionLog.linked",
+      "name": "linked",
+      "owner_type": "com.example.bank.TransactionLog",
+      "loc": 15,
+      "start_line": 28,
+      "end_line": 42,
+      "params": [
+        "a",
+        "b"
+      ],
+      "references": [
+        "entries"
+      ],
+      "writes": [],
+      "globals": [
+        "entries"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "CALL",
+            "name": "equals",
+            "line": 32,
+            "children": []
+          },
+          {
+            "node_type": "CALL",
+            "name": "equals",
+            "line": 34,
+            "children": []
+          }
+        ]
+      },
+      "meta": {
+        "static": false,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.TransactionLog$Entry.Entry",
+      "name": "Entry",
+      "owner_type": "com.example.bank.TransactionLog$Entry",
+      "loc": 5,
+      "start_line": 50,
+      "end_line": 54,
+      "params": [
+        "from",
+        "to",
+        "amount"
+      ],
+      "references": [
+        "amount",
+        "from",
+        "to"
+      ],
+      "writes": [
+        "amount",
+        "from",
+        "to"
+      ],
+      "globals": [
+        "amount",
+        "from",
+        "to"
+      ],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 3,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.util.Validation.Validation",
+      "name": "Validation",
+      "owner_type": "com.example.bank.util.Validation",
+      "loc": 1,
+      "start_line": 6,
+      "end_line": 7,
+      "params": [],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": []
+      },
+      "meta": {
+        "static": false,
+        "exposed": false,
+        "constructor_params": 0,
+        "constructor": true,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.util.Validation.requirePositive",
+      "name": "requirePositive",
+      "owner_type": "com.example.bank.util.Validation",
+      "loc": 5,
+      "start_line": 9,
+      "end_line": 13,
+      "params": [
+        "amount"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "IF",
+            "line": 10,
+            "children": [
+              {
+                "node_type": "OR",
+                "line": 10,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "isNaN",
+                "line": 10,
+                "children": []
+              },
+              {
+                "node_type": "RAISE",
+                "line": 11,
+                "children": [
+                  {
+                    "node_type": "CALL",
+                    "name": "IllegalArgumentException",
+                    "line": 11,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": true,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    },
+    {
+      "id": "com.example.bank.util.Validation.isBlank",
+      "name": "isBlank",
+      "owner_type": "com.example.bank.util.Validation",
+      "loc": 3,
+      "start_line": 15,
+      "end_line": 17,
+      "params": [
+        "value"
+      ],
+      "references": [],
+      "writes": [],
+      "globals": [],
+      "cfg": {
+        "node_type": "SEQUENCE",
+        "children": [
+          {
+            "node_type": "RETURN",
+            "line": 16,
+            "children": [
+              {
+                "node_type": "OR",
+                "line": 16,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "trim",
+                "line": 16,
+                "children": []
+              },
+              {
+                "node_type": "CALL",
+                "name": "isEmpty",
+                "line": 16,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "static": true,
+        "exposed": true,
+        "constructor_params": 0,
+        "constructor": false,
+        "abstract": false
+      }
+    }
+  ],
+  "types": [
+    {
+      "id": "com.example.bank.Account",
+      "name": "Account",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "id",
+        "owner",
+        "balance",
+        "auditTrail"
+      ],
+      "methods": [
+        "com.example.bank.Account.Account",
+        "com.example.bank.Account.deposit",
+        "com.example.bank.Account.withdraw",
+        "com.example.bank.Account.getBalance",
+        "com.example.bank.Account.getId",
+        "com.example.bank.Account.audit"
+      ],
+      "extends": [],
+      "implements": [
+        "com.example.bank.Auditable"
+      ]
+    },
+    {
+      "id": "com.example.bank.AccountType",
+      "name": "AccountType",
+      "kind": "enum",
+      "module": "com.example.bank",
+      "fields": [
+        "BASIC",
+        "SILVER",
+        "GOLD",
+        "threshold"
+      ],
+      "methods": [
+        "com.example.bank.AccountType.AccountType",
+        "com.example.bank.AccountType.threshold",
+        "com.example.bank.AccountType.forBalance"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.Auditable",
+      "name": "Auditable",
+      "kind": "interface",
+      "module": "com.example.bank",
+      "fields": [],
+      "methods": [
+        "com.example.bank.Auditable.audit"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.Bank",
+      "name": "Bank",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "accounts",
+        "log"
+      ],
+      "methods": [
+        "com.example.bank.Bank.addAccount",
+        "com.example.bank.Bank.findAccount",
+        "com.example.bank.Bank.transfer",
+        "com.example.bank.Bank.classify",
+        "com.example.bank.Bank.describe"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.CompoundInterestPolicy",
+      "name": "CompoundInterestPolicy",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "base"
+      ],
+      "methods": [
+        "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy",
+        "com.example.bank.CompoundInterestPolicy.rate",
+        "com.example.bank.CompoundInterestPolicy.monthsToReach"
+      ],
+      "extends": [],
+      "implements": [
+        "com.example.bank.InterestPolicy"
+      ]
+    },
+    {
+      "id": "com.example.bank.InsufficientFundsException",
+      "name": "InsufficientFundsException",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [],
+      "methods": [
+        "com.example.bank.InsufficientFundsException.InsufficientFundsException"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.InterestPolicy",
+      "name": "InterestPolicy",
+      "kind": "interface",
+      "module": "com.example.bank",
+      "fields": [],
+      "methods": [
+        "com.example.bank.InterestPolicy.rate",
+        "com.example.bank.InterestPolicy.annualRate"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.Money",
+      "name": "Money",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "cents",
+        "currency"
+      ],
+      "methods": [
+        "com.example.bank.Money.Money",
+        "com.example.bank.Money.cents",
+        "com.example.bank.Money.currency",
+        "com.example.bank.Money.plus",
+        "com.example.bank.Money.toDouble"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.SavingsAccount",
+      "name": "SavingsAccount",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "policy"
+      ],
+      "methods": [
+        "com.example.bank.SavingsAccount.SavingsAccount",
+        "com.example.bank.SavingsAccount.applyInterest",
+        "com.example.bank.SavingsAccount.withdraw"
+      ],
+      "extends": [
+        "com.example.bank.Account"
+      ],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.TransactionLog",
+      "name": "TransactionLog",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "entries"
+      ],
+      "methods": [
+        "com.example.bank.TransactionLog.record",
+        "com.example.bank.TransactionLog.totalFor",
+        "com.example.bank.TransactionLog.linked"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.TransactionLog$Entry",
+      "name": "Entry",
+      "kind": "class",
+      "module": "com.example.bank",
+      "fields": [
+        "from",
+        "to",
+        "amount"
+      ],
+      "methods": [
+        "com.example.bank.TransactionLog$Entry.Entry"
+      ],
+      "extends": [],
+      "implements": []
+    },
+    {
+      "id": "com.example.bank.util.Validation",
+      "name": "Validation",
+      "kind": "class",
+      "module": "com.example.bank.util",
+      "fields": [],
+      "methods": [
+        "com.example.bank.util.Validation.Validation",
+        "com.example.bank.util.Validation.requirePositive",
+        "com.example.bank.util.Validation.isBlank"
+      ],
+      "extends": [],
+      "implements": []
+    }
+  ],
+  "call_graph": {
+    "nodes": [
+      "com.example.bank.Account.Account",
+      "com.example.bank.Account.audit",
+      "com.example.bank.Account.deposit",
+      "com.example.bank.Account.getBalance",
+      "com.example.bank.Account.getId",
+      "com.example.bank.Account.withdraw",
+      "com.example.bank.AccountType.AccountType",
+      "com.example.bank.AccountType.forBalance",
+      "com.example.bank.AccountType.threshold",
+      "com.example.bank.Auditable.audit",
+      "com.example.bank.Bank.addAccount",
+      "com.example.bank.Bank.classify",
+      "com.example.bank.Bank.describe",
+      "com.example.bank.Bank.findAccount",
+      "com.example.bank.Bank.transfer",
+      "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy",
+      "com.example.bank.CompoundInterestPolicy.monthsToReach",
+      "com.example.bank.CompoundInterestPolicy.rate",
+      "com.example.bank.InsufficientFundsException.InsufficientFundsException",
+      "com.example.bank.InterestPolicy.annualRate",
+      "com.example.bank.InterestPolicy.rate",
+      "com.example.bank.Money.Money",
+      "com.example.bank.Money.cents",
+      "com.example.bank.Money.currency",
+      "com.example.bank.Money.plus",
+      "com.example.bank.Money.toDouble",
+      "com.example.bank.SavingsAccount.SavingsAccount",
+      "com.example.bank.SavingsAccount.applyInterest",
+      "com.example.bank.SavingsAccount.withdraw",
+      "com.example.bank.TransactionLog$Entry.Entry",
+      "com.example.bank.TransactionLog.linked",
+      "com.example.bank.TransactionLog.record",
+      "com.example.bank.TransactionLog.totalFor",
+      "com.example.bank.util.Validation.Validation",
+      "com.example.bank.util.Validation.isBlank",
+      "com.example.bank.util.Validation.requirePositive"
+    ],
+    "edges": [
+      {
+        "from": "com.example.bank.Account.deposit",
+        "to": "com.example.bank.util.Validation.requirePositive"
+      },
+      {
+        "from": "com.example.bank.Account.deposit",
+        "to": "com.example.bank.Account.audit"
+      },
+      {
+        "from": "com.example.bank.Account.withdraw",
+        "to": "com.example.bank.util.Validation.requirePositive"
+      },
+      {
+        "from": "com.example.bank.Account.withdraw",
+        "to": "com.example.bank.InsufficientFundsException.InsufficientFundsException"
+      },
+      {
+        "from": "com.example.bank.Account.withdraw",
+        "to": "com.example.bank.Account.audit"
+      },
+      {
+        "from": "com.example.bank.Bank.addAccount",
+        "to": "com.example.bank.Account.getId"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.Bank.findAccount"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.Account.withdraw"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.Account.deposit"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.TransactionLog.record"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.Money.Money"
+      },
+      {
+        "from": "com.example.bank.Bank.transfer",
+        "to": "com.example.bank.Account.audit"
+      },
+      {
+        "from": "com.example.bank.Bank.classify",
+        "to": "com.example.bank.AccountType.forBalance"
+      },
+      {
+        "from": "com.example.bank.Bank.classify",
+        "to": "com.example.bank.Account.getBalance"
+      },
+      {
+        "from": "com.example.bank.CompoundInterestPolicy.rate",
+        "to": "com.example.bank.CompoundInterestPolicy.rate"
+      },
+      {
+        "from": "com.example.bank.InterestPolicy.annualRate",
+        "to": "com.example.bank.InterestPolicy.rate"
+      },
+      {
+        "from": "com.example.bank.Money.plus",
+        "to": "com.example.bank.Money.Money"
+      },
+      {
+        "from": "com.example.bank.SavingsAccount.applyInterest",
+        "to": "com.example.bank.InterestPolicy.rate"
+      },
+      {
+        "from": "com.example.bank.SavingsAccount.applyInterest",
+        "to": "com.example.bank.Account.audit"
+      },
+      {
+        "from": "com.example.bank.SavingsAccount.withdraw",
+        "to": "com.example.bank.Account.withdraw"
+      },
+      {
+        "from": "com.example.bank.TransactionLog.record",
+        "to": "com.example.bank.TransactionLog$Entry.Entry"
+      },
+      {
+        "from": "com.example.bank.TransactionLog.totalFor",
+        "to": "com.example.bank.Money.Money"
+      },
+      {
+        "from": "com.example.bank.TransactionLog.totalFor",
+        "to": "com.example.bank.Money.plus"
+      }
+    ]
+  },
+  "dependency_graph": {
+    "nodes": [
+      "com.example.bank.Account",
+      "com.example.bank.AccountType",
+      "com.example.bank.Auditable",
+      "com.example.bank.Bank",
+      "com.example.bank.CompoundInterestPolicy",
+      "com.example.bank.InsufficientFundsException",
+      "com.example.bank.InterestPolicy",
+      "com.example.bank.Money",
+      "com.example.bank.SavingsAccount",
+      "com.example.bank.TransactionLog",
+      "com.example.bank.TransactionLog$Entry",
+      "com.example.bank.util.Validation",
+      "java.util.ArrayList",
+      "java.util.List",
+      "java.util.HashMap",
+      "java.util.Map"
+    ],
+    "edges": [
+      {
+        "from": "com.example.bank.Account",
+        "to": "com.example.bank.Auditable",
+        "kind": "internal"
+      },
+      {
+        "from": "com.example.bank.CompoundInterestPolicy",
+        "to": "com.example.bank.InterestPolicy",
+        "kind": "internal"
+      },
+      {
+        "from": "com.example.bank.SavingsAccount",
+        "to": "com.example.bank.Account",
+        "kind": "internal"
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "java.util.ArrayList",
+        "kind": "library"
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "java.util.List",
+        "kind": "library"
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "com.example.bank.util.Validation",
+        "kind": "internal"
+      },
+      {
+        "from": "com.example.bank.Bank",
+        "to": "java.util.HashMap",
+        "kind": "library"
+      },
+      {
+        "from": "com.example.bank.Bank",
+        "to": "java.util.Map",
+        "kind": "library"
+      },
+      {
+        "from": "com.example.bank.TransactionLog",
+        "to": "java.util.ArrayList",
+        "kind": "library"
+      },
+      {
+        "from": "com.example.bank.TransactionLog",
+        "to": "java.util.List",
+        "kind": "library"
+      }
+    ]
+  }
+}

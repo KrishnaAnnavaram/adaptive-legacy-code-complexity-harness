@@ -1,0 +1,241 @@
+{
+  "contract_version": "2.0",
+  "id": "architectural_complexity",
+  "sno": 20,
+  "complexity": "Architectural Complexity",
+  "tier": "coupling",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L1",
+    "score": 0.9,
+    "headline": "16 module(s); 0 dependency cycle(s) covering 0 module(s); 0 layering violation(s); 0 hub unit(s)"
+  },
+  "metrics": {
+    "modules": 16,
+    "dependency_edges": 10,
+    "dependency_cycles": 0,
+    "modules_in_cycles": 0,
+    "layering_violations": 0,
+    "inverted_dependencies": 0,
+    "skipped_layers": 0,
+    "modules_in_zone_of_pain": 0,
+    "modules_in_zone_of_uselessness": 0,
+    "modules_on_main_sequence": 0,
+    "god_units": 0,
+    "avg_efferent_coupling": 0.62,
+    "max_afferent_coupling": 2,
+    "architectural_score": 0.9
+  },
+  "hotspots": [],
+  "items": [
+    {
+      "module": "com.example.bank.Account",
+      "units": 6,
+      "afferent_coupling": 1,
+      "efferent_coupling": 4,
+      "instability": 0.8,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.AccountType",
+      "units": 3,
+      "afferent_coupling": 0,
+      "efferent_coupling": 0,
+      "instability": null,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.Auditable",
+      "units": 1,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.Bank",
+      "units": 5,
+      "afferent_coupling": 0,
+      "efferent_coupling": 2,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.CompoundInterestPolicy",
+      "units": 3,
+      "afferent_coupling": 0,
+      "efferent_coupling": 1,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.InsufficientFundsException",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 0,
+      "instability": null,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.InterestPolicy",
+      "units": 2,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.Money",
+      "units": 5,
+      "afferent_coupling": 0,
+      "efferent_coupling": 0,
+      "instability": null,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.SavingsAccount",
+      "units": 3,
+      "afferent_coupling": 0,
+      "efferent_coupling": 1,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.TransactionLog",
+      "units": 3,
+      "afferent_coupling": 0,
+      "efferent_coupling": 2,
+      "instability": 1.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.TransactionLog$Entry",
+      "units": 1,
+      "afferent_coupling": 0,
+      "efferent_coupling": 0,
+      "instability": null,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "com.example.bank.util.Validation",
+      "units": 3,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.util.ArrayList",
+      "units": 0,
+      "afferent_coupling": 2,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.util.HashMap",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.util.List",
+      "units": 0,
+      "afferent_coupling": 2,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    },
+    {
+      "module": "java.util.Map",
+      "units": 0,
+      "afferent_coupling": 1,
+      "efferent_coupling": 0,
+      "instability": 0.0,
+      "abstractness": null,
+      "distance_from_main_sequence": null,
+      "zone": null,
+      "in_cycle": false
+    }
+  ],
+  "confidence": {
+    "score": 0.9,
+    "reasons": [
+      "optional input 'layers' absent from tree"
+    ]
+  },
+  "inputs_used": [
+    "dependency_graph",
+    "types",
+    "call_graph",
+    "units"
+  ],
+  "inputs_missing_optional": [
+    "layers"
+  ],
+  "dimension_scores": {
+    "dependency_cycles": 0,
+    "zone_of_pain": 0.0,
+    "layering_violations": 0,
+    "hub_units": 0.0,
+    "coupling_density": 0.9
+  },
+  "cycles": [],
+  "layering_violations": [],
+  "god_units": [],
+  "decomposition_guidance": "Break dependency cycles first - modules inside a cycle cannot be extracted independently at any cost. Then address zone-of-pain modules, which are concrete and widely depended upon and will resist every change. Hub units are the natural seams once the cycles are gone.",
+  "caveats": [
+    "No layer declaration - layering violations not checked. Supply `layers` and `module_layer` to enable this dimension."
+  ]
+}

@@ -7,11 +7,16 @@
 plsql_to_brd/
 plsql-to-brd/
 
-# Pipeline and analyzer output. Reproducible from the tree plus analyzer
-# versions, so it is regenerated rather than committed.
+# Scratch pipeline output (ad-hoc -o out/ runs). Reproducible, not committed.
 out/
-outputs/
 output/
+
+# Downloaded/cloned source repos to scan. Third-party code, not ours to
+# redistribute, and easy to re-fetch — never commit it.
+input/
+
+# outputs/ IS committed (unlike out/ above) — it holds named, curated demo
+# results (e.g. outputs/java_bank/) meant to be pushed and shown.
 
 # Python
 __pycache__/

@@ -3,13 +3,13 @@ name: java-parser
 description: >
   Parser step of the adaptive legacy code complexity harness. Consumes the
   inventory agent's inventory_artifact.json plus the Java source it points to,
-  and produces the Normalized Tree the 1_complexity agent consumes: one unit per
+  and produces the Normalized Tree the 3_complexity agent consumes: one unit per
   method/constructor with a typed control-flow graph, a resolved call graph, and
   a type-level dependency graph. It reads inside method bodies - which the
   inventory agent deliberately does not - but stays heuristic and standard-library
   only: a hand-written tokenizer and a brace/keyword statement scanner, no ANTLR,
   no javalang, no tree-sitter. It starts where the inventory agent stops and hands
-  its tree to 1_complexity; tree consumption and scoring are not in scope here.
+  its tree to 3_complexity; tree consumption and scoring are not in scope here.
 tools: Read, Glob, Grep, Bash, Write, Edit, TodoWrite
 model: inherit
 ---
@@ -27,13 +27,13 @@ analyzer reads.
 You sit exactly between the two agents that already exist:
 
 ```
-Java repo --0_inventory--> inventory_artifact.json
+Java repo --1_inventory--> inventory_artifact.json
                                   |
                                   v   (you)
                           Normalized Tree (normalized_tree.json)
                                   |
                                   v
-                          1_complexity --> complexity_artifact.json
+                          3_complexity --> complexity_artifact.json
 ```
 
 Two commitments carry over unchanged from the rest of this harness:
@@ -179,11 +179,11 @@ missing field — never a zero. On `samples/java_bank` the reference result is
 
 | Producer | Supplies |
 |---|---|
-| `0_inventory` (`java-inventory`) | `inventory_artifact.json` — the file list, the type id each file should produce (the join key carried forward as `owner_type`), and a first-pass import/extends/implements graph to validate resolution against |
+| `1_inventory` (`java-inventory`) | `inventory_artifact.json` — the file list, the type id each file should produce (the join key carried forward as `owner_type`), and a first-pass import/extends/implements graph to validate resolution against |
 
 ## Downstream consumer
 
 | Consumer | Reads | For |
 |---|---|---|
-| `1_complexity` (`complexity-analyzer`) | the whole Normalized Tree | Discovering, gating and running the 20 complexity skills |
+| `3_complexity` (`complexity-analyzer`) | the whole Normalized Tree | Discovering, gating and running the 20 complexity skills |
 | Harness maintenance | `coverage.not_measured` from the complexity run | Which tree fields this parser should start emitting next (e.g. `sql`, `config_reads`) |

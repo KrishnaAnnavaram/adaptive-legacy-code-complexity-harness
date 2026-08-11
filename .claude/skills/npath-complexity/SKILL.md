@@ -7,7 +7,7 @@ description: >
   sequential if statements give v(G) = 11 and NPath = 1,024. That gap is why
   "we have full branch coverage" and "we tested the combinations" are
   different claims, and why some units cannot be exhaustively tested at all.
-  Implemented deterministically by `.claude/complexities/06_npath_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 2 (structural).
+  Implemented deterministically by `.claude/complexities/06_npath_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 2 (structural).
 ---
 
 # 06 - NPath Complexity

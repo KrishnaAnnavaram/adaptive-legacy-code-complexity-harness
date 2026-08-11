@@ -6,7 +6,7 @@ description: >
   architecture. Business rules live in SQL, transaction boundaries are
   implicit, and schema coupling - not branch count - decides whether a unit
   can be moved. Control-flow metrics are blind to all of it.
-  Implemented deterministically by `.claude/complexities/15_database_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 5 (hazard).
+  Implemented deterministically by `.claude/complexities/15_database_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 5 (hazard).
 ---
 
 # 15 - Database Complexity

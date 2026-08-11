@@ -1,13 +1,13 @@
 # What the inventory agent promises: `inventory_artifact.json`
 
-This is the interface between `0_inventory_agent` and whatever parser agent
+This is the interface between `1_inventory_agent` and whatever parser agent
 reads its output next. It is a schema doc, not code — nothing executes this
 file. Its only job is to let the parser agent be written against a fixed
 contract instead of `scanner.py`'s source.
 
 Produced by [`.claude/inventory/scanner.py`](../.claude/inventory/scanner.py).
 Read the agent's operating rules in
-[`0_inventory_agent.md`](../.claude/agents/0_inventory_agent.md).
+[`1_inventory_agent.md`](../.claude/agents/1_inventory_agent.md).
 
 ---
 
@@ -54,7 +54,7 @@ right, cheap to compute," not as a guarantee.
 | `generated_at` | string | UTC timestamp, `YYYY-MM-DDTHH:MM:SSZ` |
 | `repo_root` | string | Absolute path scanned |
 | `language` | string | Always `"java"` |
-| `agent_version` | string | e.g. `"0_inventory_java@1.0"` |
+| `agent_version` | string | e.g. `"1_inventory_java@1.0"` |
 | `total_files_scanned` | number | Every file matched by extension, including build/config/sql |
 
 ### `stats`
