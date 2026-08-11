@@ -9,6 +9,10 @@ description: >
 
 # 14 - Interface / API Complexity
 
+> **What it is** — Complexity of the interfaces, endpoints and contracts a system exposes.
+> **When to use it** — Use it on integration-heavy or service-oriented systems, where a wide contract surface is what makes change expensive.
+> **How it works** — Counts exposed operations (public interface/endpoint methods), parameters per operation, distinct schemas/DTOs referenced, and upstream/downstream (api) contract edges.
+
 ## Purpose
 
 **What it measures.** Complexity of the interfaces, endpoints and contracts a system exposes.

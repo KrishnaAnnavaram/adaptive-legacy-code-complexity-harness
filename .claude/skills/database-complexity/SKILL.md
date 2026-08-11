@@ -11,6 +11,10 @@ description: >
 
 # 15 - Database Complexity
 
+> **What it is** — How hard the code's relationship with persistent data is to understand, change and migrate.
+> **When to use it** — In legacy estates the database is usually the real architecture.
+> **How it works** — Scores SQL surface, schema reach, statement shape, dynamic SQL and transaction control, then adds the access-pattern penalties - chiefly SQL executed inside a loop.
+
 ## Purpose
 
 **What it measures.** How hard the code's relationship with persistent data is to understand, change and migrate.

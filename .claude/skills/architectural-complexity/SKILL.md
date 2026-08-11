@@ -13,6 +13,10 @@ description: >
 
 # 20 - Architectural Complexity
 
+> **What it is** — Structural quality of the system ABOVE the unit: how modules depend on each other, whether layers hold, and where the seams are.
+> **When to use it** — Use it when deciding whether a system can be decomposed at all, and where the seams are.
+> **How it works** — Scores four independent signals: dependency cycles, Martin instability/abstractness zones, layering violations, and hub units.
+
 ## Purpose
 
 **What it measures.** Structural quality of the system ABOVE the unit: how modules depend on each other, whether layers hold, and where the seams are.

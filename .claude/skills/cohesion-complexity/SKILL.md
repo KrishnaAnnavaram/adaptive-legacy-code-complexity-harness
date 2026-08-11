@@ -9,6 +9,10 @@ description: >
 
 # 08 - Cohesion Complexity
 
+> **What it is** — Measures how closely related the responsibilities inside a class / module are.
+> **When to use it** — Low cohesion signals mixed responsibilities and hard-to-maintain code (a class doing too many unrelated things).
+> **How it works** — For every type (class/module) it measures how much the methods share the same fields / state.
+
 ## Purpose
 
 **What it measures.** Measures how closely related the responsibilities inside a class / module are.

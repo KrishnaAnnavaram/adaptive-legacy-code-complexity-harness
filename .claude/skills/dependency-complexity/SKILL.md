@@ -9,6 +9,10 @@ description: >
 
 # 09 - Dependency Complexity
 
+> **What it is** — Measures internal, external, library, API, DB and platform dependencies of the codebase.
+> **When to use it** — Dependencies are a major driver of migration / modernization effort and upgrade risk.
+> **How it works** — Reads the dependency graph, classifies each edge, computes fan-in / fan-out per module, detects dependency cycles, and measures how deep the dependency chains run.
+
 ## Purpose
 
 **What it measures.** Measures internal, external, library, API, DB and platform dependencies of the codebase.

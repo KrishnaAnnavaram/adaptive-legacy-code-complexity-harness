@@ -12,6 +12,10 @@ description: >
 
 # 16 - Testability Complexity
 
+> **What it is** — How hard it is to get a unit under test at all - and how many tests it would then take to cover it.
+> **When to use it** — Modernization is only safe behind a characterization-test net.
+> **How it works** — Separates test burden (how many paths need covering) from test friction (hidden inputs, side effects, missing seams, non-determinism).
+
 ## Purpose
 
 **What it measures.** How hard it is to get a unit under test at all - and how many tests it would then take to cover it.

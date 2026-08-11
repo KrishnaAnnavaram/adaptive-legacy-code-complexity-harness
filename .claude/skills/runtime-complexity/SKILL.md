@@ -13,6 +13,10 @@ description: >
 
 # 17 - Runtime Complexity
 
+> **What it is** — The expected cost of EXECUTING the code - its algorithmic growth class and the work it does per unit of input.
+> **When to use it** — Use it before moving code to a new platform, or when production data volume is expected to grow.
+> **How it works** — Derives a growth class from loop-nesting depth, then weights the work done inside those loops; recursion inside a loop implies exponential behaviour.
+
 ## Purpose
 
 **What it measures.** The expected cost of EXECUTING the code - its algorithmic growth class and the work it does per unit of input.

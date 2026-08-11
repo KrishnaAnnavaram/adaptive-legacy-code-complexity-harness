@@ -9,6 +9,10 @@ description: >
 
 # 10 - Change Impact Complexity
 
+> **What it is** — Measures how widely a change to one component can ripple through the system ("blast radius").
+> **When to use it** — Use it to size regression scope before a change - it answers 'if I touch this, what else must be retested'.
+> **How it works** — Uses the caller/callee (call graph) and dependency graph to compute, for each unit, the set of components that transitively depend on it (reverse reachability) = its impact set.
+
 ## Purpose
 
 **What it measures.** Measures how widely a change to one component can ripple through the system  ("blast radius").

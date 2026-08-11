@@ -10,6 +10,10 @@ description: >
 
 # 04 - Coupling Complexity
 
+> **What it is** — How tightly units are bound to each other.
+> **When to use it** — Coupling decides what you can move.
+> **How it works** — Fan-in (who calls me) and fan-out (who I call) per unit, then Henry & Kafura information flow, (fan_in * fan_out)^2.
+
 ## Purpose
 
 **What it measures.** How tightly units are bound to each other.

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "permissions": {
+    "allow": [
+      "Bash(python .claude/complexities/run_pipeline.py *)",
+      "Bash(python .claude/complexities/0*)",
+      "Bash(python .claude/complexities/1*)",
+      "Bash(python .claude/complexities/2*)",
+      "Bash(python .claude/inventory/scanner.py *)",
+      "Bash(python tools/judge.py *)",
+      "Bash(python tools/tree_bridge.py *)",
+      "Bash(python -m unittest *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)"
+    ],
+
+    "deny": [
+      "Read(./plsql_to_brd/**)",
+      "Edit(./plsql_to_brd/**)",
+      "Write(./plsql_to_brd/**)"
+    ]
+  }
+}

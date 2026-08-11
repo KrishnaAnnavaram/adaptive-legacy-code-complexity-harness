@@ -12,6 +12,10 @@ description: >
 
 # 05 - Nesting Complexity
 
+> **What it is** — How deeply control structures are stacked inside one another.
+> **When to use it** — Nesting depth is the cheapest reliable predictor of reading difficulty, and it maps directly to a fix: flatten it.
+> **How it works** — Maximum and mean nesting depth per unit, plus the amount of code sitting at excessive depth.
+
 ## Purpose
 
 **What it measures.** How deeply control structures are stacked inside one another.

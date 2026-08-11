@@ -13,6 +13,10 @@ description: >
 
 # 18 - Configuration Complexity
 
+> **What it is** — How much of the system's behaviour is decided OUTSIDE the source code, and how tangled that external surface is.
+> **When to use it** — In legacy estates configuration is where behaviour hides.
+> **How it works** — Measures external surface, build variants from compile flags, hardcoded values that should be config, and how scattered config reads are.
+
 ## Purpose
 
 **What it measures.** How much of the system's behaviour is decided OUTSIDE the source code, and how tangled that external surface is.

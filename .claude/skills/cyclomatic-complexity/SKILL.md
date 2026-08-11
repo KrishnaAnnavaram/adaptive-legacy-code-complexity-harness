@@ -10,6 +10,10 @@ description: >
 
 # 01 - Cyclomatic Complexity
 
+> **What it is** — The number of linearly independent paths through a unit.
+> **When to use it** — It is the lower bound on how many test cases you need for full branch coverage, and the most widely understood complexity number in existence.
+> **How it works** — v(G) = 1 + decision nodes.
+
 ## Purpose
 
 **What it measures.** The number of linearly independent paths through a unit.

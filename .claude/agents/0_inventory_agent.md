@@ -1,6 +1,5 @@
 ---
-name: 0_inventory
-version: 1.0.0
+name: java-inventory
 description: >
   Single agent for the inventory step of the adaptive legacy code complexity
   harness. Scans a Java repository and produces inventory_artifact.json: every
@@ -11,7 +10,8 @@ description: >
   downstream parser agent's job. This agent owns file discovery and
   declaration-level facts only; it hands its artifact to the parser agent,
   which builds the Normalized Tree the 1_complexity agent consumes.
-tools: ['vscode', 'execute', 'read', 'edit', 'search', 'todo']
+tools: Read, Glob, Grep, Bash, Write, Edit, TodoWrite
+model: inherit
 ---
 
 # Inventory Agent — Adaptive Legacy Code Complexity Harness

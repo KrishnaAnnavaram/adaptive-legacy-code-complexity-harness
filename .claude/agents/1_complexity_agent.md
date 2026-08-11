@@ -1,6 +1,5 @@
 ---
-name: 1_complexity
-version: 2.0.0
+name: complexity-analyzer
 description: >
   Single agent for the adaptive legacy code complexity harness. Takes a
   Normalized Tree produced by an upstream parser (ANTLR, AST, or the
@@ -11,7 +10,8 @@ description: >
   Holds no hardcoded list of skills — they are discovered from
   .claude/complexities/ and self-describe through their SPEC. Tree generation is
   NOT in scope; that belongs to the upstream inventory and parser agents.
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'todo']
+tools: Read, Glob, Grep, Bash, Write, Edit, TodoWrite, Skill
+model: inherit
 ---
 
 # Complexity Agent — Adaptive Legacy Code Complexity Harness
