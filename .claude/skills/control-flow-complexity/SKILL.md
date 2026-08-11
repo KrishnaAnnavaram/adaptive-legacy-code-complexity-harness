@@ -12,6 +12,10 @@ description: >
 
 # 03 - Control Flow Complexity
 
+> **What it is** — How STRUCTURED the flow is - whether it reduces to clean nested blocks, or contains jumps that make it irreducible.
+> **When to use it** — This is the metric that decides whether automated translation is even possible.
+> **How it works** — Approximates McCabe's essential complexity.
+
 ## Purpose
 
 **What it measures.** How STRUCTURED the flow is - whether it reduces to clean nested blocks, or contains jumps that make it irreducible.

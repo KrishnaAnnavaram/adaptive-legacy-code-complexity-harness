@@ -9,6 +9,10 @@ description: >
 
 # 13 - Inheritance Complexity
 
+> **What it is** — Complexity introduced by inheritance hierarchies.
+> **When to use it** — Deep or wide inheritance makes behavior hard to trace (you must follow the chain to know what a class actually does).
+> **How it works** — Computes the classic OO hierarchy metrics from the type graph: depth of inheritance tree, number of children, and override pressure.
+
 ## Purpose
 
 **What it measures.** Complexity introduced by inheritance hierarchies.

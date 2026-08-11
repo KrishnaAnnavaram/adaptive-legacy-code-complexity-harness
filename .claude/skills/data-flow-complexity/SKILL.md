@@ -9,6 +9,10 @@ description: >
 
 # 12 - Data Flow Complexity
 
+> **What it is** — Measures how values and data move across statements, functions and modules.
+> **When to use it** — Reveals transformations, side effects and data dependencies that make code hard to reason about.
+> **How it works** — Builds def-use style signals per unit: how many distinct data elements it touches, how many it passes to callees, and how much shared state it reads/writes.
+
 ## Purpose
 
 **What it measures.** Measures how values and data move across statements, functions and modules.

@@ -10,47 +10,131 @@ and consolidating results into a unified code complexity artifact.
 
 ---
 
-## Layout
+# Architecture
+
+## Data flow
+
+Three stages, each owning one job and handing off a documented artifact. Nothing
+downstream ever re-reads source code.
 
 ```
-.claude/
-  agents/
-    0_inventory_agent.md            scans a Java repo -> inventory_artifact.json
-    1_complexity_agent.md           the complexity orchestrating agent
-  inventory/scanner.py              deterministic Java repo scanner (no skills — one job)
-  skills/<complexity>/SKILL.md      20 skills, one per complexity — what & why
-  complexities/
-    _core.py                        the shared contract
-    01_..20_*.py                    deterministic implementation per skill
-    run_pipeline.py                 discover → order → gate → run → merge
-    _superseded_style_a/            Style-A originals, preserved
-docs/
-  system-overview.md                start here
-  inventory-contract.md             schema of inventory_artifact.json
-  analyzer-contract.md              how to build a complexity
-  architecture-decisions.md         why it is built this way
-samples/cobol_payroll.tree.json     reference tree, exercises every field
-tools/
-  judge.py                          adversarial conformance audit
-  99_canary_complexity.py           defective on purpose; validates the judge
-  tree_bridge.py                    converts legacy Style-A trees
+  Java repo
+      │
+      ▼
+┌─────────────────┐   agent: java-inventory
+│  0. INVENTORY   │   .claude/inventory/scanner.py
+└─────────────────┘   regex/heuristic. Declarations only — never enters a method body.
+      │
+      ▼  inventory_artifact.json            schema: docs/inventory-contract.md
+      │
+┌─────────────────┐   ── OWNED SEPARATELY, NOT IN THIS REPO ──
+│  1. PARSER      │   ANTLR / AST producer. Builds the Normalized Tree.
+└─────────────────┘
+      │
+      ▼  Normalized Tree (JSON)             schema: docs/analyzer-contract.md
+      │
+┌─────────────────┐   agent: complexity-analyzer
+│  2. COMPLEXITY  │   .claude/complexities/run_pipeline.py
+└─────────────────┘   discover → order → gate → run → merge
+      │
+      ▼  complexity_artifact.json  +  one report per complexity
 ```
 
-Pipeline: `0_inventory` scans a Java repo and emits `inventory_artifact.json`
-(schema: [`docs/inventory-contract.md`](docs/inventory-contract.md)) → an
-upstream parser agent (ANTLR/AST, owned separately) turns that into a
-Normalized Tree → `1_complexity` scores it. Inventory has no `skills/`
-directory: it is one deterministic scan, not twenty selectable analyses, so
-there is nothing to discover or choose among at runtime.
+Stage 2 never sees source text. That is what makes the same 20 analyzers score
+COBOL, PL/SQL and Java without modification.
+
+## Directory map
+
+```
+adaptive-legacy-code-complexity-harness/
+│
+├── CLAUDE.md                       Project memory. Loaded into every Claude Code
+│                                   session: commands, conventions, the rules.
+├── README.md                       This file.
+│
+├── .claude/                        ⚠ Contains PRODUCT CODE, not just tool config
+│   │
+│   ├── settings.json               Shared permissions. Checked in. Denies all
+│   │                               access to plsql_to_brd/.
+│   │
+│   ├── agents/                     WHO orchestrates
+│   │   ├── 0_inventory_agent.md      name: java-inventory
+│   │   └── 1_complexity_agent.md     name: complexity-analyzer
+│   │
+│   ├── rules/                      Path-scoped instructions. Load only when
+│   │   └── analyzer-code.md        touching *.py under complexities/ or tools/.
+│   │
+│   ├── skills/                     WHAT each complexity is, and WHEN to use it
+│   │   ├── cyclomatic-complexity/SKILL.md
+│   │   ├── runtime-complexity/SKILL.md
+│   │   └── … 20 in total, one per complexity
+│   │
+│   ├── complexities/               HOW each complexity is computed  ← product code
+│   │   ├── _core.py                The shared contract. Read this first.
+│   │   ├── 01_…20_*.py             One implementation per skill, paired by number
+│   │   ├── run_pipeline.py         The runner
+│   │   └── _superseded_style_a/    Original Style-A analyzers, preserved
+│   │
+│   └── inventory/                  Stage 0                        ← product code
+│       └── scanner.py              Java repo scanner
+│
+├── docs/
+│   ├── system-overview.md          Start here
+│   ├── inventory-contract.md       Shape of inventory_artifact.json
+│   ├── analyzer-contract.md        How to build complexity #21
+│   └── architecture-decisions.md   Why it is built this way, and what would reverse it
+│
+├── samples/
+│   └── cobol_payroll.tree.json     Reference tree. Exercises every field.
+│
+└── tools/
+    ├── judge.py                    Audits the analyzers — 10 adversarial checks each
+    ├── 99_canary_complexity.py     Defective on purpose; proves the judge has teeth
+    └── tree_bridge.py              Converts legacy Style-A trees
+```
+
+## The three layers, and why they are separate
+
+| Layer | Answers | Lives in | Changes when |
+|---|---|---|---|
+| **Agent** | How do I run the whole thing? | `.claude/agents/` | The workflow changes |
+| **Skill** | What is this complexity, when do I use it? | `.claude/skills/` | The concept changes |
+| **Implementation** | How is the number computed? | `.claude/complexities/` | The algorithm changes |
+
+Skill *N* pairs with implementation *N* by number:
+`skills/runtime-complexity/` ↔ `complexities/17_runtime_complexity.py`.
+
+Nothing holds a list of the 20. The agent and pipeline **discover** them by scanning
+`.claude/complexities/[0-9][0-9]_*.py` and reading each file's `SPEC`. Drop in
+`21_*.py` and it joins the next run with no edit anywhere else.
+
+> **`.claude/` is not editor configuration here.** It holds the deliverable.
+> Deleting it deletes the product. This is a deliberate choice matching the
+> `plsql_to_brd` house convention; see `docs/architecture-decisions.md`.
+
+## Execution order
+
+Bands are absolute. Within a band: dependency depth, then number — the numeric
+tie-break is what makes two runs over the same tree produce an identical plan.
+
+```
+size → structural → data → coupling → hazard → composite
+```
+
+`size` runs first because later bands divide by it; computing it once centrally
+stops five analyzers deriving five slightly different sizes. `composite` runs last
+because Maintainability consumes size and branching, and Migration consumes
+Database, Testability, Runtime and Architectural — they cannot run earlier.
+
+## Stage 0 has no skills, deliberately
+
+Inventory is one deterministic scan, not twenty selectable analyses. There is
+nothing to discover or choose among at runtime, so it has a scanner and no
+`skills/` directory. Adding one would imply a choice that does not exist.
 
 ```bash
 python .claude/inventory/scanner.py --repo-root <path-to-java-repo> -o out
 ```
-
-**`skills/` describes, `complexities/` implements.** A `SKILL.md` states what the
-complexity measures, which tree fields it consumes, what it emits and how it fails; the
-matching `NN_*.py` is the deterministic implementation. Both are generated from the same
-source, so they cannot drift apart.
 
 ---
 

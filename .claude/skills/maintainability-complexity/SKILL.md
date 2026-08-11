@@ -8,6 +8,10 @@ description: >
 
 # 11 - Maintainability Complexity
 
+> **What it is** — Overall difficulty of maintaining the code over time.
+> **When to use it** — Supports takeover, modernization and technical-debt assessment.
+> **How it works** — Combines size (LOC), logic complexity (cyclomatic), Halstead volume and comment density into the industry Maintainability Index (MI), then derives an L1-L5 level.
+
 ## Purpose
 
 **What it measures.** Overall difficulty of maintaining the code over time.

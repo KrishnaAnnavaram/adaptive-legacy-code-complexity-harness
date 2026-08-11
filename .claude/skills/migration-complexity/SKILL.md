@@ -13,6 +13,10 @@ description: >
 
 # 19 - Migration Complexity
 
+> **What it is** — The effort and risk of moving this code to a different language, runtime or platform - and which migration strategy it can actually support.
+> **When to use it** — This is the question a modernization programme is funded to answer.
+> **How it works** — Scores volume (how much there is to move, which automation reduces) separately from blockers (what defeats translation entirely), then maps the pair onto a migration strategy.
+
 ## Purpose
 
 **What it measures.** The effort and risk of moving this code to a different language, runtime or platform - and which migration strategy it can actually support.

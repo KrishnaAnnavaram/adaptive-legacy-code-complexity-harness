@@ -12,6 +12,10 @@ description: >
 
 # 07 - Structural Complexity
 
+> **What it is** — The shape and size of the codebase: how much there is, how it is distributed, and whether that distribution is healthy.
+> **When to use it** — Use it first on any new estate, to see whether size is spread evenly or concentrated in a few huge units.
+> **How it works** — Size and statement counts per unit, then distribution across the whole tree: concentration in the largest units, spread, and outliers.
+
 ## Purpose
 
 **What it measures.** The shape and size of the codebase: how much there is, how it is distributed, and whether that distribution is healthy.

@@ -12,6 +12,10 @@ description: >
 
 # 06 - NPath Complexity
 
+> **What it is** — The number of distinct acyclic execution paths through a unit.
+> **When to use it** — Use it when full branch coverage is being claimed as sufficient - NPath shows how many untested combinations remain behind it.
+> **How it works** — Paths multiply through sequence and through nested branches; counting is capped once a unit is beyond exhaustive testing anyway.
+
 ## Purpose
 
 **What it measures.** The number of distinct acyclic execution paths through a unit.

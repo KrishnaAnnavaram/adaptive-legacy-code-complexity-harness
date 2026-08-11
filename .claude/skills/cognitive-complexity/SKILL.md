@@ -12,6 +12,10 @@ description: >
 
 # 02 - Cognitive Complexity
 
+> **What it is** — How hard a unit is for a human to READ and hold in their head.
+> **When to use it** — Use it when cyclomatic complexity looks acceptable but the code still reads badly - this one penalises nesting, which v(G) ignores.
+> **How it works** — Adds a point per break in linear flow, plus an extra point for each level of nesting it sits at; constructs that do not break flow cost nothing.
+
 ## Purpose
 
 **What it measures.** How hard a unit is for a human to READ and hold in their head.
