@@ -164,20 +164,29 @@ def analyze(tree: Dict[str, Any]) -> Dict[str, Any]:
 # ----------------------------------------------------------------------------- #
 # Standalone demo
 # ----------------------------------------------------------------------------- #
+
+# --------------------------------------------------------------------------
+# Portable contract (see _core.py). SPEC lets a harness discover, gate and
+# order this analyzer without hardcoding anything about it. cli_main enforces
+# the declared inputs BEFORE analyze() runs, so a starved analyzer reports
+# insufficient_input instead of a misleading zero.
+# --------------------------------------------------------------------------
+import os as _os  # noqa: E402
+import sys as _sys  # noqa: E402
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+
+from _core import Spec as _Spec, cli_main as _cli_main  # noqa: E402
+
+SPEC = _Spec(
+    id='cohesion_complexity',
+    sno=8,
+    name='Cohesion Complexity',
+    tier='coupling',
+    requires=['units', 'types'],
+    optional=['call_graph', 'references'],
+    summary='How well the members of a type belong together.'
+)
+
 if __name__ == "__main__":
-    import json
-    demo = {
-        "language": "java",
-        "units": [
-            {"id": "acct.deposit", "owner_type": "Account", "references": ["balance"]},
-            {"id": "acct.withdraw", "owner_type": "Account", "references": ["balance"]},
-            {"id": "acct.printLabel", "owner_type": "Account", "references": ["logo"]},
-        ],
-        "types": [
-            {"id": "Account", "name": "Account",
-             "fields": ["balance", "logo"],
-             "methods": ["acct.deposit", "acct.withdraw", "acct.printLabel"]},
-        ],
-        "call_graph": {"nodes": [], "edges": []},
-    }
-    print(json.dumps(analyze(demo), indent=2))
+    raise SystemExit(_cli_main(analyze, SPEC))

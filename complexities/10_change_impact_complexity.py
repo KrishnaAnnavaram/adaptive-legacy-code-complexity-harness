@@ -138,21 +138,28 @@ def analyze(tree: Dict[str, Any]) -> Dict[str, Any]:
         "items": items,
     }
 
+# --------------------------------------------------------------------------
+# Portable contract (see _core.py). SPEC lets a harness discover, gate and
+# order this analyzer without hardcoding anything about it. cli_main enforces
+# the declared inputs BEFORE analyze() runs, so a starved analyzer reports
+# insufficient_input instead of a misleading zero.
+# --------------------------------------------------------------------------
+import os as _os  # noqa: E402
+import sys as _sys  # noqa: E402
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+
+from _core import Spec as _Spec, cli_main as _cli_main  # noqa: E402
+
+SPEC = _Spec(
+    id='change_impact_complexity',
+    sno=10,
+    name='Change Impact Complexity',
+    tier='coupling',
+    requires=['call_graph'],
+    optional=['dependency_graph', 'units'],
+    summary='Blast radius of a change to each unit.'
+)
 
 if __name__ == "__main__":
-    import json
-    demo = {
-        "language": "java",
-        "units": [{"id": "util.log", "name": "log"}, {"id": "svc.pay", "name": "pay"},
-                  {"id": "web.checkout", "name": "checkout"}],
-        "call_graph": {
-            "nodes": ["util.log", "svc.pay", "web.checkout"],
-            "edges": [
-                {"from": "web.checkout", "to": "svc.pay"},
-                {"from": "svc.pay", "to": "util.log"},
-                {"from": "web.checkout", "to": "util.log"},
-            ],
-        },
-        "dependency_graph": {"nodes": [], "edges": []},
-    }
-    print(json.dumps(analyze(demo), indent=2))
+    raise SystemExit(_cli_main(analyze, SPEC))

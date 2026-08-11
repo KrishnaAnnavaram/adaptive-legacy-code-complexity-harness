@@ -181,20 +181,27 @@ def analyze(tree: Dict[str, Any]) -> Dict[str, Any]:
         "items": per_module,
     }
 
+# --------------------------------------------------------------------------
+# Portable contract (see _core.py). SPEC lets a harness discover, gate and
+# order this analyzer without hardcoding anything about it. cli_main enforces
+# the declared inputs BEFORE analyze() runs, so a starved analyzer reports
+# insufficient_input instead of a misleading zero.
+# --------------------------------------------------------------------------
+import os as _os  # noqa: E402
+import sys as _sys  # noqa: E402
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+
+from _core import Spec as _Spec, cli_main as _cli_main  # noqa: E402
+
+SPEC = _Spec(
+    id='dependency_complexity',
+    sno=9,
+    name='Dependency Complexity',
+    tier='coupling',
+    requires=['dependency_graph'],
+    summary='Weight and kind of inter-module dependencies.'
+)
 
 if __name__ == "__main__":
-    import json
-    demo = {
-        "language": "java",
-        "dependency_graph": {
-            "nodes": ["web", "service", "repo", "db", "log4j"],
-            "edges": [
-                {"from": "web", "to": "service", "kind": "internal"},
-                {"from": "service", "to": "repo", "kind": "internal"},
-                {"from": "repo", "to": "db", "kind": "db"},
-                {"from": "service", "to": "log4j", "kind": "library"},
-                {"from": "repo", "to": "service", "kind": "internal"},  # cycle
-            ],
-        },
-    }
-    print(json.dumps(analyze(demo), indent=2))
+    raise SystemExit(_cli_main(analyze, SPEC))
