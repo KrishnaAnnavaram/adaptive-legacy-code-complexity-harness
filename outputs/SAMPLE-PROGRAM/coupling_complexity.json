@@ -1,0 +1,79 @@
+{
+  "complexity_type": "coupling_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:37.696028+00:00",
+  "file_level": {
+    "total_complexity": 4,
+    "average_complexity": 1.0,
+    "max_complexity": 2,
+    "scope_count": 4,
+    "distinct_external_dependencies": 2
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "fan_out": 0,
+      "fan_in": 0,
+      "internal_call_count": 0,
+      "external_call_count": 0,
+      "import_count": 1,
+      "external_call_targets": [],
+      "import_targets": [
+        "COPY CUSTOMER-REC"
+      ],
+      "complexity": 1,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "fan_out": 1,
+      "fan_in": 1,
+      "internal_call_count": 1,
+      "external_call_count": 0,
+      "import_count": 0,
+      "external_call_targets": [],
+      "import_targets": [],
+      "complexity": 2,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "fan_out": 0,
+      "fan_in": 0,
+      "internal_call_count": 0,
+      "external_call_count": 0,
+      "import_count": 0,
+      "external_call_targets": [],
+      "import_targets": [],
+      "complexity": 0,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "fan_out": 1,
+      "fan_in": 0,
+      "internal_call_count": 0,
+      "external_call_count": 1,
+      "import_count": 0,
+      "external_call_targets": [
+        "SOME-OTHER-PARA"
+      ],
+      "import_targets": [],
+      "complexity": 1,
+      "in_totals": true
+    }
+  ]
+}

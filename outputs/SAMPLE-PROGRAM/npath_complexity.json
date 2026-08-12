@@ -1,0 +1,46 @@
+{
+  "complexity_type": "npath_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:37.070533+00:00",
+  "file_level": {
+    "total_complexity": 27,
+    "average_complexity": 9.0,
+    "max_complexity": 21,
+    "scope_count": 3
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "complexity": 1,
+      "in_totals": false
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "complexity": 21,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "complexity": 3,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "complexity": 3,
+      "in_totals": true
+    }
+  ]
+}

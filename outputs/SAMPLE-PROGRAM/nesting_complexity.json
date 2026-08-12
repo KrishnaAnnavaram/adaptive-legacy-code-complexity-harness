@@ -1,0 +1,111 @@
+{
+  "complexity_type": "nesting_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:37.235300+00:00",
+  "file_level": {
+    "total_complexity": 6,
+    "average_complexity": 2.0,
+    "max_complexity": 3,
+    "scope_count": 3
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "complexity": 0,
+      "average_nesting_depth": 0,
+      "nesting_points": [],
+      "in_totals": false
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "complexity": 2,
+      "average_nesting_depth": 1.25,
+      "nesting_points": [
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 52,
+          "depth": 1
+        },
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 54,
+          "depth": 2
+        },
+        {
+          "kind": "elif",
+          "label": "ELSE IF",
+          "line": 56,
+          "depth": 1
+        },
+        {
+          "kind": "switch_statement",
+          "label": "EVALUATE",
+          "line": 60,
+          "depth": 1
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "complexity": 1,
+      "average_nesting_depth": 1.0,
+      "nesting_points": [
+        {
+          "kind": "while",
+          "label": "PERFORM UNTIL",
+          "line": 72,
+          "depth": 1
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "complexity": 3,
+      "average_nesting_depth": 2.0,
+      "nesting_points": [
+        {
+          "kind": "try_block",
+          "label": "PERFORM WITH EXCEPTION HANDLING",
+          "line": 90,
+          "depth": 1
+        },
+        {
+          "kind": "catch",
+          "label": "ON EXCEPTION",
+          "line": 93,
+          "depth": 2
+        },
+        {
+          "kind": "ternary",
+          "label": "COND ? A : B",
+          "line": 94,
+          "depth": 3
+        },
+        {
+          "kind": "finally_block",
+          "label": "FINALLY",
+          "line": 96,
+          "depth": 2
+        }
+      ],
+      "in_totals": true
+    }
+  ]
+}

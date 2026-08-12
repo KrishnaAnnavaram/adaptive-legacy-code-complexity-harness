@@ -1,0 +1,5 @@
+<project>
+  <groupId>com.example</groupId>
+  <artifactId>inventory-smoke-test</artifactId>
+  <version>1.0.0</version>
+</project>

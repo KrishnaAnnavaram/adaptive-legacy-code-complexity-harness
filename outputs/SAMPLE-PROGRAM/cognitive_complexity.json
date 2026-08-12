@@ -1,0 +1,149 @@
+{
+  "complexity_type": "cognitive_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:36.486381+00:00",
+  "file_level": {
+    "total_complexity": 14,
+    "average_complexity": 4.67,
+    "max_complexity": 9,
+    "scope_count": 3
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "complexity": 0,
+      "increments": [],
+      "in_totals": false
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "complexity": 9,
+      "increments": [
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 52,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "boolean_and",
+          "label": "AND",
+          "line": 52,
+          "nesting_level": 1,
+          "points": 1,
+          "reason": "boolean_operator_run"
+        },
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 54,
+          "nesting_level": 1,
+          "points": 2,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "elif",
+          "label": "ELSE IF",
+          "line": 56,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "boolean_or",
+          "label": "OR",
+          "line": 56,
+          "nesting_level": 1,
+          "points": 1,
+          "reason": "boolean_operator_run"
+        },
+        {
+          "kind": "switch_statement",
+          "label": "EVALUATE",
+          "line": 60,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "labeled_jump",
+          "label": "GO TO EXIT-PARA",
+          "line": 66,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "labeled_jump"
+        },
+        {
+          "kind": "call",
+          "label": "1000-MAIN-PARA",
+          "line": 67,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "direct_recursion"
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "complexity": 2,
+      "increments": [
+        {
+          "kind": "while",
+          "label": "PERFORM UNTIL",
+          "line": 72,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "boolean_or",
+          "label": "OR",
+          "line": 72,
+          "nesting_level": 1,
+          "points": 1,
+          "reason": "boolean_operator_run"
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "complexity": 3,
+      "increments": [
+        {
+          "kind": "catch",
+          "label": "ON EXCEPTION",
+          "line": 93,
+          "nesting_level": 0,
+          "points": 1,
+          "reason": "nesting_structure"
+        },
+        {
+          "kind": "ternary",
+          "label": "COND ? A : B",
+          "line": 94,
+          "nesting_level": 1,
+          "points": 2,
+          "reason": "nesting_structure"
+        }
+      ],
+      "in_totals": true
+    }
+  ]
+}
