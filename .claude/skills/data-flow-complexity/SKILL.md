@@ -4,7 +4,7 @@ description: >
   Measures how values and data move across statements, functions and
   modules. Reveals transformations, side effects and data dependencies that
   make code hard to reason about.
-  Implemented deterministically by `.claude/complexities/12_data_flow_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 3 (data).
+  Implemented deterministically by `.claude/complexities/12_data_flow_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 3 (data).
 ---
 
 # 12 - Data Flow Complexity

@@ -1,0 +1,614 @@
+{
+  "artifact_version": "1.0",
+  "pipeline_version": "1.0.0",
+  "generated_at": "2026-08-11T23:41:51+00:00",
+  "tree": {
+    "path": "outputs/BankingSystem/normalized_tree.json",
+    "language": "java",
+    "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+    "units": 38,
+    "capabilities": {
+      "units": true,
+      "cfg": true,
+      "loc": true,
+      "comment_lines": false,
+      "params": true,
+      "references": true,
+      "globals": true,
+      "writes": true,
+      "halstead": false,
+      "sql": false,
+      "cursors": false,
+      "transactions": false,
+      "platform_calls": false,
+      "dynamic_constructs": false,
+      "config_reads": false,
+      "feature_flags": false,
+      "conditional_compilation": false,
+      "literals": false,
+      "meta": true,
+      "types": true,
+      "call_graph": true,
+      "dependency_graph": true,
+      "layers": false
+    }
+  },
+  "coverage": {
+    "analyzers_discovered": 20,
+    "analyzers_ok": 18,
+    "analyzers_insufficient_input": 2,
+    "analyzers_error": 0,
+    "completeness": 0.9,
+    "not_measured": [
+      {
+        "sno": 15,
+        "id": "database_complexity",
+        "reason": "tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result."
+      },
+      {
+        "sno": 18,
+        "id": "configuration_complexity",
+        "reason": "tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result."
+      }
+    ]
+  },
+  "overall": {
+    "level": "L5",
+    "mean_level": 2.28,
+    "mean_confidence": 0.93
+  },
+  "by_tier": {
+    "size": [
+      {
+        "sno": 7,
+        "id": "structural_complexity",
+        "level": "L2",
+        "score": 0.32,
+        "status": "ok"
+      }
+    ],
+    "structural": [
+      {
+        "sno": 1,
+        "id": "cyclomatic_complexity",
+        "level": "L1",
+        "score": 5.0,
+        "status": "ok"
+      },
+      {
+        "sno": 2,
+        "id": "cognitive_complexity",
+        "level": "L2",
+        "score": 8.0,
+        "status": "ok"
+      },
+      {
+        "sno": 3,
+        "id": "control_flow_complexity",
+        "level": "L1",
+        "score": 0.0,
+        "status": "ok"
+      },
+      {
+        "sno": 5,
+        "id": "nesting_complexity",
+        "level": "L1",
+        "score": 2.0,
+        "status": "ok"
+      },
+      {
+        "sno": 6,
+        "id": "npath_complexity",
+        "level": "L1",
+        "score": 16.0,
+        "status": "ok"
+      },
+      {
+        "sno": 17,
+        "id": "runtime_complexity",
+        "level": "L3",
+        "score": 25.0,
+        "status": "ok"
+      }
+    ],
+    "data": [
+      {
+        "sno": 12,
+        "id": "data_flow_complexity",
+        "level": "L5",
+        "score": 144.0,
+        "status": "ok"
+      }
+    ],
+    "coupling": [
+      {
+        "sno": 4,
+        "id": "coupling_complexity",
+        "level": "L1",
+        "score": 4.0,
+        "status": "ok"
+      },
+      {
+        "sno": 8,
+        "id": "cohesion_complexity",
+        "level": "L2",
+        "score": 2.0,
+        "status": "ok"
+      },
+      {
+        "sno": 9,
+        "id": "dependency_complexity",
+        "level": "L3",
+        "score": 45.7,
+        "status": "ok"
+      },
+      {
+        "sno": 10,
+        "id": "change_impact_complexity",
+        "level": "L2",
+        "score": 0.11,
+        "status": "ok"
+      },
+      {
+        "sno": 13,
+        "id": "inheritance_complexity",
+        "level": "L2",
+        "score": 2.0,
+        "status": "ok"
+      },
+      {
+        "sno": 14,
+        "id": "interface_api_complexity",
+        "level": "L3",
+        "score": 36.2,
+        "status": "ok"
+      },
+      {
+        "sno": 20,
+        "id": "architectural_complexity",
+        "level": "L1",
+        "score": 7.2,
+        "status": "ok"
+      }
+    ],
+    "hazard": [
+      {
+        "sno": 15,
+        "id": "database_complexity",
+        "level": null,
+        "score": null,
+        "status": "insufficient_input"
+      },
+      {
+        "sno": 18,
+        "id": "configuration_complexity",
+        "level": null,
+        "score": null,
+        "status": "insufficient_input"
+      }
+    ],
+    "composite": [
+      {
+        "sno": 11,
+        "id": "maintainability_complexity",
+        "level": "L5",
+        "score": 37.8,
+        "status": "ok"
+      },
+      {
+        "sno": 16,
+        "id": "testability_complexity",
+        "level": "L3",
+        "score": 24.0,
+        "status": "ok"
+      },
+      {
+        "sno": 19,
+        "id": "migration_complexity",
+        "level": "L3",
+        "score": 23.6,
+        "status": "ok"
+      }
+    ]
+  },
+  "hotspots": [
+    {
+      "unit": "GUI.AddAccount.AddAccount",
+      "name": "AddAccount",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L2",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L4",
+        "testability_complexity": "L1",
+        "migration_complexity": "L2"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.AddCurrentAccount.AddCurrentAccount",
+      "name": "AddCurrentAccount",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L3",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L5",
+        "testability_complexity": "L3",
+        "migration_complexity": "L3"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.AddSavingsAccount.AddSavingsAccount",
+      "name": "AddSavingsAccount",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L3",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L5",
+        "testability_complexity": "L3",
+        "migration_complexity": "L2"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.AddStudentAccount.AddStudentAccount",
+      "name": "AddStudentAccount",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L3",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L5",
+        "testability_complexity": "L3",
+        "migration_complexity": "L2"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.DepositAcc.DepositAcc",
+      "name": "DepositAcc",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L2",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L4",
+        "testability_complexity": "L3",
+        "migration_complexity": "L3"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.DisplayList.DisplayList",
+      "name": "DisplayList",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L1",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L4",
+        "testability_complexity": "L2",
+        "migration_complexity": "L2"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.Login.initialize",
+      "name": "initialize",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L2",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L4",
+        "testability_complexity": "L3",
+        "migration_complexity": "L2"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.Menu.Menu",
+      "name": "Menu",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L3",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L5",
+        "testability_complexity": "L2",
+        "migration_complexity": "L3"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    },
+    {
+      "unit": "GUI.WithdrawAcc.WithdrawAcc",
+      "name": "WithdrawAcc",
+      "levels": {
+        "cyclomatic_complexity": "L1",
+        "cognitive_complexity": "L1",
+        "control_flow_complexity": "L1",
+        "nesting_complexity": "L1",
+        "npath_complexity": "L1",
+        "runtime_complexity": "L3",
+        "data_flow_complexity": "L5",
+        "coupling_complexity": "L1",
+        "change_impact_complexity": "L1",
+        "maintainability_complexity": "L4",
+        "testability_complexity": "L3",
+        "migration_complexity": "L3"
+      },
+      "flagged_by": [
+        "data_flow_complexity",
+        "maintainability_complexity"
+      ],
+      "corroboration": 2,
+      "worst_level": "L5"
+    }
+  ],
+  "reports": [
+    {
+      "sno": 7,
+      "id": "structural_complexity",
+      "status": "ok",
+      "level": "L2",
+      "score": 0.32,
+      "headline": "38 unit(s), 1,149 line(s); top 3 unit(s) hold 32% of the code; 4 outlier(s)",
+      "confidence": 0.85
+    },
+    {
+      "sno": 1,
+      "id": "cyclomatic_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 5.0,
+      "headline": "38 unit(s); max v(G) 5; 70 test case(s) needed for branch coverage; 0 unit(s) above threshold",
+      "confidence": 1.0
+    },
+    {
+      "sno": 2,
+      "id": "cognitive_complexity",
+      "status": "ok",
+      "level": "L2",
+      "score": 8.0,
+      "headline": "38 unit(s); max cognitive 8; 0 unit(s) hard because of NESTING rather than branch count",
+      "confidence": 1.0
+    },
+    {
+      "sno": 3,
+      "id": "control_flow_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 0.0,
+      "headline": "38/38 unit(s) fully structured; 0 not mechanically translatable; 0 contain ALTER",
+      "confidence": 0.8
+    },
+    {
+      "sno": 5,
+      "id": "nesting_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 2.0,
+      "headline": "38 unit(s); deepest nesting 2; 0 unit(s) at depth >= 4; 33 flat",
+      "confidence": 1.0
+    },
+    {
+      "sno": 6,
+      "id": "npath_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 16.0,
+      "headline": "38 unit(s); worst NPath 16; 0 unit(s) beyond exhaustive path testing",
+      "confidence": 0.85
+    },
+    {
+      "sno": 17,
+      "id": "runtime_complexity",
+      "status": "ok",
+      "level": "L3",
+      "score": 25.0,
+      "headline": "38 unit(s); 0 super-linear; 0 with I/O or SQL inside a loop; 1 recursive",
+      "confidence": 1.0
+    },
+    {
+      "sno": 12,
+      "id": "data_flow_complexity",
+      "status": "ok",
+      "level": "L5",
+      "score": 144.0,
+      "headline": "38 unit(s); max data-flow score 144.0; 11 shared data element(s); 9 data-heavy unit(s)",
+      "confidence": 1.0
+    },
+    {
+      "sno": 4,
+      "id": "coupling_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 4.0,
+      "headline": "38 unit(s); 0 hub(s); 35 independently extractable; 10 isolated",
+      "confidence": 1.0
+    },
+    {
+      "sno": 8,
+      "id": "cohesion_complexity",
+      "status": "ok",
+      "level": "L2",
+      "score": 2.0,
+      "headline": "21 type(s); worst LCOM4 2; 0 type(s) with low cohesion (>=3 components)",
+      "confidence": 1.0
+    },
+    {
+      "sno": 9,
+      "id": "dependency_complexity",
+      "status": "ok",
+      "level": "L3",
+      "score": 45.7,
+      "headline": "50 module(s); 115 external dependency/ies; longest chain 3; 0 dependency cycle(s)",
+      "confidence": 1.0
+    },
+    {
+      "sno": 10,
+      "id": "change_impact_complexity",
+      "status": "ok",
+      "level": "L2",
+      "score": 0.11,
+      "headline": "85 component(s); 0 high-impact; worst change reaches 10% of the system",
+      "confidence": 1.0
+    },
+    {
+      "sno": 13,
+      "id": "inheritance_complexity",
+      "status": "ok",
+      "level": "L2",
+      "score": 2.0,
+      "headline": "21 type(s); max inheritance depth 2; widest base has 2 child(ren); 0 deep hierarchy(ies)",
+      "confidence": 1.0
+    },
+    {
+      "sno": 14,
+      "id": "interface_api_complexity",
+      "status": "ok",
+      "level": "L3",
+      "score": 36.2,
+      "headline": "34 exposed operation(s); avg 0.88 param(s)/op; 0 schema(s); 0 external API contract(s)",
+      "confidence": 1.0
+    },
+    {
+      "sno": 20,
+      "id": "architectural_complexity",
+      "status": "ok",
+      "level": "L1",
+      "score": 7.2,
+      "headline": "50 module(s); 0 dependency cycle(s) covering 0 module(s); 0 layering violation(s); 1 hub unit(s)",
+      "confidence": 0.9
+    },
+    {
+      "sno": 15,
+      "id": "database_complexity",
+      "status": "insufficient_input",
+      "level": null,
+      "score": null,
+      "headline": "NOT MEASURED - tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+      "confidence": 0.0
+    },
+    {
+      "sno": 18,
+      "id": "configuration_complexity",
+      "status": "insufficient_input",
+      "level": null,
+      "score": null,
+      "headline": "NOT MEASURED - tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+      "confidence": 0.0
+    },
+    {
+      "sno": 11,
+      "id": "maintainability_complexity",
+      "status": "ok",
+      "level": "L5",
+      "score": 37.8,
+      "headline": "38 unit(s); LOC-weighted Maintainability Index 37.8/100; 12 hard-to-maintain unit(s)",
+      "confidence": 0.7
+    },
+    {
+      "sno": 16,
+      "id": "testability_complexity",
+      "status": "ok",
+      "level": "L3",
+      "score": 24.0,
+      "headline": "38 unit(s); ~70 test case(s) for branch coverage; 4 unit(s) blocked or hostile to isolation",
+      "confidence": 1.0
+    },
+    {
+      "sno": 19,
+      "id": "migration_complexity",
+      "status": "ok",
+      "level": "L3",
+      "score": 23.6,
+      "headline": "38 unit(s); 1 require rearchitecture or rebuild; ~12% of the work is plausibly automatable; 0 translation blocker(s) found",
+      "confidence": 0.6
+    }
+  ]
+}

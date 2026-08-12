@@ -1,0 +1,994 @@
+{
+  "contract_version": "2.0",
+  "id": "testability_complexity",
+  "sno": 16,
+  "complexity": "Testability Complexity",
+  "tier": "composite",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L3",
+    "score": 19.0,
+    "headline": "36 unit(s); ~56 test case(s) for branch coverage; 0 unit(s) blocked or hostile to isolation"
+  },
+  "metrics": {
+    "units": 36,
+    "min_test_cases_total": 56,
+    "avg_test_burden": 0.8,
+    "avg_test_friction": 5.3,
+    "max_testability_score": 19.0,
+    "avg_testability_score": 6.1,
+    "hard_to_test_units": 0,
+    "profile_distribution": {
+      "tractable": 36,
+      "laborious": 0,
+      "blocked": 0,
+      "hostile": 0
+    },
+    "units_with_hidden_inputs": 26,
+    "units_with_nondeterminism": 0
+  },
+  "hotspots": [],
+  "items": [
+    {
+      "unit": "com.example.bank.Account.Account",
+      "name": "Account",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 18.5,
+      "friction_breakdown": {
+        "hidden_inputs": 6.0,
+        "shared_state_writes": 7.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 3.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 19.0,
+      "level": "L3",
+      "blockers": [
+        "3 hidden input(s) not passed as parameters",
+        "3 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Account.deposit",
+      "name": "deposit",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 2.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 3.0,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 10.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Account.withdraw",
+      "name": "withdraw",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 13.0,
+      "friction_breakdown": {
+        "hidden_inputs": 4.0,
+        "shared_state_writes": 2.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 4.5,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 14.0,
+      "level": "L2",
+      "blockers": [
+        "2 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Account.getBalance",
+      "name": "getBalance",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 4.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 4.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Account.getId",
+      "name": "getId",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 4.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 4.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Account.audit",
+      "name": "audit",
+      "owner_type": "com.example.bank.Account",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 6.0,
+      "friction_breakdown": {
+        "hidden_inputs": 4.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 2.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 6.5,
+      "level": "L2",
+      "blockers": [
+        "2 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.AccountType.AccountType",
+      "name": "AccountType",
+      "owner_type": "com.example.bank.AccountType",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 5.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 2.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 1.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 6.0,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.AccountType.threshold",
+      "name": "threshold",
+      "owner_type": "com.example.bank.AccountType",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 2.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.AccountType.forBalance",
+      "name": "forBalance",
+      "owner_type": "com.example.bank.AccountType",
+      "cyclomatic": 3,
+      "min_test_cases": 3,
+      "test_burden": 1.5,
+      "test_friction": 8.0,
+      "friction_breakdown": {
+        "hidden_inputs": 4.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 4.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 9.5,
+      "level": "L2",
+      "blockers": [
+        "static / no substitution seam - cannot be isolated",
+        "2 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Auditable.audit",
+      "name": "audit",
+      "owner_type": "com.example.bank.Auditable",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 0.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 0.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.Bank.addAccount",
+      "name": "addAccount",
+      "owner_type": "com.example.bank.Bank",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 4.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 5.0,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Bank.findAccount",
+      "name": "findAccount",
+      "owner_type": "com.example.bank.Bank",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 3.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 3.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Bank.transfer",
+      "name": "transfer",
+      "owner_type": "com.example.bank.Bank",
+      "cyclomatic": 4,
+      "min_test_cases": 4,
+      "test_burden": 2.0,
+      "test_friction": 12.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 9.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 14.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "6 collaborator(s) to stub"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Bank.classify",
+      "name": "classify",
+      "owner_type": "com.example.bank.Bank",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 4.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 3.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 4.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.Bank.describe",
+      "name": "describe",
+      "owner_type": "com.example.bank.Bank",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 1.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.0,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy",
+      "name": "CompoundInterestPolicy",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 6.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 2.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 1.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 7.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.CompoundInterestPolicy.rate",
+      "name": "rate",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 4.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 5.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.CompoundInterestPolicy.monthsToReach",
+      "name": "monthsToReach",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "cyclomatic": 3,
+      "min_test_cases": 3,
+      "test_burden": 1.5,
+      "test_friction": 3.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 4.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.InsufficientFundsException.InsufficientFundsException",
+      "name": "InsufficientFundsException",
+      "owner_type": "com.example.bank.InsufficientFundsException",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 1.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 1.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 1.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.InterestPolicy.rate",
+      "name": "rate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 0.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 0.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.InterestPolicy.annualRate",
+      "name": "annualRate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 1.5,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.Money.Money",
+      "name": "Money",
+      "owner_type": "com.example.bank.Money",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 11.0,
+      "friction_breakdown": {
+        "hidden_inputs": 4.0,
+        "shared_state_writes": 5.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 2.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 12.0,
+      "level": "L2",
+      "blockers": [
+        "2 hidden input(s) not passed as parameters",
+        "2 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Money.cents",
+      "name": "cents",
+      "owner_type": "com.example.bank.Money",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 2.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Money.currency",
+      "name": "currency",
+      "owner_type": "com.example.bank.Money",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 2.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Money.plus",
+      "name": "plus",
+      "owner_type": "com.example.bank.Money",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 5.5,
+      "friction_breakdown": {
+        "hidden_inputs": 4.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 6.0,
+      "level": "L1",
+      "blockers": [
+        "2 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.Money.toDouble",
+      "name": "toDouble",
+      "owner_type": "com.example.bank.Money",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 2.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 2.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.SavingsAccount.SavingsAccount",
+      "name": "SavingsAccount",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 2.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 4.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 10.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.SavingsAccount.applyInterest",
+      "name": "applyInterest",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 6.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 3.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 7.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.SavingsAccount.withdraw",
+      "name": "withdraw",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 2.5,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 3.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.TransactionLog.record",
+      "name": "record",
+      "owner_type": "com.example.bank.TransactionLog",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 4.5,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 1.5,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 5.0,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.TransactionLog.totalFor",
+      "name": "totalFor",
+      "owner_type": "com.example.bank.TransactionLog",
+      "cyclomatic": 4,
+      "min_test_cases": 4,
+      "test_burden": 2.0,
+      "test_friction": 6.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 3.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 8.0,
+      "level": "L2",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.TransactionLog.linked",
+      "name": "linked",
+      "owner_type": "com.example.bank.TransactionLog",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 3.0,
+      "friction_breakdown": {
+        "hidden_inputs": 2.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 1.0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 3.5,
+      "level": "L1",
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ]
+    },
+    {
+      "unit": "com.example.bank.TransactionLog$Entry.Entry",
+      "name": "Entry",
+      "owner_type": "com.example.bank.TransactionLog$Entry",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 16.5,
+      "friction_breakdown": {
+        "hidden_inputs": 6.0,
+        "shared_state_writes": 7.5,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 3.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 17.0,
+      "level": "L3",
+      "blockers": [
+        "3 hidden input(s) not passed as parameters",
+        "3 write(s) to shared state - test must reset it"
+      ]
+    },
+    {
+      "unit": "com.example.bank.util.Validation.Validation",
+      "name": "Validation",
+      "owner_type": "com.example.bank.util.Validation",
+      "cyclomatic": 1,
+      "min_test_cases": 1,
+      "test_burden": 0.5,
+      "test_friction": 0.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 0.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 0.5,
+      "level": "L1",
+      "blockers": []
+    },
+    {
+      "unit": "com.example.bank.util.Validation.requirePositive",
+      "name": "requirePositive",
+      "owner_type": "com.example.bank.util.Validation",
+      "cyclomatic": 3,
+      "min_test_cases": 3,
+      "test_burden": 1.5,
+      "test_friction": 4.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 4.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 5.5,
+      "level": "L1",
+      "blockers": [
+        "static / no substitution seam - cannot be isolated"
+      ]
+    },
+    {
+      "unit": "com.example.bank.util.Validation.isBlank",
+      "name": "isBlank",
+      "owner_type": "com.example.bank.util.Validation",
+      "cyclomatic": 2,
+      "min_test_cases": 2,
+      "test_burden": 1.0,
+      "test_friction": 4.0,
+      "friction_breakdown": {
+        "hidden_inputs": 0.0,
+        "shared_state_writes": 0.0,
+        "environmental_effects": 0,
+        "collaborators_to_stub": 0.0,
+        "infrastructure": 0,
+        "non_determinism": 0.0,
+        "missing_seam": 4.0,
+        "setup_burden": 0.0,
+        "parameter_count": 0.0
+      },
+      "profile": "tractable",
+      "score": 5.0,
+      "level": "L1",
+      "blockers": [
+        "static / no substitution seam - cannot be isolated"
+      ]
+    }
+  ],
+  "confidence": {
+    "score": 1.0,
+    "reasons": []
+  },
+  "inputs_used": [
+    "units",
+    "cfg",
+    "references",
+    "globals",
+    "writes",
+    "call_graph",
+    "dependency_graph",
+    "meta"
+  ],
+  "inputs_missing_optional": [],
+  "derived_from": [
+    "Cyclomatic Complexity",
+    "Coupling",
+    "Global State",
+    "Side Effects"
+  ],
+  "interpretation": {
+    "tractable": "Callable in isolation; cover the paths and move on.",
+    "laborious": "Many paths but few obstacles - predictable grind, safe to estimate.",
+    "blocked": "Few paths but cannot be reached in isolation. Introduce a seam FIRST; this is where characterization testing stalls.",
+    "hostile": "Many paths AND heavy friction. Highest-risk units in the estate - refactor for testability before attempting either tests or translation."
+  }
+}

@@ -1,0 +1,1498 @@
+{
+  "meta": {
+    "generated_at": "2026-08-11T23:41:40Z",
+    "repo_root": "D:\\adaptive-legacy-code-complexity-harness\\input\\BankingSystem",
+    "language": "java",
+    "agent_version": "1_inventory_java@1.0",
+    "total_files_scanned": 21
+  },
+  "stats": {
+    "java_files": 21,
+    "types_total": 21,
+    "classes": 21,
+    "interfaces": 0,
+    "enums": 0,
+    "records": 0,
+    "annotations": 0,
+    "public_types": 21,
+    "packages": 4,
+    "build_files": 0,
+    "config_files": 0,
+    "sql_files": 0,
+    "import_edges_total": 138,
+    "import_edges_resolved": 23,
+    "import_edges_unresolved": 115,
+    "extends_edges_total": 15,
+    "extends_edges_resolved": 3,
+    "implements_edges_total": 4,
+    "implements_edges_resolved": 0
+  },
+  "file_registry": [
+    {
+      "id": "Application",
+      "name": "Application",
+      "package": "",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Application.java",
+      "relative_path": "src/Application.java",
+      "line": 6,
+      "loc": 21,
+      "size_bytes": 314
+    },
+    {
+      "id": "Bank.Bank",
+      "name": "Bank",
+      "package": "Bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Bank/Bank.java",
+      "relative_path": "src/Bank/Bank.java",
+      "line": 9,
+      "loc": 154,
+      "size_bytes": 3055
+    },
+    {
+      "id": "Bank.BankAccount",
+      "name": "BankAccount",
+      "package": "Bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Bank/BankAccount.java",
+      "relative_path": "src/Bank/BankAccount.java",
+      "line": 7,
+      "loc": 63,
+      "size_bytes": 1343
+    },
+    {
+      "id": "Bank.CurrentAccount",
+      "name": "CurrentAccount",
+      "package": "Bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Bank/CurrentAccount.java",
+      "relative_path": "src/Bank/CurrentAccount.java",
+      "line": 3,
+      "loc": 20,
+      "size_bytes": 392
+    },
+    {
+      "id": "Bank.SavingsAccount",
+      "name": "SavingsAccount",
+      "package": "Bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Bank/SavingsAccount.java",
+      "relative_path": "src/Bank/SavingsAccount.java",
+      "line": 5,
+      "loc": 43,
+      "size_bytes": 765
+    },
+    {
+      "id": "Bank.StudentAccount",
+      "name": "StudentAccount",
+      "package": "Bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Bank/StudentAccount.java",
+      "relative_path": "src/Bank/StudentAccount.java",
+      "line": 3,
+      "loc": 20,
+      "size_bytes": 363
+    },
+    {
+      "id": "Data.FileIO",
+      "name": "FileIO",
+      "package": "Data",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Data/FileIO.java",
+      "relative_path": "src/Data/FileIO.java",
+      "line": 10,
+      "loc": 58,
+      "size_bytes": 964
+    },
+    {
+      "id": "Exceptions.AccNotFound",
+      "name": "AccNotFound",
+      "package": "Exceptions",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Exceptions/AccNotFound.java",
+      "relative_path": "src/Exceptions/AccNotFound.java",
+      "line": 3,
+      "loc": 15,
+      "size_bytes": 183
+    },
+    {
+      "id": "Exceptions.InvalidAmount",
+      "name": "InvalidAmount",
+      "package": "Exceptions",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Exceptions/InvalidAmount.java",
+      "relative_path": "src/Exceptions/InvalidAmount.java",
+      "line": 3,
+      "loc": 15,
+      "size_bytes": 187
+    },
+    {
+      "id": "Exceptions.MaxBalance",
+      "name": "MaxBalance",
+      "package": "Exceptions",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Exceptions/MaxBalance.java",
+      "relative_path": "src/Exceptions/MaxBalance.java",
+      "line": 3,
+      "loc": 16,
+      "size_bytes": 183
+    },
+    {
+      "id": "Exceptions.MaxWithdraw",
+      "name": "MaxWithdraw",
+      "package": "Exceptions",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/Exceptions/MaxWithdraw.java",
+      "relative_path": "src/Exceptions/MaxWithdraw.java",
+      "line": 3,
+      "loc": 18,
+      "size_bytes": 187
+    },
+    {
+      "id": "GUI.AddAccount",
+      "name": "AddAccount",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/AddAccount.java",
+      "relative_path": "src/GUI/AddAccount.java",
+      "line": 14,
+      "loc": 102,
+      "size_bytes": 2654
+    },
+    {
+      "id": "GUI.AddCurrentAccount",
+      "name": "AddCurrentAccount",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/AddCurrentAccount.java",
+      "relative_path": "src/GUI/AddCurrentAccount.java",
+      "line": 17,
+      "loc": 148,
+      "size_bytes": 4233
+    },
+    {
+      "id": "GUI.AddSavingsAccount",
+      "name": "AddSavingsAccount",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/AddSavingsAccount.java",
+      "relative_path": "src/GUI/AddSavingsAccount.java",
+      "line": 16,
+      "loc": 142,
+      "size_bytes": 4128
+    },
+    {
+      "id": "GUI.AddStudentAccount",
+      "name": "AddStudentAccount",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/AddStudentAccount.java",
+      "relative_path": "src/GUI/AddStudentAccount.java",
+      "line": 16,
+      "loc": 152,
+      "size_bytes": 4208
+    },
+    {
+      "id": "GUI.DepositAcc",
+      "name": "DepositAcc",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/DepositAcc.java",
+      "relative_path": "src/GUI/DepositAcc.java",
+      "line": 21,
+      "loc": 137,
+      "size_bytes": 3560
+    },
+    {
+      "id": "GUI.DisplayList",
+      "name": "DisplayList",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/DisplayList.java",
+      "relative_path": "src/GUI/DisplayList.java",
+      "line": 17,
+      "loc": 61,
+      "size_bytes": 1673
+    },
+    {
+      "id": "GUI.GUIForm",
+      "name": "GUIForm",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/GUIForm.java",
+      "relative_path": "src/GUI/GUIForm.java",
+      "line": 4,
+      "loc": 36,
+      "size_bytes": 909
+    },
+    {
+      "id": "GUI.Login",
+      "name": "Login",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/Login.java",
+      "relative_path": "src/GUI/Login.java",
+      "line": 13,
+      "loc": 112,
+      "size_bytes": 2982
+    },
+    {
+      "id": "GUI.Menu",
+      "name": "Menu",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/Menu.java",
+      "relative_path": "src/GUI/Menu.java",
+      "line": 21,
+      "loc": 162,
+      "size_bytes": 4425
+    },
+    {
+      "id": "GUI.WithdrawAcc",
+      "name": "WithdrawAcc",
+      "package": "GUI",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/GUI/WithdrawAcc.java",
+      "relative_path": "src/GUI/WithdrawAcc.java",
+      "line": 23,
+      "loc": 153,
+      "size_bytes": 4209
+    }
+  ],
+  "build_registry": [],
+  "config_registry": [],
+  "sql_registry": [],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "Application",
+        "kind": "class",
+        "path": "src/Application.java"
+      },
+      {
+        "id": "Bank.Bank",
+        "kind": "class",
+        "path": "src/Bank/Bank.java"
+      },
+      {
+        "id": "Bank.BankAccount",
+        "kind": "class",
+        "path": "src/Bank/BankAccount.java"
+      },
+      {
+        "id": "Bank.CurrentAccount",
+        "kind": "class",
+        "path": "src/Bank/CurrentAccount.java"
+      },
+      {
+        "id": "Bank.SavingsAccount",
+        "kind": "class",
+        "path": "src/Bank/SavingsAccount.java"
+      },
+      {
+        "id": "Bank.StudentAccount",
+        "kind": "class",
+        "path": "src/Bank/StudentAccount.java"
+      },
+      {
+        "id": "Data.FileIO",
+        "kind": "class",
+        "path": "src/Data/FileIO.java"
+      },
+      {
+        "id": "Exceptions.AccNotFound",
+        "kind": "class",
+        "path": "src/Exceptions/AccNotFound.java"
+      },
+      {
+        "id": "Exceptions.InvalidAmount",
+        "kind": "class",
+        "path": "src/Exceptions/InvalidAmount.java"
+      },
+      {
+        "id": "Exceptions.MaxBalance",
+        "kind": "class",
+        "path": "src/Exceptions/MaxBalance.java"
+      },
+      {
+        "id": "Exceptions.MaxWithdraw",
+        "kind": "class",
+        "path": "src/Exceptions/MaxWithdraw.java"
+      },
+      {
+        "id": "GUI.AddAccount",
+        "kind": "class",
+        "path": "src/GUI/AddAccount.java"
+      },
+      {
+        "id": "GUI.AddCurrentAccount",
+        "kind": "class",
+        "path": "src/GUI/AddCurrentAccount.java"
+      },
+      {
+        "id": "GUI.AddSavingsAccount",
+        "kind": "class",
+        "path": "src/GUI/AddSavingsAccount.java"
+      },
+      {
+        "id": "GUI.AddStudentAccount",
+        "kind": "class",
+        "path": "src/GUI/AddStudentAccount.java"
+      },
+      {
+        "id": "GUI.DepositAcc",
+        "kind": "class",
+        "path": "src/GUI/DepositAcc.java"
+      },
+      {
+        "id": "GUI.DisplayList",
+        "kind": "class",
+        "path": "src/GUI/DisplayList.java"
+      },
+      {
+        "id": "GUI.GUIForm",
+        "kind": "class",
+        "path": "src/GUI/GUIForm.java"
+      },
+      {
+        "id": "GUI.Login",
+        "kind": "class",
+        "path": "src/GUI/Login.java"
+      },
+      {
+        "id": "GUI.Menu",
+        "kind": "class",
+        "path": "src/GUI/Menu.java"
+      },
+      {
+        "id": "GUI.WithdrawAcc",
+        "kind": "class",
+        "path": "src/GUI/WithdrawAcc.java"
+      }
+    ],
+    "edges": [
+      {
+        "from": "Application",
+        "to": "java.awt.EventQueue",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "Application",
+        "to": "GUI.GUIForm",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 4
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "java.io.Serializable",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "javax.swing.DefaultListModel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "Exceptions.AccNotFound",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 4
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "Exceptions.InvalidAmount",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "Exceptions.MaxBalance",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 6
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "Exceptions.MaxWithdraw",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 7
+      },
+      {
+        "from": "Bank.Bank",
+        "to": "java.io.Serializable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "Bank.BankAccount",
+        "to": "java.io.Serializable",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "Bank.BankAccount",
+        "to": "Exceptions.MaxBalance",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 4
+      },
+      {
+        "from": "Bank.BankAccount",
+        "to": "Exceptions.MaxWithdraw",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "Bank.BankAccount",
+        "to": "java.io.Serializable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "Bank.CurrentAccount",
+        "to": "Bank.BankAccount",
+        "type": "EXTENDS",
+        "resolved": true,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Bank.SavingsAccount",
+        "to": "Exceptions.MaxBalance",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 2
+      },
+      {
+        "from": "Bank.SavingsAccount",
+        "to": "Exceptions.MaxWithdraw",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Bank.SavingsAccount",
+        "to": "Bank.BankAccount",
+        "type": "EXTENDS",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "Bank.StudentAccount",
+        "to": "Bank.SavingsAccount",
+        "type": "EXTENDS",
+        "resolved": true,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "java.io.FileInputStream",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "java.io.FileOutputStream",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "java.io.IOException",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "java.io.ObjectInputStream",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "java.io.ObjectOutputStream",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 6
+      },
+      {
+        "from": "Data.FileIO",
+        "to": "Bank.*",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 8
+      },
+      {
+        "from": "Exceptions.AccNotFound",
+        "to": "Exception",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Exceptions.InvalidAmount",
+        "to": "Exception",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Exceptions.MaxBalance",
+        "to": "Exception",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "Exceptions.MaxWithdraw",
+        "to": "Exception",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.AddAccount",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 15
+      },
+      {
+        "from": "GUI.AddCurrentAccount",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 17
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.AddSavingsAccount",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 16
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.AddStudentAccount",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 16
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "Exceptions.AccNotFound",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "Exceptions.InvalidAmount",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 15
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.io.Serializable",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 16
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 17
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 18
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 19
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 21
+      },
+      {
+        "from": "GUI.DepositAcc",
+        "to": "java.io.Serializable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 21
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.DefaultListModel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JScrollPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.ScrollPaneConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JList",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 15
+      },
+      {
+        "from": "GUI.DisplayList",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 17
+      },
+      {
+        "from": "GUI.GUIForm",
+        "to": "java.awt.Point",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JPasswordField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "GUI.Login",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.Login",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.Login",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.Login",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 10
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "java.awt.Image",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 15
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 16
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 17
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.ImageIcon",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 18
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.Icon",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 19
+      },
+      {
+        "from": "GUI.Menu",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 21
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JFrame",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 2
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JPanel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.border.EmptyBorder",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "Exceptions.AccNotFound",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 6
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "Exceptions.InvalidAmount",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 7
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "Exceptions.MaxBalance",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 8
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "Exceptions.MaxWithdraw",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 9
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JLabel",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 11
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JOptionPane",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 12
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.SwingConstants",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 13
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.awt.Font",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 14
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JTextField",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 15
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JButton",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 16
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.awt.event.ActionListener",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 17
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.io.Serializable",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 18
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.awt.event.ActionEvent",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 19
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "Data.FileIO",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 20
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.awt.SystemColor",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 21
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "javax.swing.JFrame",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 23
+      },
+      {
+        "from": "GUI.WithdrawAcc",
+        "to": "java.io.Serializable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 23
+      }
+    ]
+  },
+  "issues": []
+}

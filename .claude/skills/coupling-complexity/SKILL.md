@@ -5,7 +5,7 @@ description: >
   move. A unit can be internally simple and still be impossible to extract
   because forty things call it. Every decomposition, service-extraction and
   strangler-fig plan is really a coupling argument.
-  Implemented deterministically by `.claude/complexities/04_coupling_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/04_coupling_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 04 - Coupling Complexity

@@ -1,0 +1,187 @@
+{
+  "contract_version": "2.0",
+  "id": "inheritance_complexity",
+  "sno": 13,
+  "complexity": "Inheritance Complexity",
+  "tier": "coupling",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L1",
+    "score": 1.0,
+    "headline": "12 type(s); max inheritance depth 1; widest base has 1 child(ren); 0 deep hierarchy(ies)"
+  },
+  "metrics": {
+    "types": 12,
+    "max_dit": 1,
+    "avg_dit": 0.08,
+    "max_noc": 1,
+    "types_with_multiple_inheritance": 0,
+    "deep_hierarchies": 0,
+    "bands_applied": [
+      1,
+      2,
+      4,
+      6
+    ]
+  },
+  "hotspots": [],
+  "items": [
+    {
+      "type_id": "com.example.bank.SavingsAccount",
+      "name": "SavingsAccount",
+      "kind": "class",
+      "dit": 1,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 1,
+      "multiple_inheritance": false,
+      "score": 1.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.Account",
+      "name": "Account",
+      "kind": "class",
+      "dit": 0,
+      "noc": 1,
+      "interfaces_implemented": 1,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.AccountType",
+      "name": "AccountType",
+      "kind": "enum",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.Auditable",
+      "name": "Auditable",
+      "kind": "interface",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.Bank",
+      "name": "Bank",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.CompoundInterestPolicy",
+      "name": "CompoundInterestPolicy",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 1,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.InsufficientFundsException",
+      "name": "InsufficientFundsException",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.InterestPolicy",
+      "name": "InterestPolicy",
+      "kind": "interface",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.Money",
+      "name": "Money",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.TransactionLog",
+      "name": "TransactionLog",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.TransactionLog$Entry",
+      "name": "Entry",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    },
+    {
+      "type_id": "com.example.bank.util.Validation",
+      "name": "Validation",
+      "kind": "class",
+      "dit": 0,
+      "noc": 0,
+      "interfaces_implemented": 0,
+      "superclasses": 0,
+      "multiple_inheritance": false,
+      "score": 0.0,
+      "level": "L1"
+    }
+  ],
+  "confidence": {
+    "score": 1.0,
+    "reasons": []
+  },
+  "inputs_used": [
+    "types"
+  ],
+  "inputs_missing_optional": [],
+  "interpretation": "High DIT is a comprehension cost (read the whole chain to understand a leaf); high NOC is a change-risk cost (a base-class edit reaches every child). They are different problems and are reported separately."
+}

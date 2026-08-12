@@ -8,7 +8,7 @@ description: >
   complexity: a 4,000-line unit of plain nested IFs is tedious but
   mechanical, while a 200-line unit with dynamic SQL and a platform call may
   be untranslatable by any automated means. Blockers, not size, drive cost.
-  Implemented deterministically by `.claude/complexities/19_migration_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 6 (composite).
+  Implemented deterministically by `.claude/complexities/19_migration_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 6 (composite).
 ---
 
 # 19 - Migration Complexity

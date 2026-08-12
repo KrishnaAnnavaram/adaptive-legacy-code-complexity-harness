@@ -4,7 +4,7 @@ description: >
   Measures internal, external, library, API, DB and platform dependencies of
   the codebase. Dependencies are a major driver of migration / modernization
   effort and upgrade risk.
-  Implemented deterministically by `.claude/complexities/09_dependency_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/09_dependency_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 09 - Dependency Complexity

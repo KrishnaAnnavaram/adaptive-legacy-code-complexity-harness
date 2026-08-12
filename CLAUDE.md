@@ -6,11 +6,7 @@ result into one artifact. Producing the tree is upstream and out of scope here.
 ## Pipeline
 
 ```
-Java repo ──0_inventory──► inventory_artifact.json
-                                  │
-                          (parser agent, owned separately)
-                                  ▼
-                          Normalized Tree ──1_complexity──► complexity_artifact.json
+Java repo ──1_inventory──► inventory_artifact.json ──2_parser──► Normalized Tree ──3_complexity──► complexity_artifact.json
 ```
 
 ## Commands

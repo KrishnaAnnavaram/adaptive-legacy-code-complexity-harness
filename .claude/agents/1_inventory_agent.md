@@ -9,7 +9,7 @@ description: >
   resolves method calls, and never reads inside a method body. That is the
   downstream parser agent's job. This agent owns file discovery and
   declaration-level facts only; it hands its artifact to the parser agent,
-  which builds the Normalized Tree the 1_complexity agent consumes.
+  which builds the Normalized Tree the 3_complexity agent consumes.
 tools: Read, Glob, Grep, Bash, Write, Edit, TodoWrite
 model: inherit
 ---
@@ -147,5 +147,5 @@ Output       : out/inventory_artifact.json
 | Consumer | Reads | For |
 |---|---|---|
 | Parser agent | `file_registry` (which files to parse, and the type id each should produce), `dependency_graph` (a first-pass map to validate its own resolution against) | Deciding what to parse and cross-checking its own import/type resolution |
-| `1_complexity` agent | Nothing directly — it consumes the parser's Normalized Tree, not this artifact | N/A; this agent's output never reaches `1_complexity` unmediated |
+| `3_complexity` agent | Nothing directly — it consumes the parser's Normalized Tree, not this artifact | N/A; this agent's output never reaches `3_complexity` unmediated |
 | Harness maintenance | `issues` | Which files need a human look before the parser trusts them |

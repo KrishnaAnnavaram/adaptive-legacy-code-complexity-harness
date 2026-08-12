@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "generated_at": "2026-08-11T16:39:53Z",
+    "repo_root": "D:\\adaptive-legacy-code-complexity-harness\\samples\\java_bank",
+    "language": "java",
+    "agent_version": "0_inventory_java@1.0",
+    "total_files_scanned": 11
+  },
+  "stats": {
+    "java_files": 11,
+    "types_total": 11,
+    "classes": 8,
+    "interfaces": 2,
+    "enums": 1,
+    "records": 0,
+    "annotations": 0,
+    "public_types": 9,
+    "packages": 2,
+    "build_files": 0,
+    "config_files": 0,
+    "sql_files": 0,
+    "import_edges_total": 7,
+    "import_edges_resolved": 1,
+    "import_edges_unresolved": 6,
+    "extends_edges_total": 2,
+    "extends_edges_resolved": 1,
+    "implements_edges_total": 2,
+    "implements_edges_resolved": 2
+  },
+  "file_registry": [
+    {
+      "id": "com.example.bank.Account",
+      "name": "Account",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/Account.java",
+      "relative_path": "src/main/java/com/example/bank/Account.java",
+      "line": 14,
+      "loc": 55,
+      "size_bytes": 1435
+    },
+    {
+      "id": "com.example.bank.AccountType",
+      "name": "AccountType",
+      "package": "com.example.bank",
+      "kind": "enum",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/AccountType.java",
+      "relative_path": "src/main/java/com/example/bank/AccountType.java",
+      "line": 4,
+      "loc": 30,
+      "size_bytes": 657
+    },
+    {
+      "id": "com.example.bank.Auditable",
+      "name": "Auditable",
+      "package": "com.example.bank",
+      "kind": "interface",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/Auditable.java",
+      "relative_path": "src/main/java/com/example/bank/Auditable.java",
+      "line": 4,
+      "loc": 7,
+      "size_bytes": 172
+    },
+    {
+      "id": "com.example.bank.Bank",
+      "name": "Bank",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/Bank.java",
+      "relative_path": "src/main/java/com/example/bank/Bank.java",
+      "line": 12,
+      "loc": 59,
+      "size_bytes": 1775
+    },
+    {
+      "id": "com.example.bank.CompoundInterestPolicy",
+      "name": "CompoundInterestPolicy",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/CompoundInterestPolicy.java",
+      "relative_path": "src/main/java/com/example/bank/CompoundInterestPolicy.java",
+      "line": 4,
+      "loc": 30,
+      "size_bytes": 735
+    },
+    {
+      "id": "com.example.bank.InsufficientFundsException",
+      "name": "InsufficientFundsException",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/InsufficientFundsException.java",
+      "relative_path": "src/main/java/com/example/bank/InsufficientFundsException.java",
+      "line": 4,
+      "loc": 10,
+      "size_bytes": 272
+    },
+    {
+      "id": "com.example.bank.InterestPolicy",
+      "name": "InterestPolicy",
+      "package": "com.example.bank",
+      "kind": "interface",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/InterestPolicy.java",
+      "relative_path": "src/main/java/com/example/bank/InterestPolicy.java",
+      "line": 4,
+      "loc": 16,
+      "size_bytes": 366
+    },
+    {
+      "id": "com.example.bank.Money",
+      "name": "Money",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": false,
+      "path": "src/main/java/com/example/bank/Money.java",
+      "relative_path": "src/main/java/com/example/bank/Money.java",
+      "line": 4,
+      "loc": 33,
+      "size_bytes": 753
+    },
+    {
+      "id": "com.example.bank.SavingsAccount",
+      "name": "SavingsAccount",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/SavingsAccount.java",
+      "relative_path": "src/main/java/com/example/bank/SavingsAccount.java",
+      "line": 8,
+      "loc": 31,
+      "size_bytes": 903
+    },
+    {
+      "id": "com.example.bank.TransactionLog",
+      "name": "TransactionLog",
+      "package": "com.example.bank",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/bank/TransactionLog.java",
+      "relative_path": "src/main/java/com/example/bank/TransactionLog.java",
+      "line": 10,
+      "loc": 57,
+      "size_bytes": 1601
+    },
+    {
+      "id": "com.example.bank.util.Validation",
+      "name": "Validation",
+      "package": "com.example.bank.util",
+      "kind": "class",
+      "is_public": false,
+      "path": "src/main/java/com/example/bank/util/Validation.java",
+      "relative_path": "src/main/java/com/example/bank/util/Validation.java",
+      "line": 4,
+      "loc": 19,
+      "size_bytes": 516
+    }
+  ],
+  "build_registry": [],
+  "config_registry": [],
+  "sql_registry": [],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "com.example.bank.Account",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/Account.java"
+      },
+      {
+        "id": "com.example.bank.AccountType",
+        "kind": "enum",
+        "path": "src/main/java/com/example/bank/AccountType.java"
+      },
+      {
+        "id": "com.example.bank.Auditable",
+        "kind": "interface",
+        "path": "src/main/java/com/example/bank/Auditable.java"
+      },
+      {
+        "id": "com.example.bank.Bank",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/Bank.java"
+      },
+      {
+        "id": "com.example.bank.CompoundInterestPolicy",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/CompoundInterestPolicy.java"
+      },
+      {
+        "id": "com.example.bank.InsufficientFundsException",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/InsufficientFundsException.java"
+      },
+      {
+        "id": "com.example.bank.InterestPolicy",
+        "kind": "interface",
+        "path": "src/main/java/com/example/bank/InterestPolicy.java"
+      },
+      {
+        "id": "com.example.bank.Money",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/Money.java"
+      },
+      {
+        "id": "com.example.bank.SavingsAccount",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/SavingsAccount.java"
+      },
+      {
+        "id": "com.example.bank.TransactionLog",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/TransactionLog.java"
+      },
+      {
+        "id": "com.example.bank.util.Validation",
+        "kind": "class",
+        "path": "src/main/java/com/example/bank/util/Validation.java"
+      }
+    ],
+    "edges": [
+      {
+        "from": "com.example.bank.Account",
+        "to": "java.util.ArrayList",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "java.util.List",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "com.example.bank.util.Validation",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "com.example.bank.Account",
+        "to": "com.example.bank.Auditable",
+        "type": "IMPLEMENTS",
+        "resolved": true,
+        "source_line_hint": 14
+      },
+      {
+        "from": "com.example.bank.Bank",
+        "to": "java.util.HashMap",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "com.example.bank.Bank",
+        "to": "java.util.Map",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "com.example.bank.CompoundInterestPolicy",
+        "to": "com.example.bank.InterestPolicy",
+        "type": "IMPLEMENTS",
+        "resolved": true,
+        "source_line_hint": 4
+      },
+      {
+        "from": "com.example.bank.InsufficientFundsException",
+        "to": "RuntimeException",
+        "type": "EXTENDS",
+        "resolved": false,
+        "source_line_hint": 4
+      },
+      {
+        "from": "com.example.bank.SavingsAccount",
+        "to": "com.example.bank.Account",
+        "type": "EXTENDS",
+        "resolved": true,
+        "source_line_hint": 8
+      },
+      {
+        "from": "com.example.bank.TransactionLog",
+        "to": "java.util.ArrayList",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "com.example.bank.TransactionLog",
+        "to": "java.util.List",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 4
+      }
+    ]
+  },
+  "issues": []
+}

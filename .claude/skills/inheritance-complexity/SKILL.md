@@ -4,7 +4,7 @@ description: >
   Complexity introduced by inheritance hierarchies. Deep or wide inheritance
   makes behavior hard to trace (you must follow the chain to know what a
   class actually does).
-  Implemented deterministically by `.claude/complexities/13_inheritance_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/13_inheritance_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 13 - Inheritance Complexity

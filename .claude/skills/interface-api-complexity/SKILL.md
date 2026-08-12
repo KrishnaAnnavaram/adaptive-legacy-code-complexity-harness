@@ -4,7 +4,7 @@ description: >
   Complexity of the interfaces, endpoints and contracts a system exposes.
   Important for microservices and integration-heavy applications -
   wide/heavy contracts are costly to change and integrate against.
-  Implemented deterministically by `.claude/complexities/14_interface_api_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/14_interface_api_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 14 - Interface / API Complexity

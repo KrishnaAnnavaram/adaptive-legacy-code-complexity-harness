@@ -1,0 +1,416 @@
+{
+  "contract_version": "2.0",
+  "id": "dependency_complexity",
+  "sno": 9,
+  "complexity": "Dependency Complexity",
+  "tier": "coupling",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L3",
+    "score": 45.7,
+    "headline": "50 module(s); 115 external dependency/ies; longest chain 3; 0 dependency cycle(s)"
+  },
+  "metrics": {
+    "modules": 50,
+    "total_dependencies": 141,
+    "by_kind": {
+      "internal": 26,
+      "external": 0,
+      "library": 115,
+      "api": 0,
+      "db": 0,
+      "platform": 0,
+      "config": 0
+    },
+    "external_ratio": 0.816,
+    "avg_fan_out": 2.82,
+    "max_fan_in": 9,
+    "max_fan_out": 18,
+    "longest_chain": 3,
+    "cycle_count": 0,
+    "bands_applied": [
+      15,
+      35,
+      55,
+      75
+    ]
+  },
+  "hotspots": [
+    {
+      "module": "GUI.WithdrawAcc",
+      "fan_in": 0,
+      "fan_out": 18,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.DepositAcc",
+      "fan_in": 0,
+      "fan_out": 16,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.Menu",
+      "fan_in": 0,
+      "fan_out": 15,
+      "instability": 1.0
+    },
+    {
+      "module": "Data.FileIO",
+      "fan_in": 7,
+      "fan_out": 6,
+      "instability": 0.462
+    },
+    {
+      "module": "GUI.AddCurrentAccount",
+      "fan_in": 0,
+      "fan_out": 13,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddSavingsAccount",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddStudentAccount",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.DisplayList",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddAccount",
+      "fan_in": 0,
+      "fan_out": 11,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.Login",
+      "fan_in": 0,
+      "fan_out": 9,
+      "instability": 1.0
+    }
+  ],
+  "items": [
+    {
+      "module": "Application",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    {
+      "module": "Bank.*",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "Bank.Bank",
+      "fan_in": 0,
+      "fan_out": 6,
+      "instability": 1.0
+    },
+    {
+      "module": "Bank.BankAccount",
+      "fan_in": 2,
+      "fan_out": 3,
+      "instability": 0.6
+    },
+    {
+      "module": "Bank.CurrentAccount",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "Bank.SavingsAccount",
+      "fan_in": 1,
+      "fan_out": 3,
+      "instability": 0.75
+    },
+    {
+      "module": "Bank.StudentAccount",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "Data.FileIO",
+      "fan_in": 7,
+      "fan_out": 6,
+      "instability": 0.462
+    },
+    {
+      "module": "Exceptions.AccNotFound",
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "Exceptions.InvalidAmount",
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "Exceptions.MaxBalance",
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "Exceptions.MaxWithdraw",
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "GUI.AddAccount",
+      "fan_in": 0,
+      "fan_out": 11,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddCurrentAccount",
+      "fan_in": 0,
+      "fan_out": 13,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddSavingsAccount",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.AddStudentAccount",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.DepositAcc",
+      "fan_in": 0,
+      "fan_out": 16,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.DisplayList",
+      "fan_in": 0,
+      "fan_out": 12,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.GUIForm",
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    {
+      "module": "GUI.Login",
+      "fan_in": 0,
+      "fan_out": 9,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.Menu",
+      "fan_in": 0,
+      "fan_out": 15,
+      "instability": 1.0
+    },
+    {
+      "module": "GUI.WithdrawAcc",
+      "fan_in": 0,
+      "fan_out": 18,
+      "instability": 1.0
+    },
+    {
+      "module": "java.awt.EventQueue",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.Font",
+      "fan_in": 9,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.Image",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.Point",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.SystemColor",
+      "fan_in": 6,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.event.ActionEvent",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.awt.event.ActionListener",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.FileInputStream",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.FileOutputStream",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.IOException",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.ObjectInputStream",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.ObjectOutputStream",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.io.Serializable",
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.DefaultListModel",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.Icon",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.ImageIcon",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JButton",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JFrame",
+      "fan_in": 9,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JLabel",
+      "fan_in": 9,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JList",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JOptionPane",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JPanel",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JPasswordField",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JScrollPane",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.JTextField",
+      "fan_in": 6,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.ScrollPaneConstants",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.SwingConstants",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "javax.swing.border.EmptyBorder",
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    }
+  ],
+  "confidence": {
+    "score": 1.0,
+    "reasons": []
+  },
+  "inputs_used": [
+    "dependency_graph"
+  ],
+  "inputs_missing_optional": [],
+  "cycles": [],
+  "note": "Modules inside a dependency cycle cannot be extracted or migrated independently until the cycle is broken - address those first."
+}

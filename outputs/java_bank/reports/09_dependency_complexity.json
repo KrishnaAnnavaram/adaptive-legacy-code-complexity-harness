@@ -1,0 +1,212 @@
+{
+  "contract_version": "2.0",
+  "id": "dependency_complexity",
+  "sno": 9,
+  "complexity": "Dependency Complexity",
+  "tier": "coupling",
+  "analyzer_version": "2.0.0",
+  "language": "java",
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "level": "L2",
+    "score": 29.6,
+    "headline": "16 module(s); 6 external dependency/ies; longest chain 2; 0 dependency cycle(s)"
+  },
+  "metrics": {
+    "modules": 16,
+    "total_dependencies": 10,
+    "by_kind": {
+      "internal": 4,
+      "external": 0,
+      "library": 6,
+      "api": 0,
+      "db": 0,
+      "platform": 0,
+      "config": 0
+    },
+    "external_ratio": 0.6,
+    "avg_fan_out": 0.62,
+    "max_fan_in": 2,
+    "max_fan_out": 4,
+    "longest_chain": 2,
+    "cycle_count": 0,
+    "bands_applied": [
+      15,
+      35,
+      55,
+      75
+    ]
+  },
+  "hotspots": [
+    {
+      "module": "com.example.bank.Account",
+      "fan_in": 1,
+      "fan_out": 4,
+      "instability": 0.8
+    },
+    {
+      "module": "com.example.bank.Bank",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.TransactionLog",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    {
+      "module": "java.util.ArrayList",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.util.List",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.Auditable",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.CompoundInterestPolicy",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.InterestPolicy",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.SavingsAccount",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.util.Validation",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    }
+  ],
+  "items": [
+    {
+      "module": "com.example.bank.Account",
+      "fan_in": 1,
+      "fan_out": 4,
+      "instability": 0.8
+    },
+    {
+      "module": "com.example.bank.AccountType",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.Auditable",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.Bank",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.CompoundInterestPolicy",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.InsufficientFundsException",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.InterestPolicy",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.Money",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.SavingsAccount",
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.TransactionLog",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    {
+      "module": "com.example.bank.TransactionLog$Entry",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "com.example.bank.util.Validation",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.util.ArrayList",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.util.HashMap",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.util.List",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    {
+      "module": "java.util.Map",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    }
+  ],
+  "confidence": {
+    "score": 1.0,
+    "reasons": []
+  },
+  "inputs_used": [
+    "dependency_graph"
+  ],
+  "inputs_missing_optional": [],
+  "cycles": [],
+  "note": "Modules inside a dependency cycle cannot be extracted or migrated independently until the cycle is broken - address those first."
+}

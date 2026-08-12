@@ -8,7 +8,7 @@ description: >
   cut? A codebase of clean units can still be architecturally unsplittable,
   and a codebase of ugly units can decompose cleanly along good module
   lines.
-  Implemented deterministically by `.claude/complexities/20_architectural_complexity.py`; used by the Complexity Agent (1_complexity) in tier band 4 (coupling).
+  Implemented deterministically by `.claude/complexities/20_architectural_complexity.py`; used by the Complexity Agent (3_complexity) in tier band 4 (coupling).
 ---
 
 # 20 - Architectural Complexity

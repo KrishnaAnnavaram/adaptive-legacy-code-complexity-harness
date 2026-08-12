@@ -16,7 +16,7 @@ upstream concern — this harness starts where the parser finishes.
             └──────────────────────┘
                      ▼
    ┌──────────────────────────────────────────────┐
-   │  1_complexity agent                          │
+   │  3_complexity agent                          │
    │    discover → order → gate → run → merge     │
    └──────────────────────────────────────────────┘
         ▼            ▼             ▼
@@ -31,7 +31,7 @@ Mirrors the `plsql_to_brd` project convention.
 ```
 .claude/
   agents/
-    1_complexity_agent.md          the single orchestrating agent
+    3_complexity_agent.md          the single orchestrating agent
   skills/
     <complexity-name>/SKILL.md     20 skills, one per complexity — what & why
   complexities/
