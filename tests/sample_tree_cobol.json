@@ -1,0 +1,114 @@
+{
+  "kind": "program",
+  "name": "SAMPLE-PROGRAM",
+  "start_line": 1,
+  "end_line": 100,
+  "children": [
+    {
+      "kind": "import_statement",
+      "label": "COPY CUSTOMER-REC",
+      "start_line": 3
+    },
+    {
+      "kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "children": [
+        {
+          "kind": "if",
+          "label": "IF",
+          "start_line": 52,
+          "end_line": 54,
+          "children": [
+            { "kind": "boolean_and", "label": "AND", "start_line": 52 },
+            { "kind": "boolean_and", "label": "AND", "start_line": 52 },
+            {
+              "kind": "if",
+              "label": "IF",
+              "start_line": 54
+            }
+          ]
+        },
+        {
+          "kind": "elif",
+          "label": "ELSE IF",
+          "start_line": 56,
+          "children": [
+            { "kind": "boolean_or", "label": "OR", "start_line": 56 }
+          ]
+        },
+        {
+          "kind": "switch_statement",
+          "label": "EVALUATE",
+          "start_line": 60,
+          "children": [
+            { "kind": "case_clause", "label": "WHEN", "start_line": 61 },
+            { "kind": "case_clause", "label": "WHEN", "start_line": 63 },
+            { "kind": "default_clause", "label": "WHEN OTHER", "start_line": 65 }
+          ]
+        },
+        {
+          "kind": "labeled_jump",
+          "label": "GO TO EXIT-PARA",
+          "start_line": 66
+        },
+        {
+          "kind": "call",
+          "label": "1000-MAIN-PARA",
+          "start_line": 67
+        }
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "children": [
+        {
+          "kind": "while",
+          "label": "PERFORM UNTIL",
+          "start_line": 72,
+          "end_line": 78,
+          "children": [
+            { "kind": "boolean_or", "label": "OR", "start_line": 72 }
+          ]
+        },
+        { "kind": "return_statement", "label": "EXIT PARA-NORMAL", "start_line": 79 }
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "children": [
+        {
+          "kind": "try_block",
+          "label": "PERFORM WITH EXCEPTION HANDLING",
+          "start_line": 90,
+          "children": [
+            { "kind": "call", "label": "SOME-OTHER-PARA", "start_line": 91 },
+            {
+              "kind": "catch",
+              "label": "ON EXCEPTION",
+              "start_line": 93,
+              "children": [
+                { "kind": "ternary", "label": "COND ? A : B", "start_line": 94 }
+              ]
+            },
+            {
+              "kind": "finally_block",
+              "label": "FINALLY",
+              "start_line": 96,
+              "children": []
+            }
+          ]
+        },
+        { "kind": "return_statement", "label": "EXIT PARA-OK", "start_line": 97 },
+        { "kind": "return_statement", "label": "EXIT PARA-ERROR", "start_line": 98 }
+      ]
+    }
+  ]
+}

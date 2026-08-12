@@ -1,0 +1,175 @@
+{
+  "complexity_type": "control_flow_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:37.369133+00:00",
+  "file_level": {
+    "total_complexity": 18,
+    "average_complexity": 6.0,
+    "max_complexity": 11,
+    "scope_count": 3
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "complexity": 1,
+      "breakdown": {
+        "branch": 0,
+        "loop": 0,
+        "boolean_operator": 0,
+        "jump": 0,
+        "extra_exit": 0,
+        "recursion": 0
+      },
+      "events": [],
+      "in_totals": false
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "complexity": 11,
+      "breakdown": {
+        "branch": 5,
+        "loop": 0,
+        "boolean_operator": 3,
+        "jump": 1,
+        "extra_exit": 0,
+        "recursion": 1
+      },
+      "events": [
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 52,
+          "category": "branch"
+        },
+        {
+          "kind": "boolean_and",
+          "label": "AND",
+          "line": 52,
+          "category": "boolean_operator"
+        },
+        {
+          "kind": "boolean_and",
+          "label": "AND",
+          "line": 52,
+          "category": "boolean_operator"
+        },
+        {
+          "kind": "if",
+          "label": "IF",
+          "line": 54,
+          "category": "branch"
+        },
+        {
+          "kind": "elif",
+          "label": "ELSE IF",
+          "line": 56,
+          "category": "branch"
+        },
+        {
+          "kind": "boolean_or",
+          "label": "OR",
+          "line": 56,
+          "category": "boolean_operator"
+        },
+        {
+          "kind": "case_clause",
+          "label": "WHEN",
+          "line": 61,
+          "category": "branch"
+        },
+        {
+          "kind": "case_clause",
+          "label": "WHEN",
+          "line": 63,
+          "category": "branch"
+        },
+        {
+          "kind": "labeled_jump",
+          "label": "GO TO EXIT-PARA",
+          "line": 66,
+          "category": "jump"
+        },
+        {
+          "kind": "call",
+          "label": "1000-MAIN-PARA",
+          "line": 67,
+          "category": "recursion"
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "complexity": 3,
+      "breakdown": {
+        "branch": 0,
+        "loop": 1,
+        "boolean_operator": 1,
+        "jump": 0,
+        "extra_exit": 0,
+        "recursion": 0
+      },
+      "events": [
+        {
+          "kind": "while",
+          "label": "PERFORM UNTIL",
+          "line": 72,
+          "category": "loop"
+        },
+        {
+          "kind": "boolean_or",
+          "label": "OR",
+          "line": 72,
+          "category": "boolean_operator"
+        }
+      ],
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "complexity": 4,
+      "breakdown": {
+        "branch": 2,
+        "loop": 0,
+        "boolean_operator": 0,
+        "jump": 0,
+        "extra_exit": 1,
+        "recursion": 0
+      },
+      "events": [
+        {
+          "kind": "catch",
+          "label": "ON EXCEPTION",
+          "line": 93,
+          "category": "branch"
+        },
+        {
+          "kind": "ternary",
+          "label": "COND ? A : B",
+          "line": 94,
+          "category": "branch"
+        },
+        {
+          "kind": "return_statement",
+          "label": "EXIT PARA-ERROR",
+          "line": 98,
+          "category": "extra_exit"
+        }
+      ],
+      "in_totals": true
+    }
+  ]
+}

@@ -5,23 +5,21 @@
 A language-agnostic harness that measures the complexity of legacy code and
 consolidates the result into one artifact a modernization programme can act on.
 
-It takes a **parse tree**, not source code. Producing that tree is a separate,
-upstream concern — this harness starts where the parser finishes.
+The complexity stage takes a **parse tree**, not source code. For Java, this
+repo now produces that tree itself, in two stages that precede complexity
+scoring. For any other language, producing the tree is a separate, upstream
+concern — the complexity stage starts where the parser finishes either way.
 
-```
-   ANTLR parse tree  │  AST JSON  │  plsql-to-brd parser artifact
-                     ▼
-            ┌──────────────────────┐
-            │  Normalized Tree     │   one shape, language-neutral
-            └──────────────────────┘
-                     ▼
-   ┌──────────────────────────────────────────────┐
-   │  3_complexity agent                          │
-   │    discover → order → gate → run → merge     │
-   └──────────────────────────────────────────────┘
-        ▼            ▼             ▼
-   20 skills    per-skill      complexity_artifact.json
-                reports
+```mermaid
+flowchart TD
+    J[Java repo] --> S1["Stage 1 — Inventory\nagent: java-inventory"]
+    S1 -->|inventory_artifact.json| S2["Stage 2 — Parser\nagent: java-parser"]
+    S2 -->|Normalized Tree| NT
+    EXT["ANTLR parse tree / AST JSON /\nplsql-to-brd parser artifact\n(produced upstream, out of scope here)"] --> NT
+    NT[Normalized Tree — one shape, language-neutral]
+    NT --> S3["Stage 3 — Complexity\nagent: complexity-analyzer\ndiscover → order → gate → run → merge"]
+    S3 --> ART[complexity_artifact.json]
+    S3 --> REP[per-skill reports]
 ```
 
 ## Layout
@@ -31,7 +29,13 @@ Mirrors the `plsql_to_brd` project convention.
 ```
 .claude/
   agents/
-    3_complexity_agent.md          the single orchestrating agent
+    1_inventory_agent.md           name: java-inventory   — stage 1
+    2_parser_agent.md              name: java-parser      — stage 2
+    3_complexity_agent.md          name: complexity-analyzer — stage 3
+  inventory/
+    scanner.py                     stage 1's deterministic scan
+  parser/
+    parser.py                      stage 2's deterministic tokenizer/scanner
   skills/
     <complexity-name>/SKILL.md     20 skills, one per complexity — what & why
   complexities/
@@ -41,6 +45,7 @@ Mirrors the `plsql_to_brd` project convention.
     _superseded_style_a/           original Style-A analyzers, preserved
 docs/
   system-overview.md               this file
+  inventory-contract.md            shape of inventory_artifact.json
   analyzer-contract.md             how to build a complexity
   architecture-decisions.md        why it is built this way
 samples/
@@ -83,20 +88,26 @@ generated from the same source, so they cannot drift apart.
 
 ## Execution order
 
-Bands are absolute:
+Dependency depth decides order first, not band. A skill that consumes another
+skill's finished report — declared in its own `depends_on` — never runs
+before that report exists, regardless of which band either one sits in. Band
+is only the tie-break among skills that don't depend on anything:
 
 ```
 size → structural → data → coupling → hazard → composite
 ```
 
-Within a band: dependency depth, then number. The final numeric key makes the
-plan byte-identical across runs.
+Number (`sno`) is the final tie-break, so the plan is byte-identical across
+runs of the same tree.
 
-- **size first** — later bands use it as a denominator. Computing it once
-  centrally stops five skills deriving five slightly different sizes.
-- **composite last** — Maintainability consumes size and branching;
-  Migration consumes Database, Testability, Runtime and Architectural. They
-  cannot run earlier by construction.
+- **size ties first among depth-0 skills** — later bands use it as a
+  denominator, so seeing it before any per-unit shape is useful, though it
+  runs whenever nothing depends on it, same as any other depth-0 skill.
+- **composite runs last in practice** — Maintainability consumes Cyclomatic
+  and Structural; Testability consumes Cyclomatic and Coupling; Migration
+  consumes Control Flow, Database, Testability, Runtime and Architectural.
+  This is a consequence of today's `depends_on` declarations, not a rule the
+  sort enforces by band.
 
 ## The rule everything rests on
 

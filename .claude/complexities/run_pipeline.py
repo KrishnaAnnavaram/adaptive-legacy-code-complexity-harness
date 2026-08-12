@@ -7,9 +7,16 @@ SPEC. There is no hardcoded list anywhere: adding an analyzer means dropping in
 a file, and it joins the next run automatically.
 
 Ordering is derived, not configured:
-    tier band      size -> structural -> data -> coupling -> hazard -> composite
-    then           dependency level (from SPEC.depends_on)
-    then           sno, so two runs over the same tree produce the same order
+    dependency depth   from SPEC.depends_on — an analyzer never runs before
+                       anything it declares a dependency on, no matter what
+                       tier either one is labeled
+    then    tier band  size -> structural -> data -> coupling -> hazard -> composite
+    then    sno        so two runs over the same tree produce the same order
+
+Depth is primary rather than tier because tier is a hand-assigned label with
+nothing checking it stays consistent with depends_on; depth is derived
+straight from the real dependency graph, so ordering stays correct even if a
+future analyzer's tier doesn't match its dependency direction.
 
 Composite analyzers receive the reports of the analyzers they declared as
 depends_on, so #19 Migration is scored from real upstream findings rather than
@@ -72,7 +79,7 @@ def discover() -> List[Tuple[Any, Any]]:
 
 
 def order(analyzers: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
-    """Tier band, then dependency depth, then sno. Fully deterministic."""
+    """Dependency depth, then tier band, then sno. Fully deterministic."""
     by_sno = {spec.sno: spec for spec, _ in analyzers}
 
     def depth(sno: int, seen: Optional[set] = None) -> int:
@@ -87,7 +94,7 @@ def order(analyzers: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
 
     return sorted(
         analyzers,
-        key=lambda pair: (TIERS.index(pair[0].tier), depth(pair[0].sno), pair[0].sno),
+        key=lambda pair: (depth(pair[0].sno), TIERS.index(pair[0].tier), pair[0].sno),
     )
 
 

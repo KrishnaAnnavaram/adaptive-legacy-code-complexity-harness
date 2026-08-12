@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "generated_at": "2026-08-11T03:06:46Z",
+    "repo_root": "D:\\adaptive-legacy-code-complexity-harness\\tests\\java_sample",
+    "language": "java",
+    "agent_version": "0_inventory_java@1.0",
+    "total_files_scanned": 7
+  },
+  "stats": {
+    "java_files": 5,
+    "types_total": 5,
+    "classes": 3,
+    "interfaces": 1,
+    "enums": 1,
+    "records": 0,
+    "annotations": 0,
+    "public_types": 4,
+    "packages": 2,
+    "build_files": 1,
+    "config_files": 1,
+    "sql_files": 0,
+    "import_edges_total": 5,
+    "import_edges_resolved": 3,
+    "import_edges_unresolved": 2,
+    "extends_edges_total": 1,
+    "extends_edges_resolved": 1,
+    "implements_edges_total": 3,
+    "implements_edges_resolved": 1
+  },
+  "file_registry": [
+    {
+      "id": "com.example.model.Circle",
+      "name": "Circle",
+      "package": "com.example.model",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/model/Circle.java",
+      "relative_path": "src/main/java/com/example/model/Circle.java",
+      "line": 5,
+      "loc": 19,
+      "size_bytes": 380
+    },
+    {
+      "id": "com.example.model.Color",
+      "name": "Color",
+      "package": "com.example.model",
+      "kind": "enum",
+      "is_public": true,
+      "path": "src/main/java/com/example/model/Color.java",
+      "relative_path": "src/main/java/com/example/model/Color.java",
+      "line": 3,
+      "loc": 5,
+      "size_bytes": 70
+    },
+    {
+      "id": "com.example.model.Shape",
+      "name": "Shape",
+      "package": "com.example.model",
+      "kind": "interface",
+      "is_public": true,
+      "path": "src/main/java/com/example/model/Shape.java",
+      "relative_path": "src/main/java/com/example/model/Shape.java",
+      "line": 3,
+      "loc": 5,
+      "size_bytes": 73
+    },
+    {
+      "id": "com.example.service.AbstractService",
+      "name": "AbstractService",
+      "package": "com.example.service",
+      "kind": "class",
+      "is_public": false,
+      "path": "src/main/java/com/example/service/AbstractService.java",
+      "relative_path": "src/main/java/com/example/service/AbstractService.java",
+      "line": 3,
+      "loc": 5,
+      "size_bytes": 110
+    },
+    {
+      "id": "com.example.service.ShapeService",
+      "name": "ShapeService",
+      "package": "com.example.service",
+      "kind": "class",
+      "is_public": true,
+      "path": "src/main/java/com/example/service/ShapeService.java",
+      "relative_path": "src/main/java/com/example/service/ShapeService.java",
+      "line": 8,
+      "loc": 26,
+      "size_bytes": 589
+    }
+  ],
+  "build_registry": [
+    {
+      "path": "pom.xml",
+      "relative_path": "pom.xml",
+      "type": "build"
+    }
+  ],
+  "config_registry": [
+    {
+      "path": "src/main/resources/application.properties",
+      "relative_path": "src/main/resources/application.properties",
+      "type": "config"
+    }
+  ],
+  "sql_registry": [],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "com.example.model.Circle",
+        "kind": "class",
+        "path": "src/main/java/com/example/model/Circle.java"
+      },
+      {
+        "id": "com.example.model.Color",
+        "kind": "enum",
+        "path": "src/main/java/com/example/model/Color.java"
+      },
+      {
+        "id": "com.example.model.Shape",
+        "kind": "interface",
+        "path": "src/main/java/com/example/model/Shape.java"
+      },
+      {
+        "id": "com.example.service.AbstractService",
+        "kind": "class",
+        "path": "src/main/java/com/example/service/AbstractService.java"
+      },
+      {
+        "id": "com.example.service.ShapeService",
+        "kind": "class",
+        "path": "src/main/java/com/example/service/ShapeService.java"
+      }
+    ],
+    "edges": [
+      {
+        "from": "com.example.model.Circle",
+        "to": "java.io.Serializable",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "com.example.model.Circle",
+        "to": "com.example.model.Shape",
+        "type": "IMPLEMENTS",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "com.example.model.Circle",
+        "to": "java.io.Serializable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 5
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "java.util.*",
+        "type": "IMPORT",
+        "resolved": false,
+        "source_line_hint": 3
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "com.example.model.Circle",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 4
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "com.example.model.Color",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 5
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "com.example.model.Shape",
+        "type": "IMPORT",
+        "resolved": true,
+        "source_line_hint": 6
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "com.example.service.AbstractService",
+        "type": "EXTENDS",
+        "resolved": true,
+        "source_line_hint": 8
+      },
+      {
+        "from": "com.example.service.ShapeService",
+        "to": "Runnable",
+        "type": "IMPLEMENTS",
+        "resolved": false,
+        "source_line_hint": 8
+      }
+    ]
+  },
+  "issues": []
+}

@@ -1,436 +1,972 @@
-# Complexity Report — samples/java_bank
+# Complexity Report — D:/adaptive-legacy-code-complexity-harness/samples/java_bank
 
-Source: `D:/adaptive-legacy-code-complexity-harness/samples/java_bank`
+## Table of contents
 
-This report is the prose companion to `complexity_artifact.json`. Every
-number below is pulled from that artifact or from the individual skill
-reports in `reports/`; nothing here is re-scored or estimated fresh.
+1. [About this report](#about-this-report)
+2. [About this codebase](#about-this-codebase)
+3. [Why we ran this analysis](#why-we-ran-this-analysis)
+4. [From Java files to these numbers](#from-java-files-to-these-numbers)
+5. [Overall complexity score](#overall-complexity-score)
+6. [How we ordered the analysis](#how-we-ordered-the-analysis)
+7. [What was measured, and why](#what-was-measured-and-why)
+8. [Per-complexity deep dive](#per-complexity-deep-dive)
+   - [07 Structural Complexity](#07-structural-complexity)
+   - [01 Cyclomatic Complexity](#01-cyclomatic-complexity)
+   - [02 Cognitive Complexity](#02-cognitive-complexity)
+   - [03 Control Flow Complexity](#03-control-flow-complexity)
+   - [05 Nesting Complexity](#05-nesting-complexity)
+   - [06 NPath Complexity](#06-npath-complexity)
+   - [17 Runtime Complexity](#17-runtime-complexity)
+   - [12 Data Flow Complexity](#12-data-flow-complexity)
+   - [04 Coupling Complexity](#04-coupling-complexity)
+   - [08 Cohesion Complexity](#08-cohesion-complexity)
+   - [09 Dependency Complexity](#09-dependency-complexity)
+   - [10 Change Impact Complexity](#10-change-impact-complexity)
+   - [13 Inheritance Complexity](#13-inheritance-complexity)
+   - [14 Interface / API Complexity](#14-interface--api-complexity)
+   - [20 Architectural Complexity](#20-architectural-complexity)
+   - [11 Maintainability Complexity](#11-maintainability-complexity)
+   - [16 Testability Complexity](#16-testability-complexity)
+   - [19 Migration Complexity](#19-migration-complexity)
+9. [Skills not measured](#skills-not-measured)
+10. [Conclusion and recommended next steps](#conclusion-and-recommended-next-steps)
 
-## Codebase at a glance
+---
 
-The tree covers **36 units** across **12 types** (8 classes, 2 interfaces, 1
-enum, and one nested class — `TransactionLog$Entry`), written in **Java**.
-The upstream inventory scan (`inventory_artifact.json`) reports
-**11 files scanned** in the repository.
+## About this report
 
-- **Overall level: L3** (moderate)
-- **Mean level across measured skills: 1.94** (between L1 and L2 on the raw
-  per-skill average — the L3 overall banding reflects where the worst
-  individual skills landed, not the average)
-- **Mean confidence: 0.93**
-- **Coverage: 18 of 20 skills measured (90%)** — Database Complexity (#15)
-  and Configuration Complexity (#18) did not run because the tree carries
-  none of the fields either one requires. See "Skills not measured" below.
+A **complexity** measurement is a number produced by reading the codebase's
+parsed structure — never the source text itself — and scoring one specific
+way the code can be hard to work with: how many paths it has, how deeply it
+nests, how many other units it is tangled up with, how expensive it might be
+to run, and so on. Twenty such measurements ("skills") make up this harness.
+
+Every skill bands its result into one of five levels, using the exact wording
+this harness defines:
+
+- **L1 trivial**
+- **L2 low**
+- **L3 moderate**
+- **L4 high**
+- **L5 severe**
+
+**Confidence** is how sure a skill is in its own number, on a 0–1 scale. It
+drops below 1.0 only when an optional input the skill would have liked to use
+was missing from the parsed tree, or when a value had to be estimated rather
+than read directly — never because "the code is confusing." A confidence of
+1.0 means every input the skill wanted was present and used as-is.
+
+**Coverage** is how many of the 20 skills could run at all, given what this
+particular parsed tree actually contains. A skill that cannot run does not
+report a zero — reporting a zero for something you never measured would be
+indistinguishable from a genuine clean result, and this harness treats that
+as a defect. Instead it reports `insufficient_input` and names exactly which
+field of the tree it needed but didn't have.
+
+---
+
+## About this codebase
+
+| Fact | Value | Source |
+|---|---|---|
+| Language | Java | `normalized_tree.json` `language` |
+| Files scanned | 11 | `inventory_artifact.json` `meta.total_files_scanned` |
+| Types | 12 | `normalized_tree.json` `types` (8 classes, 2 interfaces, 1 enum, and the nested `TransactionLog$Entry` class) |
+| Packages | 2 | `inventory_artifact.json` `stats.packages` (`com.example.bank`, `com.example.bank.util`) |
+| Units (methods/constructors) | 36 | `complexity_artifact.json` `tree.units` |
+| Total lines of code across units | 184 | `reports/07_structural_complexity.json` `metrics.total_loc` |
+
+**What the application appears to do (inference from naming, not a verified
+fact).** The package and class names describe a small banking domain model:
+`Account` and a `SavingsAccount` that extends it, a `Bank` that holds
+accounts in a map and exposes `addAccount`, `findAccount`, `transfer` and
+`classify`, a `Money` value type (cents + currency), a `TransactionLog` that
+records transfers and can total them per account, an `InterestPolicy` /
+`CompoundInterestPolicy` pair that computes monthly and annual interest
+rates, an `AccountType` enum that classifies accounts by a balance
+threshold (`BASIC`/`SILVER`/`GOLD`), an `InsufficientFundsException`, an
+`Auditable` interface backing an audit trail on `Account`, and a
+`util.Validation` helper for input checks. Read together, this is a
+compact core-banking exercise — open accounts, deposit/withdraw with
+validation and audit logging, transfer funds between accounts with logging,
+classify accounts by balance tier, and accrue interest on savings — rather
+than a fragment of a larger, unrelated system. At 11 files and 184 lines
+this reads as a sample or teaching codebase, not a production estate, but
+the domain vocabulary itself is unambiguous.
+
+---
+
+## Why we ran this analysis
+
+This harness exists to answer one question defensibly: *which parts of this
+codebase will hurt, how badly, and why do we believe it.* It is built to
+support a modernization programme deciding what needs attention before code
+like this is touched, migrated, or handed to a new team — and every score it
+prints has to trace back to something a skill actually read in the parsed
+tree, never to a guess dressed up as a measurement.
+
+The commitment that shapes every number in this document: **if we don't have
+what we need to measure something, we say so, instead of guessing and
+calling it a score.** A skill that lacks its declared inputs reports
+`insufficient_input` and names the missing field. It never prints a zero,
+because a zero from a skill that never actually looked would be
+indistinguishable from a skill that looked and found nothing — and only one
+of those is a real finding.
+
+---
+
+## From Java files to these numbers
+
+The pipeline that produced this report runs in three stages, each reading
+only the output of the one before it.
+
+**Step 1 — Inventory** (`inventory_artifact.json`). Scans the Java repository
+file by file and records every top-level type, its package, and its
+import/extends/implements facts. It is deliberately shallow — it never opens
+a method body. This run scanned **11 Java files**, found **11 types** across
+**2 packages** (`stats.types_total`, `stats.packages`,
+`meta.total_files_scanned`).
+
+**Step 2 — Parsing** (`normalized_tree.json`). Starts where inventory stops:
+reads inside each method and constructor, builds the control-flow graph for
+each one, the resolved call graph between methods, and the type dependency
+graph between classes. This run produced **36 units** (methods/constructors)
+across the **12 types** captured in the tree (one more than inventory's 11,
+because the parser additionally resolves the nested `TransactionLog$Entry`
+class that inventory's file-level scan does not surface as its own entry).
+
+**Step 3 — Complexity analysis** (this report and `complexity_artifact.json`).
+Reads the finished tree from Step 2 and never touches source code again.
+Everything below this point is this stage's output.
+
+```mermaid
+flowchart LR
+  A[Java repo] --> B[Inventory: file / type scan]
+  B --> C[Parser: reads method bodies, builds CFG + call graph]
+  C --> D[Complexity Agent: 20 analyzers]
+  D --> E[complexity_artifact.json]
+  D --> F[complexity_report.md]
+```
+
+**What's inside the tree, and who reads it.** Only the fields marked `true`
+in `tree.capabilities` were available this run:
+
+| Tree field | Plain meaning | Used by |
+|---|---|---|
+| `units` | One record per method/constructor: id, owner type, size, parameters | Nearly every skill |
+| `cfg` | The control-flow graph inside each unit — branches, loops, calls, returns | Cyclomatic, Cognitive, Control Flow, Nesting, NPath, Runtime, Data Flow, Testability, Migration, Maintainability |
+| `loc` | Lines of code per unit | Structural, Cyclomatic, Maintainability, Migration |
+| `params` | Parameter names per unit | Data Flow, Interface/API |
+| `references` | Variables/fields a unit reads or writes | Data Flow, Testability, Cohesion |
+| `globals` | Shared/global state a unit touches | Testability |
+| `writes` | State a unit mutates | Testability |
+| `meta` | Flags per unit: exposed, static, constructor, abstract | Interface/API, Testability |
+| `types` | Class/interface/enum hierarchy: fields, methods, extends, implements | Cohesion, Inheritance, Architectural, Interface/API |
+| `call_graph` | Who calls whom between units | Coupling, Change Impact, Runtime, Cohesion, Architectural, Testability |
+| `dependency_graph` | Module-to-module dependency edges, classified by kind | Dependency, Coupling, Change Impact, Architectural, Interface/API, Testability, Migration |
+
+**Why some skills don't run.** Every skill declares exactly which tree
+fields it needs before it is ever invoked, and the harness checks those
+fields against `tree.capabilities` before running it — a field that is
+`false` is why a skill is skipped, never a reason to guess at its value. In
+this run, `sql`, `cursors`, `transactions`, `config_reads`, `literals`,
+`conditional_compilation` and `feature_flags` are all `false`, which is the
+direct cause of the two skills that did not run this time. See
+[Skills not measured](#skills-not-measured) for the specifics.
+
+**What this pipeline produced.** Every file actually on disk for this run:
+
+| Stage | File | What it holds |
+|---|---|---|
+| Inventory | `inventory_artifact.json` | Every type found, its package, import/extends/implements facts |
+| Parser | `normalized_tree.json` | The Normalized Tree — units, call graph, dependency graph |
+| Complexity (per skill) | `reports/01_cyclomatic_complexity.json` … `reports/20_architectural_complexity.json` (20 files — 18 with `status: ok`, 2 with `status: insufficient_input`) | One JSON per skill, with its own metrics, items, confidence |
+| Complexity (consolidated) | `complexity_artifact.json` | All 20 results merged into one machine-readable artifact |
+| Complexity (human) | `complexity_report.md` | This document |
+
+---
+
+## Overall complexity score
+
+Two numbers are shown, deliberately, because they answer different
+questions and either one alone would mislead in a codebase this shape.
+
+**Worst-case level: L3 (moderate)** — `overall.level` in the artifact, the
+`max` across every skill that actually measured this run. This is the single
+most severe finding anywhere in the codebase, so no one fine result can hide
+a genuine problem elsewhere. Several skills independently reached L3 this
+run (Runtime, Data Flow, Coupling, Cohesion, Interface/API, Maintainability,
+Testability) — none reached L4 or L5.
+
+**Average level: 1.94 — just under L2 (low)** — `overall.mean_level`, the
+mean across every measured skill's level. This is the typical severity
+across every dimension measured, and it is the better number for a
+general-health read of the codebase as a whole.
+
+Why both are shown: the worst-case number protects against dilution — a
+handful of clean L1 results cannot average away one real L4/L5 finding
+elsewhere. The average number does the opposite job — it prevents a single
+L3 or L4 outlier from making the whole codebase look worse than it typically
+is. Here the two numbers diverge only modestly (L3 worst-case vs. 1.94
+mean), which is consistent with a codebase where several structural and
+coupling skills land at "moderate" without any single skill flagging
+something severe — not a contradiction, just confirmation that "moderate" is
+spread across several dimensions rather than concentrated in one.
+
+**Mean confidence: 0.93.** **Coverage: 18 of 20 skills measured (90%).** Two
+skills — Database Complexity and Configuration Complexity — did not run
+because the tree carries none of the fields they need; see
+[Skills not measured](#skills-not-measured).
+
+---
+
+## How we ordered the analysis
+
+The pipeline does not run skills in tier order first. It sorts them by
+**dependency depth from `SPEC.depends_on` first** — an analyzer that needs
+another skill's finished report never runs before that report exists.
+**Tier band is the tiebreaker**, used only among skills that don't depend on
+anything: size → structural → data → coupling → hazard → composite. **`sno`
+is the final tiebreak**, purely so the plan is byte-identical on every run.
+
+In practice, in this run, every skill except the three composites (11
+Maintainability, 16 Testability, 19 Migration) has no declared dependency,
+so tier band alone decided their order — and composites additionally wait on
+the *specific* earlier skills named in their own `depends_on`, not just on
+"composite" as a label: 11 depends on #1 and #7, 16 depends on #1 and #4, and
+19 depends on #3, #15, #16, #17 and #20 (with #15 unavailable this run, so
+19 ran with that one input estimated from the tree instead — see its
+deep-dive section below).
+
+The reading order the tiers give, one sentence each on why it makes sense
+for a modernization read:
+
+- **Size** comes first because scale sets context for everything that
+  follows — a finding means something different in a 200-unit estate than
+  in a 36-unit one.
+- **Structural** comes next because it scores the shape of each unit on its
+  own terms, before anything about how units relate to each other enters
+  the picture.
+- **Data** follows because it asks how values move once you already know
+  how a unit's own control flow is shaped.
+- **Coupling** comes after that because it is the first tier to look
+  *between* units — what can be moved depends on what a unit calls and is
+  called by.
+- **Hazard** comes next because it scores external risk surfaces (database,
+  configuration) that control-flow and coupling metrics are structurally
+  blind to.
+- **Composite** runs last because it synthesizes everything measured before
+  it into overall maintainability, testability and migration judgments.
+
+```mermaid
+flowchart LR
+  S1[1 size] --> S2[2 structural] --> S3[3 data] --> S4[4 coupling] --> S5[5 hazard] --> S6[6 composite]
+  D1["#1 Cyclomatic"] -.depends on.-> C11["#11 Maintainability"]
+  D7["#7 Structural"] -.depends on.-> C11
+  D1b["#1 Cyclomatic"] -.depends on.-> C16["#16 Testability"]
+  D4["#4 Coupling"] -.depends on.-> C16
+  D3["#3 Control Flow"] -.depends on.-> C19["#19 Migration"]
+  D15["#15 Database (unmeasured)"] -.depends on.-> C19
+  D16b["#16 Testability"] -.depends on.-> C19
+  D17["#17 Runtime"] -.depends on.-> C19
+  D20["#20 Architectural"] -.depends on.-> C19
+```
+
+---
 
 ## What was measured, and why
 
-| Tier band | Skills that ran | Why it matters here |
+| Tier | Skills that ran | Why this band matters here |
 |---|---|---|
-| **1 size** | Structural Complexity (#7) | Establishes the shape of the estate before anything else — how big it is and whether size is concentrated in a few units. |
-| **2 structural** | Cyclomatic (#1), Cognitive (#2), Control Flow (#3), Nesting (#5), NPath (#6), Runtime (#17) | The core per-unit readability, testability and execution-cost signals — how many paths exist, how hard they are to follow, and what they cost to run. |
-| **3 data** | Data Flow (#12) | Surfaces which units carry the heaviest data-movement and shared-state pressure — the units hardest to reason about in isolation. |
-| **4 coupling** | Coupling (#4), Cohesion (#8), Dependency (#9), Change Impact (#10), Inheritance (#13), Interface/API (#14), Architectural (#20) | Answers what can be moved, extracted or decomposed, and what a change to one unit puts at risk elsewhere. |
-| **5 hazard** | *(none — see below)* | Would surface the two riskiest hidden-behaviour surfaces in a legacy estate: the database relationship and the configuration surface. Neither could be measured here. |
-| **6 composite** | Maintainability (#11), Testability (#16), Migration (#19) | Rolls the primitives above into the three questions a modernization programme is actually funded to answer: is this maintainable, can it be safely tested, and what does moving it cost. |
+| 1 size | 07 Structural | Establishes scale (36 units, 184 LOC, 12 types) before any per-unit finding is read in context. |
+| 2 structural | 01 Cyclomatic, 02 Cognitive, 03 Control Flow, 05 Nesting, 06 NPath, 17 Runtime | Scores each unit's own shape — branch count, readability, structuredness, nesting, path explosion, and execution cost. |
+| 3 data | 12 Data Flow | Scores how values and shared state move through and between units, a dimension control-flow metrics don't see. |
+| 4 coupling | 04 Coupling, 08 Cohesion, 09 Dependency, 10 Change Impact, 13 Inheritance, 14 Interface/API, 20 Architectural | Scores how units and modules bind to each other — what can be extracted, what breaks together, and where the seams are. |
+| 5 hazard | none — both skills in this tier did not run | Would have scored external risk surfaces (database access, configuration) that this tree carries no evidence of either way. See [Skills not measured](#skills-not-measured). |
+| 6 composite | 11 Maintainability, 16 Testability, 19 Migration | Synthesizes everything above into overall upkeep cost, test-readiness, and migration strategy. |
 
-## Per-complexity findings
+---
 
-### Structural Complexity (#7) — size
+## Per-complexity deep dive
+
+### 07 Structural Complexity
 
 **What it is.** The shape and size of the codebase: how much there is, how
 it is distributed, and whether that distribution is healthy.
 
-**Why it matters here.** Every other metric in this report scores a single
-unit at a time. This is the only one that reports the shape of the whole
-estate — whether its 184 lines are spread evenly or concentrated in a
-handful of large units, which is what actually drives how a migration would
-be sequenced.
+**Why it matters here.** Every other skill in this report scores individual
+units. This one reports the shape of the whole 36-unit, 184-line estate —
+whether the code is spread evenly or concentrated in a few large units,
+which is exactly the kind of thing an average complexity score cannot show.
 
-**What we found.** Level **L1** (trivial), score **0.23**, confidence
-**0.85** (reduced because the tree carries no `comment_lines`). Across 36
-units totalling 184 lines, the top 3 units — `Bank.transfer` (16 loc),
-`TransactionLog.linked` (15 loc) and `Bank.describe` (12 loc) — hold 23% of
-the code (`concentration_top_decile` 0.234), and 3 units are flagged as
-outliers. An L1 result means the codebase is not dominated by a small
-number of oversized units; there is no single paragraph or method that a
-migration plan would need to treat as a special case on size alone.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `loc`
+(`inputs_missing_optional`: `comment_lines`). Method: size and statement
+counts are taken per unit, then rolled up into concentration, spread and
+outlier counts across the whole tree.
 
-### Cyclomatic Complexity (#1) — structural
+**What we found.** Headline: *"36 unit(s), 184 line(s); top 3 unit(s) hold
+23% of the code; 3 outlier(s)"*. Score 0.23, level **L1 (trivial)**. The
+top 10% of units by size (`concentration_top_decile` = 0.234) hold under a
+quarter of the code, well short of the 0.60 threshold this skill treats as
+"a handful of large units plus noise" — so the estate's size is genuinely
+spread out rather than concentrated in a few units. Confidence is 0.85
+because `comment_lines` was not present in the tree, so the comment-density
+signal that would otherwise sharpen the outlier read is missing.
 
-**What it is.** The number of linearly independent paths through a unit —
-the lower bound on how many test cases are needed for full branch coverage.
+**Hotspots / items.** No corroborated hotspots (this skill reported none at
+L4/L5), but its own top-10 largest units are `Bank.transfer` (16 LOC, 3
+decision points), `TransactionLog.linked` (15 LOC), `Bank.describe` (12
+LOC), `AccountType.forBalance` and `CompoundInterestPolicy.monthsToReach`
+(9 LOC each), and `TransactionLog.totalFor` (9 LOC, the highest decision
+density in the codebase at 33.33 decisions per 100 lines).
 
-**Why it matters here.** It is the number every estimate conversation
-starts with, and the most widely understood complexity metric there is.
+---
 
-**What we found.** Level **L1** (trivial), score **4.0**, confidence
-**1.0**. Across the 36 units, the most branch-heavy ones — `Bank.transfer`
-and `TransactionLog.totalFor` — each have v(G) = 4, so even the worst unit
-in the codebase needs only 4 test cases for full branch coverage. Covering
-every branch across the whole codebase takes 56 test cases in total, and
-**0 units** crossed the threshold this analyzer flags as worth a second
-look. This is not a testing burden on its own terms.
+### 01 Cyclomatic Complexity
 
-### Cognitive Complexity (#2) — structural
+**What it is.** The number of linearly independent paths through a unit.
+
+**Why it matters here.** It is the lower bound on how many test cases this
+36-unit codebase needs for full branch coverage, and the number every
+estimate conversation starts from.
+
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `loc`.
+Method: v(G) = 1 + decision nodes per unit, counted from each unit's `cfg`.
+`ELSE` and `DEFAULT` are deliberately not counted as decision points — the
+path they represent already exists as the false arm of the branch above.
+
+**What we found.** Headline: *"36 unit(s); max v(G) 4; 56 test case(s)
+needed for branch coverage; 0 unit(s) above threshold"*. Score 4.0, level
+**L1 (trivial)**, confidence 1.0. The most branch-heavy methods in the
+codebase — `Bank.transfer` and `TransactionLog.totalFor` — each need only 4
+test cases for full branch coverage, and covering every branch across all
+36 units takes 56 test cases in total. No unit crossed this skill's
+threshold for a second look.
+
+**Hotspots / items.** No hotspots reported (none of the 36 units reached a
+concerning band). The two units at the ceiling of this codebase, `v(G)=4`,
+are `Bank.transfer` (an `IF`, an `OR`, and a `CATCH`) and
+`TransactionLog.totalFor` (a `FOR`, an `IF`, and an `OR`).
+
+---
+
+### 02 Cognitive Complexity
 
 **What it is.** How hard a unit is for a human to read and hold in their
-head — distinct from cyclomatic complexity, which only counts paths and is
-blind to where they sit (flat vs. deeply nested).
+head, as distinct from how many paths it has.
 
-**Why it matters here.** It is the metric that would separate a flat
-20-branch switch from a 4-deep nest of ifs that scores the same v(G) — one
-is skimmable, the other is not.
+**Why it matters here.** Cyclomatic complexity does not care where branches
+sit; cognitive complexity penalizes nesting, so it separates a flat branch
+from a deeply nested one even when they'd score the same v(G).
 
-**What we found.** Level **L1** (trivial), score **4.0**, confidence
-**1.0**. The worst unit, `TransactionLog.totalFor`, scores a cognitive
-complexity of 4 — identical to its cyclomatic complexity of 4
-(`gap_vs_cyclomatic` 0) — meaning its difficulty comes from branch count,
-not from nesting. **0 units** in the codebase are hard because of nesting
-rather than branch count, so there is nothing here that flattening would
-meaningfully improve; the branch-count contributors are already accounted
-for by the cyclomatic result above.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `loc`.
+Method: +1 for each break in linear flow (if/loop/catch/jump), plus one
+extra point per level of nesting depth at which that break sits; constructs
+that don't break flow (like `else`) cost nothing.
 
-### Control Flow Complexity (#3) — structural
+**What we found.** Headline: *"36 unit(s); max cognitive 4; 0 unit(s) hard
+because of NESTING rather than branch count"*. Score 4.0, level **L1
+(trivial)**, confidence 1.0. The gap between cognitive and cyclomatic
+complexity (`max_gap_vs_cyclomatic` = 0) shows every unit's difficulty here
+comes from branch count itself, not from nesting making an otherwise-simple
+branch hard to read — a flattening pass would not meaningfully help this
+codebase, because there is nothing flattened to gain from.
+
+**Hotspots / items.** No hotspots. The single most cognitively-loaded unit
+is `TransactionLog.totalFor` at cognitive score 4 (matching its cyclomatic
+score of 4), driven by branch count rather than nesting.
+
+---
+
+### 03 Control Flow Complexity
 
 **What it is.** How structured the flow is — whether it reduces to clean
-nested blocks or contains jumps that make it irreducible. This is the
-metric that decides whether automated translation of a unit is even
-possible.
+nested blocks, or contains jumps that make it irreducible.
 
-**Why it matters here.** Cyclomatic complexity says how many tests a unit
-needs; this says whether the unit can be mechanically restructured at all.
+**Why it matters here.** This is the skill that decides whether automated
+translation of a unit is even mechanically possible, independent of how
+many tests it would need.
 
-**What we found.** Level **L2** (low), score **1.0**, confidence **0.8**
-(the report is explicit that it computes an unstructuredness index from
-jump constructs rather than true McCabe ev(G), because a CFG node tree
-carries no edges to reduce). All **36 of 36 units are fully structured**,
-none block translation, and none contain `ALTER`. One unit,
-`Bank.transfer`, is flagged L2 for carrying 3 exit points rather than 1 —
-still `mechanically_translatable: true`, just not the cleanest single-exit
-shape. Everything else in the codebase sits at L1.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`
+(`inputs_missing_optional`: none). Method: an unstructuredness index derived
+from jump constructs present in the CFG (GOTO, ALTER, fall-through, multiple
+exit points) — well-structured constructs like if/else, loops and case
+reduce away and cost nothing.
 
-### Nesting Complexity (#5) — structural
+**What we found.** Headline: *"36/36 unit(s) fully structured; 0 not
+mechanically translatable; 0 contain ALTER"*. Score 1.0, level **L2 (low)**,
+confidence 0.8. Confidence is reduced because this is computed as an
+unstructuredness index from jump constructs rather than true McCabe ev(G) —
+the CFG here is a node tree, not a graph with edges to reduce, so the true
+essential-complexity calculation isn't available; this is a sound,
+deliberately conservative proxy for it. Every one of the 36 units is fully
+structured and mechanically translatable; the one unit that pulled the level
+to L2 rather than L1 is `Bank.transfer`, flagged with an unstructuredness
+index of 1.0 for having 3 exit points rather than a single return.
+
+**Hotspots / items.** No hotspots list was populated, but `Bank.transfer` is
+the only unit at L2 in this skill's own item list — every other unit sits at
+L1 with an unstructuredness index of 0.0.
+
+---
+
+### 05 Nesting Complexity
 
 **What it is.** How deeply control structures are stacked inside one
-another — the cheapest reliable predictor of reading difficulty, and the
-thing cyclomatic complexity is blindest to.
+another.
 
-**Why it matters here.** Twenty flat branches and four branches nested four
-deep can carry the same v(G); only nesting depth tells them apart.
+**Why it matters here.** Nesting depth is the cheapest reliable predictor of
+reading difficulty, and — unlike cyclomatic complexity — it directly maps to
+a fix: flatten it.
 
-**What we found.** Level **L1** (trivial), score **2.0**, confidence
-**1.0**. The deepest nesting anywhere in the codebase is 2, reached by
-`TransactionLog.totalFor` (an `OR` construct at depth 2). **31 of 36
-units are flat** (no nesting at all), and **0 units** sit at depth 4 or
-beyond, the threshold this analyzer treats as excessive. Nothing here needs
-flattening.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`. Method:
+maximum and mean nesting depth per unit, plus the amount of code sitting
+beyond a depth threshold; the deepest construct is reported by name and
+line so a finding points somewhere specific.
 
-### NPath Complexity (#6) — structural
+**What we found.** Headline: *"36 unit(s); deepest nesting 2; 0 unit(s) at
+depth >= 4; 31 flat"*. Score 2.0, level **L1 (trivial)**, confidence 1.0.
+31 of the 36 units are entirely flat (no nesting at all), and the single
+deepest unit in the codebase nests only 2 levels — well short of the depth-4
+threshold this skill treats as worth a second look.
+
+**Hotspots / items.** No hotspots. The deepest unit is
+`TransactionLog.totalFor`, whose deepest construct is an `OR` at nesting
+depth 2 (line 21); the next deepest units — `AccountType.forBalance`,
+`Bank.transfer`, `CompoundInterestPolicy.monthsToReach` and
+`util.Validation.requirePositive` — each nest only 1 level.
+
+---
+
+### 06 NPath Complexity
 
 **What it is.** The number of distinct acyclic execution paths that
-actually exist through a unit — different from cyclomatic complexity, which
-only counts the paths needed to cover every edge.
+actually exist through a unit, as opposed to the number of paths a test
+suite must exercise to hit every edge.
 
-**Why it matters here.** It is the gap between "we have full branch
-coverage" and "we tested the combinations."
+**Why it matters here.** It shows the gap between "we have full branch
+coverage" and "we tested the combinations" — a gap that widens fast once
+branches start compounding.
 
-**What we found.** Level **L1** (trivial), score **8.0**, confidence
-**0.85** (the report notes NPath assumes independent branches, so the true
-reachable count may be lower — this is reported as an upper bound). The
-worst units, `Bank.transfer` and `TransactionLog.totalFor`, each have an
-NPath of 8 against a cyclomatic complexity of 4 (`paths_per_branch_test`
-2.0) — meaning branch coverage for those two units leaves half their path
-combinations still untested. **0 units** are beyond exhaustive path
-testing; the whole codebase remains fully testable in the combinatorial
-sense, not just the branch-coverage sense.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`. Method:
+paths multiply through sequence and add through branches — a unit with
+independent branches b1..bn has PROD(paths(bi)) total paths.
 
-### Runtime Complexity (#17) — structural
+**What we found.** Headline: *"36 unit(s); worst NPath 8; 0 unit(s) beyond
+exhaustive path testing"*. Score 8.0, level **L1 (trivial)**, confidence
+0.85. Confidence is reduced because NPath counting assumes branches are
+independent; correlated conditions in real code make the true reachable
+path count lower, so this number is technically an upper bound. Every unit
+in this codebase remains exhaustively testable — none reached this skill's
+cap or its concerning bands. The worst gap between "branch-covered" and
+"combination-tested" is at `paths_per_branch_test` = 2.0, meaning the
+worst unit here needs twice as many tests to cover every path combination
+as it does to just cover every branch — a small, manageable gap.
+
+**Hotspots / items.** No hotspots. `Bank.transfer` and
+`TransactionLog.totalFor` are tied for the worst NPath in the codebase at 8
+each (both v(G)=4).
+
+---
+
+### 17 Runtime Complexity
 
 **What it is.** The expected cost of executing the code — its algorithmic
-growth class and the work it does per unit of input, as opposed to how hard
-it is to read or change.
+growth class and the work it does per unit of input.
 
-**Why it matters here.** A unit can be trivially readable and still not
-survive a data-volume increase; this is the only metric here that looks at
-execution cost rather than comprehension cost.
+**Why it matters here.** Every other structural skill measures how hard code
+is to read or change; this is the only one that predicts what happens under
+production data volume, which matters directly if this domain model is ever
+put behind real account and transaction counts.
 
-**What we found.** Level **L3** (moderate), score **20.2**, confidence
-**1.0** at the report level (individual units carry lower per-item
-confidence, averaging 0.76, because the CFG carries no operation-cost nodes
-for most units and no loop carries an explicit `bounded` flag). Of the 36
-units, 30 are `O(1)`, 5 are `O(n)`, and **1 is recursive**:
-`CompoundInterestPolicy.rate`, flagged O(n) recursive and scoring 20.2 — the
-single score that sets the whole skill's level to L3, with the explicit
-reason "recursive — termination and depth need explicit review." The five
-`O(n)` units (`AccountType.forBalance`, `InterestPolicy.annualRate`,
-`SavingsAccount.applyInterest`, `TransactionLog.totalFor`, and one more)
-carry reduced confidence (0.65) because their loops carry no `bounded` flag
-— the growth estimate is inferred from nesting alone and may overstate
-units that actually iterate a fixed-size structure. **0 units** are
-super-linear and **0** mix I/O or SQL with a loop.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `call_graph`
+(`inputs_missing_optional`: none at the summary level, though individual
+items note missing per-iteration cost signals). Method: a growth class per
+unit is derived from loop-nesting depth (depth *d* implies O(n^d));
+recursion overrides that — self-recursion inside a loop, or a mutual
+recursion cycle, implies exponential behaviour, and I/O or SQL inside a
+loop is weighted far above pure computation.
 
-### Data Flow Complexity (#12) — data
+**What we found.** Headline: *"36 unit(s); 0 super-linear; 0 with I/O or
+SQL inside a loop; 1 recursive"*. Score 20.2, level **L3 (moderate)**,
+confidence 1.0 at the skill level. The growth-class distribution is 30
+units at O(1), 5 at O(n), and 1 "O(n) recursive." That one recursive unit —
+`CompoundInterestPolicy.rate`, which calls itself to accumulate a compound
+rate — is what drives this skill's score to L3: it carries its own
+per-item confidence of only 0.85 and is explicitly flagged with the reason
+*"recursive - termination and depth need explicit review"*, because
+recursion changes a unit's growth behaviour in a way structural nesting
+alone cannot confirm is safely bounded. Several of the O(n) units (e.g.
+`AccountType.forBalance`, `InterestPolicy.annualRate`,
+`SavingsAccount.applyInterest`, `TransactionLog.totalFor`) also carry
+reduced per-item confidence (0.65) because their loop nodes carry no
+`bounded` flag, so growth is inferred from nesting alone and may overstate
+units that actually iterate a small, fixed-size structure (like the
+three-member `AccountType` enum).
 
-**What it is.** How values and data move across statements, functions and
+**Hotspots / items.** No hotspots list populated, but the single item that
+sets this skill's level is `CompoundInterestPolicy.rate` (score 20.2, level
+L3) — every other unit in the codebase sits at L1 or L2.
+
+---
+
+### 12 Data Flow Complexity
+
+**What it is.** How values and data move across statements, units and
 modules — the transformations, side effects and data dependencies that make
 code hard to reason about.
 
-**Why it matters here.** It is the only metric here that scores state
-coupling directly, rather than call coupling.
+**Why it matters here.** It reveals which units are coupled through shared
+state rather than through calls — state coupling is invisible to control-flow
+metrics but just as real a barrier to moving code independently.
 
-**What we found.** Level **L3** (moderate), score **16.0**, confidence
-**1.0**. The worst unit, `Bank.transfer`, scores 16.0 — driven by 8
-outbound calls fanning out from a single 3-parameter entry point, even
-though it touches only 1 data reference directly. Across the codebase there
-are **10 shared data elements** — state that more than one unit touches —
-and **0 units** are flagged as data-heavy against this analyzer's own
-threshold. The `Account` module carries the highest per-module data-flow
-pressure (43.0), consistent with it being the most-shared piece of state in
-the estate.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`. Method:
+def-use style signals are built per unit — how many distinct data elements
+it touches, how many it passes to callees, and how much shared state it
+reads or writes — then rolled up per unit and per module.
 
-### Coupling Complexity (#4) — coupling
+**What we found.** Headline: *"36 unit(s); max data-flow score 16.0; 10
+shared data element(s); 0 data-heavy unit(s)"*. Score 16.0, level **L3
+(moderate)**, confidence 1.0. `Bank.transfer` sets this skill's ceiling: it
+fans out to 8 downstream calls even though it references only one piece of
+data directly, which is exactly the "orchestrator moving data between many
+collaborators" shape this skill is built to catch. 10 of the 16 distinct
+data elements in the tree are shared — read or written by more than one
+unit — which is what makes `Account` (per-module data-flow score 43.0, the
+highest in the codebase) and `Bank` (33.5) the modules most entangled
+through state rather than through calls.
 
-**What it is.** How tightly units are bound to each other — what decides
-whether a unit can be moved or extracted on its own.
+**Hotspots / items.** No hotspots list populated (no unit reached L4/L5),
+but the skill's own top item is `Bank.transfer` (score 16.0, L3), followed
+by `Account.Account`'s constructor (score 12.0, L2, 3 shared data
+references) and `Account.withdraw` (score 11.5, L2).
 
-**Why it matters here.** A unit can be internally simple and still be
-impossible to extract if enough other units call it; every decomposition
-plan is really a coupling argument.
+---
 
-**What we found.** Level **L3** (moderate), score **36.0**, confidence
-**1.0**. The worst unit, `Account.withdraw`, has an information-flow score
-of 36 (fan-in 2, fan-out 3 — Henry & Kafura `(fan_in * fan_out)^2`).
-Encouragingly, **0 units are hubs** (called by many and calling many —
-the hardest role to remove), **33 of 36 units (91.7%) are independently
-extractable**, and **15 units are isolated** (no inbound or outbound calls
-at all, free to move or candidates for dead-code review). `Bank.transfer`
-is the one `orchestrator` in the codebase (fan-out 6) — it can only move
-together with what it calls.
+### 04 Coupling Complexity
 
-### Cohesion Complexity (#8) — coupling
+**What it is.** How tightly units are bound to each other — what calls them
+and what they call.
 
-**What it is.** How closely related the responsibilities inside a class
-are — measured via the LCOM family, using how much each type's methods
-share the same fields.
+**Why it matters here.** Coupling decides what can be moved independently; a
+unit that is internally trivial can still be impossible to extract if
+enough other units depend on it.
+
+**What we looked at, and how.** `inputs_used`: `units`, `call_graph`,
+`dependency_graph`. Method: fan-in (who calls me) and fan-out (who I call)
+per unit, combined via the Henry & Kafura information-flow formula
+`(fan_in × fan_out)²` — squared because a unit that is both heavily called
+*and* calls widely is a routing hub, and removing one of those is a project,
+not a task.
+
+**What we found.** Headline: *"36 unit(s); 0 hub(s); 33 independently
+extractable; 15 isolated"*. Score 36.0, level **L3 (moderate)**, confidence
+1.0. No unit in the codebase qualifies as a hub (called by many *and*
+calling many), and 33 of 36 units (91.7%) are independently extractable.
+The unit driving this skill's L3 score is `Account.withdraw`, with fan-in 2
+and fan-out 3, giving an information-flow score of `(2×3)² = 36` — high
+enough to set the ceiling, but still a single ordinary unit, not a
+structural hub. `Account.audit` (fan-in 4) and `Money.Money`'s constructor
+(fan-in 3) are flagged as "utility" units — called from many places but
+calling out to nothing, which this skill's own role guide describes as
+"safe while its contract holds." `Bank.transfer` is flagged as the
+codebase's sole "orchestrator" (fan-out 6, fan-in 0) — the unit that moves
+only together with everything it calls.
+
+**Hotspots / items.** No hotspots list populated. The skill's own ceiling
+item is `Account.withdraw` (score 36.0, L3); every other unit sits at L1.
+
+---
+
+### 08 Cohesion Complexity
+
+**What it is.** How closely related the responsibilities inside a class are
+— whether its methods actually share the same state.
 
 **Why it matters here.** Low cohesion signals a class doing more than one
-job, which is exactly what makes a class hard to split cleanly during a
-decomposition.
+job, which is exactly the kind of thing that resists a clean split during
+modernization.
 
-**What we found.** Level **L3** (moderate), score **3.0**, confidence
-**1.0**. Of 12 types, the worst LCOM4 is 3, reached by two types: `Bank`
-(5 methods, 2 fields, `lcom_hs` 0.875) and `util.Validation` (3 methods, 0
-fields, `lcom_hs` 1.0). Both are flagged as low-cohesion (>= 3 independent
-method clusters). For `Validation` this is expected — it is a static
-utility class with no shared state, so its methods were never going to
-cluster. For `Bank`, an LCOM4 of 3 means its methods already draw the lines
-along which it could be split into 3 smaller, more focused types.
+**What we looked at, and how.** `inputs_used`: `units`, `types`. Method:
+for every type, LCOM4 (the number of independent method clusters that share
+no state with each other) and a normalized LCOM-HS score are computed from
+which methods touch which fields.
 
-### Dependency Complexity (#9) — coupling
+**What we found.** Headline: *"12 type(s); worst LCOM4 3; 2 type(s) with
+low cohesion (>=3 components)"*. Score 3.0, level **L3 (moderate)**,
+confidence 1.0. Two of the 12 types in this codebase — `Bank` and
+`util.Validation` — score an LCOM4 of 3, meaning each can be split into 3
+independent clusters of methods along lines its own code already draws,
+because those clusters share no state with one another. For `Bank` (5
+methods, 2 fields, 1 shared pair out of 10 possible), most of its methods
+don't actually touch its own `accounts`/`log` fields together. For
+`util.Validation` (3 static methods, 0 fields), the LCOM4 of 3 simply
+reflects that it is a stateless utility class where every method is already
+its own independent unit — an LCOM4 finding here isn't a design flaw so
+much as confirmation that this class holds no shared state to begin with.
 
-**What it is.** Internal, external, library, API, DB and platform
-dependencies of the codebase — a major driver of migration effort and
-upgrade risk.
+**Hotspots / items.** Two hotspots: `Bank` (LCOM4 3, LCOM-HS 0.875, level
+L3) and `util.Validation` (LCOM4 3, LCOM-HS 1.0, level L3).
 
-**Why it matters here.** It reads the dependency graph directly rather than
-the call graph, so it captures import- and inheritance-level coupling that
-coupling complexity does not.
+---
 
-**What we found.** Level **L2** (low), score **29.6**, confidence **1.0**.
-Across 16 modules there are 10 total dependency edges: 4 internal and 6
-library (all `java.util` collection types). The external ratio is 0.6, the
-longest dependency chain is 2 hops, and **0 dependency cycles** were found.
-Several modules — `Bank`, `TransactionLog`, `CompoundInterestPolicy`,
-`SavingsAccount` — show maximum instability (1.0: they depend on others but
-nothing depends on them), which is typical of leaf-level orchestration
-code and not itself a red flag.
+### 09 Dependency Complexity
 
-### Change Impact Complexity (#10) — coupling
+**What it is.** Internal, external, library, API, database and platform
+dependencies of the codebase, and how they're structured.
 
-**What it is.** How widely a change to one component can ripple through
-the system — its "blast radius," computed via reverse reachability over
-the call and dependency graphs.
+**Why it matters here.** Dependencies are a major driver of both migration
+effort and upgrade risk — every module this skill measures is a module that
+has to be accounted for if the codebase moves.
 
-**Why it matters here.** It answers "if I touch this, what else must be
-retested" before a change is made, not after.
+**What we looked at, and how.** `inputs_used`: `dependency_graph`. Method:
+reads the dependency graph, classifies each edge by kind, computes fan-in
+and fan-out per module, detects dependency cycles, and measures how deep
+the dependency chains run.
 
-**What we found.** Level **L2** (low), score **0.1**, confidence **1.0**.
-Across 52 components (units plus types), **0 are high-impact**, and the
-worst single change — to `Account.audit`, called by 4 other units — has a
-blast radius of 5 components, or 9.8% of the system
-(`impact_ratio` 0.098). `Validation.requirePositive` is the next
-highest at an impact ratio of 0.078. No change anywhere in this codebase
-would require retesting more than a tenth of the system.
+**What we found.** Headline: *"16 module(s); 6 external dependency/ies;
+longest chain 2; 0 dependency cycle(s)"*. Score 29.6, level **L2 (low)**,
+confidence 1.0. Of the 10 total dependency edges in the tree, 6 are
+`library` edges (to `java.util.ArrayList`, `List`, `HashMap`, `Map`) and 4
+are `internal` edges between the codebase's own classes — there are no
+`external`, `api`, `db` or `platform` edges at all. No dependency cycles
+exist anywhere, and the longest dependency chain is only 2 hops. `Bank`,
+`TransactionLog`, `CompoundInterestPolicy` and `SavingsAccount` each carry
+an instability of 1.0 (fan-out with no fan-in — nothing depends on them,
+they only depend outward), which is unremarkable in a small, mostly-leaf
+domain model like this one.
 
-### Inheritance Complexity (#13) — coupling
+**Hotspots / items.** Ten modules listed with their fan-in/fan-out/
+instability: `Account` (fan-out 4, instability 0.8) is the most-depended-on
+internal module with meaningful outward reach; `Bank`, `TransactionLog`,
+`CompoundInterestPolicy` and `SavingsAccount` are pure "instability 1.0"
+leaves; `java.util.ArrayList` and `java.util.List` are the most-depended-on
+library types (fan-in 2 each).
 
-**What it is.** Complexity introduced by inheritance hierarchies — depth of
-inheritance tree (DIT) and number of children (NOC), the classic OO
-hierarchy metrics.
+---
 
-**Why it matters here.** Deep or wide hierarchies make behavior hard to
-trace, since understanding a leaf class means reading its whole ancestor
-chain.
+### 10 Change Impact Complexity
 
-**What we found.** Level **L1** (trivial), score **1.0**, confidence
-**1.0**. Of 12 types, the maximum inheritance depth is 1 — only
-`SavingsAccount` extends anything (`Account`) — and the widest base class
-has 1 child. **0 deep hierarchies** were found. This is about as shallow as
-an inheritance graph gets; there is no ancestor-chain reading tax anywhere
-in this codebase.
+**What it is.** How widely a change to one component can ripple through the
+system — its "blast radius."
 
-### Interface / API Complexity (#14) — coupling
+**Why it matters here.** It answers, concretely, "if I touch this unit,
+what else needs to be retested" — the direct input to sizing a regression
+pass before any change.
 
-**What it is.** Complexity of the interfaces, endpoints and contracts the
-system exposes — operation count, parameter width, schema count, and
-external contract edges.
+**What we looked at, and how.** `inputs_used`: `call_graph`,
+`dependency_graph`, `units`. Method: walks the call graph and dependency
+graph *backwards* from each component to compute the full set of
+components that transitively depend on it — its impact set.
 
-**Why it matters here.** A wide contract surface is expensive to change,
-because every consumer of that surface has to be found and re-tested.
+**What we found.** Headline: *"52 component(s); 0 high-impact; worst change
+reaches 9% of the system"*. Score 0.1, level **L2 (low)**, confidence 1.0.
+Across the 52 components this skill tracks (units plus modules), no
+component reaches this skill's "high-impact" band, and the single worst
+blast radius in the codebase — `Account.audit`, with 4 direct callers and a
+blast radius of 5 — still only reaches 9.8% of the system
+(`impact_ratio` = 0.098). That is a small, well-contained regression
+surface for any single change in this codebase.
 
-**What we found.** Level **L3** (moderate), score **35.8**, confidence
-**1.0**. The tree exposes **33 operations** with an average of 1.12
-parameters each; the widest is the `SavingsAccount` constructor at 4
-parameters. There are **0 distinct schemas** and **0 external API
-contracts** — this is an internal object model, not a service boundary, so
-the L3 level here reflects breadth of exposed methods in a small codebase
-where nearly everything is public, rather than genuine integration risk.
+**Hotspots / items.** Ten hotspots listed, topped by `Account.audit`
+(impact ratio 0.098, L2), `util.Validation.requirePositive` (0.078, L2), and
+three components tied at 0.059 (`InsufficientFundsException`'s constructor,
+`Money.Money`'s constructor, and `java.util.ArrayList`/`java.util.List` as
+shared library dependencies).
 
-### Architectural Complexity (#20) — coupling
+---
+
+### 13 Inheritance Complexity
+
+**What it is.** Complexity introduced by inheritance hierarchies — how far
+you have to follow a chain to know what a class actually does.
+
+**Why it matters here.** Deep or wide inheritance makes behaviour hard to
+trace; this skill checks whether that risk exists in this codebase's class
+hierarchy at all.
+
+**What we looked at, and how.** `inputs_used`: `types`. Method: classic OO
+hierarchy metrics computed from the class hierarchy — DIT (depth of
+inheritance tree), NOC (number of children), and multiple-inheritance /
+interface fan-in signals.
+
+**What we found.** Headline: *"12 type(s); max inheritance depth 1; widest
+base has 1 child(ren); 0 deep hierarchy(ies)"*. Score 1.0, level **L1
+(trivial)**, confidence 1.0. The only inheritance relationship in the
+codebase is `SavingsAccount extends Account` — a single level deep (DIT 1),
+with `Account` having exactly one child (NOC 1). No type in this codebase
+uses multiple inheritance, and there is nothing resembling a deep hierarchy
+to trace.
+
+**Hotspots / items.** No hotspots. `SavingsAccount` is the only type with a
+non-zero score (1.0, L1) in this skill's item list; every other type scores
+0.0.
+
+---
+
+### 14 Interface / API Complexity
+
+**What it is.** Complexity of the interfaces, endpoints and contracts a
+system exposes.
+
+**Why it matters here.** A wide exposed surface is expensive to change and
+expensive to integrate against — this skill measures how much of this
+codebase's surface is public and how heavy each exposed operation is.
+
+**What we looked at, and how.** `inputs_used`: `units`, `meta`,
+`dependency_graph`. Method: counts exposed operations (public
+interface/endpoint methods), parameters per operation, distinct
+schemas/DTOs referenced, and upstream/downstream API contract edges.
+
+**What we found.** Headline: *"33 exposed operation(s); avg 1.12 param(s)
+/op; 0 schema(s); 0 external API contract(s)"*. Score 35.8, level **L3
+(moderate)**, confidence 1.0. 33 of the codebase's 36 units are flagged
+`exposed` (public), which is a genuinely wide surface for a codebase this
+small, though the average operation carries only 1.12 parameters — this is
+a breadth problem, not a depth problem. There are no distinct schemas/DTOs
+and no external API contract edges at all, so nothing here crosses a
+service boundary; the surface is entirely Java's own public-method
+visibility. `SavingsAccount`'s constructor is the heaviest single operation
+at 4 parameters, followed by `Account`'s constructor, `Bank.transfer` and
+`TransactionLog.record` at 3 parameters each.
+
+**Hotspots / items.** No hotspots list populated, but the skill's own top
+items are `SavingsAccount.SavingsAccount` (4 params, score 4.0, L2),
+`Account.Account`, `Bank.transfer` and `TransactionLog.record` (3 params
+each, score 3.0, L2).
+
+---
+
+### 20 Architectural Complexity
 
 **What it is.** Structural quality of the system above the unit level — how
 modules depend on each other, whether layers hold, and where the natural
-seams are for decomposition.
+seams for decomposition are.
 
 **Why it matters here.** A codebase of clean units can still be
-architecturally unsplittable, and vice versa; this is the only metric that
-looks at the system, not the unit.
+architecturally unsplittable, and vice versa — this is the only skill that
+answers "can this be decomposed, and where do we cut?" for the codebase as
+a whole.
 
-**What we found.** Level **L1** (trivial), score **0.9**, confidence
-**0.9** (reduced because the tree carries no `layers` declaration, so
-layering violations could not be checked). Across 16 modules there are
-**0 dependency cycles**, **0 layering violations** (the dimension itself
-is unevaluated for lack of a layer declaration, not evaluated-and-clean),
-and **0 hub units**. This is a decomposable codebase with no structural
-obstacle currently visible — though the layering dimension is a genuine
-blind spot here, not a clean result, until layer information is supplied.
+**What we looked at, and how.** `inputs_used`: `dependency_graph`, `types`,
+`call_graph`, `units` (`inputs_missing_optional`: `layers`). Method: four
+independent structural signals, each with a different remedy — dependency
+cycles, Martin instability/abstractness zones, layering violations, and
+hub/god units.
 
-### Maintainability Complexity (#11) — composite
+**What we found.** Headline: *"16 module(s); 0 dependency cycle(s) covering
+0 module(s); 0 layering violation(s); 0 hub unit(s)"*. Score 0.9, level
+**L1 (trivial)**, confidence 0.9. Confidence is reduced because the tree
+carries no `layers` declaration, so the layering-violations dimension could
+not be checked at all — its caveat states this plainly: *"No layer
+declaration - layering violations not checked."* Every other dimension
+this skill checks came back clean: no dependency cycles, no god units, no
+hub units. This codebase, as a set of modules, is architecturally
+unremarkable — there is nothing here resisting decomposition.
+
+**Hotspots / items.** No hotspots and no god units or cycles listed. Every
+one of the 16 modules is reported individually with its afferent/efferent
+coupling; none crosses into a "zone of pain" or "zone of uselessness"
+because `abstractness` could not be computed without a fuller type-role
+signal for several modules (reported as `null` where not applicable).
+
+---
+
+### 11 Maintainability Complexity
 
 **What it is.** Overall difficulty of maintaining the code over time,
-combining size, cyclomatic complexity, Halstead volume and comment density
-into the industry-standard Maintainability Index.
+expressed as the industry-standard Maintainability Index (0–100, higher is
+easier to maintain).
 
-**Why it matters here.** It is the standard composite figure for
-takeover and technical-debt conversations, transparent about which
-component is driving a low score.
+**Why it matters here.** It is a transparent composite of size, cyclomatic
+complexity, code volume and comment density — useful exactly because it
+supports a takeover or technical-debt conversation without inventing a new
+metric.
 
-**What we found.** Level **L3** (moderate), score **68.0** (out of 100;
-higher is better for this metric — `direction: lower_is_worse`), confidence
-**0.7** (Halstead volume is estimated rather than measured, and comment
-density could not be scored — both optional inputs are absent from the
-tree). The LOC-weighted Maintainability Index across all 36 units is 68.0.
-The single worst unit is `Bank.transfer` at an MI of 54.3 — still within
-the L3 "moderate" band, not flagged as hard-to-maintain (**0 units**
-crossed that threshold). Because Halstead volume is estimated rather than
-supplied, this figure should be read as directionally sound rather than
-precise.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `loc`
+(`inputs_missing_optional`: `halstead`, `comment_lines`). This skill depends
+on #1 (Cyclomatic) and #7 (Structural) having already run. Method: combines
+LOC, cyclomatic complexity, Halstead volume and comment density into the
+Microsoft/SEI Maintainability Index formula, then bands the LOC-weighted
+result across the codebase.
 
-### Testability Complexity (#16) — composite
+**What we found.** Headline: *"36 unit(s); LOC-weighted Maintainability
+Index 68.0/100; 0 hard-to-maintain unit(s)"*. Score 68.0, level **L3
+(moderate)**, confidence 0.7. Confidence is reduced for two stated reasons:
+`halstead` volume was not present in the tree, so it was estimated from
+size and branching rather than read directly, and `comment_lines` was
+absent, so the comment-density bonus this formula normally applies was
+omitted entirely — both push the estimate toward the conservative side.
+No unit crossed this skill's hard-to-maintain threshold. The single worst
+unit is `Bank.transfer` at an MI of 54.3 — driven by its larger Halstead
+volume (505.8, the highest in the codebase) rather than by its cyclomatic
+complexity alone, which this skill's own interpretation note calls "a
+simplify-the-logic problem" when volume dominates over LOC.
 
-**What it is.** How hard it is to get a unit under test at all, separating
-test burden (how many paths need covering) from test friction (hidden
-inputs, shared-state writes, missing seams, non-determinism).
+**Hotspots / items.** No hotspots list populated. `Bank.transfer` (MI 54.3,
+L3) is this skill's own worst unit, followed by `TransactionLog.linked`
+(MI 56.9), `Bank.describe` (MI 59.2), and `TransactionLog.totalFor` /
+`AccountType.forBalance` (MI 61.9 and 62.4 respectively).
+
+---
+
+### 16 Testability Complexity
+
+**What it is.** How hard it is to get a unit under test at all, separated
+from how many tests it would then take to cover it.
 
 **Why it matters here.** Modernization is only safe behind a
-characterization-test net, and friction — not burden — is what actually
-blocks writing that net.
+characterization-test net, and testability — not cyclomatic complexity — is
+what predicts whether that net can actually be built for this codebase.
 
-**What we found.** Level **L3** (moderate), score **19.0**, confidence
-**1.0**. Roughly 56 test cases are needed for branch coverage across the
-codebase (matching the cyclomatic-complexity total), and **0 units** are
-`blocked` or `hostile` to isolation — all 36 units are classified
-`tractable`. The worst unit by friction is the `Account` constructor, at a
-testability score of 19.0, driven by 3 hidden inputs not passed as
-parameters and 3 writes to shared state a test would need to reset.
-`Bank.transfer` (score 14.0) is friction-heavy for a different reason: 6
-collaborators would need to be stubbed to isolate it. **26 of 36 units**
-have at least one hidden input — reading state that is not passed in as a
-parameter — which is the dominant friction source across the estate, even
-though it is not severe enough anywhere to block a test outright.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`, `references`,
+`globals`, `writes`, `call_graph`, `dependency_graph`, `meta`
+(`inputs_missing_optional`: none). This skill depends on #1 (Cyclomatic)
+and #4 (Coupling). Method: separates test *burden* (how many paths need
+covering, from cyclomatic complexity) from test *friction* (hidden inputs,
+shared-state writes, collaborators needing mocks, missing substitution
+seams) — friction is weighted far harder than burden because it is what
+actually blocks a test being written at all.
 
-### Migration Complexity (#19) — composite
+**What we found.** Headline: *"36 unit(s); ~56 test case(s) for branch
+coverage; 0 unit(s) blocked or hostile to isolation"*. Score 19.0, level
+**L3 (moderate)**, confidence 1.0. Every one of the 36 units is classified
+"tractable" — callable in isolation once its paths are covered; none is
+"blocked" (unreachable without a seam first) or "hostile" (many paths and
+heavy friction together). That said, 26 of the 36 units (72%) have at least
+one hidden input — state read without being passed as a parameter — which
+is the most common single blocker recorded across the codebase. The unit
+driving this skill's L3 ceiling is `Account`'s own constructor (test
+friction 18.5: 3 hidden inputs plus 3 writes to shared state that a test
+would need to reset), closely followed by the nested `TransactionLog$Entry`
+constructor (friction 16.5, same shape).
+
+**Hotspots / items.** No hotspots list populated. The skill's own worst
+items are `Account.Account`'s constructor (score 19.0, L3, blocked by "3
+hidden input(s)" and "3 write(s) to shared state") and
+`TransactionLog$Entry.Entry`'s constructor (score 17.0, L3, same two
+blockers). `AccountType.forBalance` and `util.Validation`'s two static
+methods are separately flagged for having no substitution seam at all
+(static methods cannot be swapped out for a test double).
+
+---
+
+### 19 Migration Complexity
 
 **What it is.** The effort and risk of moving this code to a different
-language, runtime or platform, scoring volume (how much there is to move)
-separately from blockers (what defeats automated translation), then mapping
-the result onto a migration strategy.
+language, runtime or platform — and which of the standard migration
+strategies (rehost / replatform / refactor / rearchitect / rebuild) it can
+actually support.
 
 **Why it matters here.** This is the question a modernization programme is
-funded to answer, and every other analyzer in this report feeds into it.
+actually funded to answer; every other skill in this report is, in effect,
+an input to this one.
 
-**What we found.** Level **L1** (trivial), score **4.1**, confidence
-**0.6** — the lowest confidence of any measured skill, because four
-optional inputs (`sql`, `platform_calls`, `dynamic_constructs`,
-`conditional_compilation`) are all absent, and the report's own caveat says
-its database and configuration contributions were estimated rather than
-supplied by reports #15 and #18 (which did not run — see below). All 36
-units are recommended for the **`rehost`** strategy (move as-is, no
-structural obstacle found); **0 units** require refactor, rearchitecture or
-a rebuild, and **0 translation blockers** were found. Roughly 18% of the
-migration work is plausibly automatable (`portfolio_automatable_fraction`
-0.18). The worst-scoring unit is again `Bank.transfer` (4.1), combining the
-highest volume score (1.1, from its 16 lines) with the flat blocker score
-of 3.0 several units share. Given the confidence caveat, this should be
-read as a directionally sound "nothing structurally blocks translation"
-finding rather than a costing-grade figure — a full run would need SQL,
-platform-call and conditional-compilation data the tree does not carry.
+**What we looked at, and how.** `inputs_used`: `units`, `cfg`,
+`dependency_graph`, `loc` (`inputs_missing_optional`: `sql`,
+`platform_calls`, `dynamic_constructs`, `conditional_compilation`). This
+skill depends on #3, #15, #16, #17 and #20 — of those, `upstream_used`
+records that Architectural (#20), Runtime (#17) and Testability (#16) were
+actually supplied as finished reports this run, while Database (#15) was
+not available (it did not measure — see
+[Skills not measured](#skills-not-measured)) and its contribution to this
+score was estimated from the tree instead. Method: scores volume (how much
+code there is to move — scales linearly, shrinks with automation)
+separately from blockers (what defeats automated translation entirely —
+does not scale with size), then maps the pair onto a Gartner 5R migration
+strategy.
+
+**What we found.** Headline: *"36 unit(s); 0 require rearchitecture or
+rebuild; ~18% of the work is plausibly automatable; 0 translation
+blocker(s) found"*. Score 4.1, level **L1 (trivial)**, confidence 0.6.
+Confidence is the lowest of any skill in this report, for a stated and
+specific reason: four optional inputs this skill would use to sharpen its
+read — `sql`, `platform_calls`, `dynamic_constructs`, and
+`conditional_compilation` — are all absent from the tree, on top of the
+Database report not being available to draw on. Every one of the 36 units
+is recommended for the same strategy: `rehost` (lift-and-shift, code
+substantially unchanged) — `strategy_distribution` shows 100% rehost, and
+zero units require refactor, rearchitect or rebuild. The portfolio-wide
+automatable fraction is 18%, and the unit with the highest migration score,
+`Bank.transfer` (4.1, still L1), is only elevated because of its larger
+code volume, not because it carries any translation blocker.
+
+**Hotspots / items.** Ten hotspots listed, all at level L1, topped by
+`Bank.transfer` (score 4.1) and `Account.withdraw` (score 3.4) — both
+driven by volume score, not by blockers, since every unit's `blockers` list
+is empty.
+
+---
 
 ## Skills not measured
 
-**Database Complexity (#15)** would have scored how hard this codebase's
+**15 Database Complexity** would have scored how hard this codebase's
 relationship with persistent data is to understand, change and migrate —
 SQL surface, schema reach, statement shape, dynamic SQL, and transaction
-control, plus access-pattern penalties like SQL executed inside a loop.
-It did not run because the tree carries none of `sql`, `cursors`, or
-`transactions` — the analyzer requires at least one. Concretely: this
-means the Java parser that produced the tree is not yet capturing JDBC
-calls (`executeQuery`, `prepareStatement`, ORM query annotations) as `sql`
-entries on the units that make them. Until that is added, this codebase's
-actual database exposure is simply unknown, not measured-clean.
+control, plus access-pattern penalties like SQL inside a loop. It did not
+run because the tree carries none of `sql`, `cursors` or `transactions`,
+and this skill requires at least one of them. `inventory_artifact.json`
+does carry a `sql_registry` field — present as an empty list (`[]`) rather
+than absent entirely — which is evidence toward this codebase genuinely
+having no SQL access (`stats.sql_files` is also 0), though inventory is
+deliberately shallow and never opens a method body, so this is evidence
+toward a genuine absence, not a settled verdict.
 
-**Configuration Complexity (#18)** would have scored how much of the
-system's behaviour is decided outside the source code — external
-configuration surface, build variants from conditional compilation,
-hardcoded values that should be configuration, and how scattered
-configuration reads are. It did not run because the tree carries none of
-`config_reads`, `literals`, `conditional_compilation`, or `feature_flags` —
-the analyzer requires at least one. Concretely: the parser is not yet
-capturing `System.getProperty`/`System.getenv`/`@Value`-style reads as
-`config_reads`, nor literal constants as `literals`. Until it does, whether
-this codebase hides environment-dependent behaviour is unknown, not
-measured-clean.
+**18 Configuration Complexity** would have scored how much of this
+codebase's behaviour is decided outside the source code — config keys, env
+vars, feature flags, conditional compilation, and hardcoded values that
+should be config. It did not run because the tree carries none of
+`config_reads`, `literals`, `conditional_compilation` or `feature_flags`,
+and this skill requires at least one of them. `inventory_artifact.json`
+carries a `config_registry` field, also present as an empty list rather
+than absent, and its `stats.config_files` and `stats.build_files` are both
+0 — again evidence toward genuine absence (a small domain-model sample with
+no external configuration surface) rather than a confirmed parser gap, but
+not a conclusive one, since the current parser does not extract literals or
+`System.getProperty`/`System.getenv` calls at all, so a codebase that *did*
+read configuration this way would currently look identical to this one.
 
-## Closing summary
+---
 
-This codebase lands at an overall **L3 (moderate)** with a high mean
-confidence (0.93) across the 18 skills that could run. Nothing here is
-severe: every measured skill topped out at L3, no unit was ever flagged L4
-or L5, and consequently the artifact's cross-skill hotspot list is empty —
-no unit shows convergent risk across two or more independent skills, which
-is the bar this harness uses before calling something a hotspot. The
-findings that most deserve attention are individually L3, not corroborated:
-**Runtime Complexity**, driven by one recursive unit
-(`CompoundInterestPolicy.rate`) whose termination the analyzer explicitly
-flags as needing manual review, plus several loop-growth estimates run at
-reduced confidence because the tree carries no `bounded` flag on loops;
-**Coupling** and **Data Flow**, both centered on `Account.withdraw` and
-`Bank.transfer` respectively as the most state- and call-entangled units;
-and **Cohesion**, where `Bank` splits cleanly into 3 independent method
-clusters if a decomposition were ever wanted. Set against all of that:
-coverage is **18 of 20 (90%)**, not 20 of 20 — Database Complexity and
-Configuration Complexity did not run for lack of SQL and configuration
-signal in the tree, and Migration Complexity's own confidence (0.6, the
-lowest of any measured skill) is a direct consequence of that same gap.
-Nothing in this report should be read as "no database or configuration
-risk" — it should be read as "not measured yet."
+## Conclusion and recommended next steps
+
+Overall, this codebase sits at **L3 (moderate)** on its single worst
+finding and **1.94 — just under L2 (low)** on its average across every
+measured dimension: nothing reached L4 or L5 anywhere, and the harness
+found zero corroborated hotspots (no unit was independently flagged L4/L5
+by two or more skills). The complexities most worth a second look are
+**Runtime Complexity**, because `CompoundInterestPolicy.rate` is the one
+genuinely recursive unit in the codebase and is explicitly flagged as
+needing "termination and depth" reviewed by a human rather than inferred
+from structure alone; **Testability Complexity**, because 26 of 36 units
+(72%) read hidden state rather than receiving it as a parameter, with
+`Account`'s and `TransactionLog$Entry`'s constructors the most expensive to
+isolate; and **Cohesion Complexity**, because `Bank` and `util.Validation`
+both split cleanly into 3 independent method clusters (LCOM4 = 3), which is
+a concrete, low-risk refactor target if this domain model grows. Coverage
+was **18 of 20 skills (90%)** — Database and Configuration Complexity did
+not run, for reasons stated plainly in this report rather than approximated,
+so this is not a full 20/20 read of the codebase, and any conclusion about
+its data or configuration risk surface should be treated as unknown, not as
+"clean."
+
+Concrete next steps:
+
+1. Review `CompoundInterestPolicy.rate`'s recursion by hand — confirm it
+   terminates for all realistic `month` inputs before this code is trusted
+   under a wider range of account tenures than it has likely been tested
+   against.
+2. Treat `Account.Account` and `TransactionLog$Entry.Entry` (both flagged
+   L3 by Testability, with the most hidden inputs and shared-state writes
+   in the codebase) as the first candidates for characterization tests
+   before any refactor, since they are the hardest units to isolate today.
+3. If this codebase grows, split `Bank` and `util.Validation` along the
+   method clusters Cohesion Complexity already identified (LCOM4 = 3 each)
+   rather than letting either accumulate more unrelated responsibilities.
+4. If a costing-grade migration estimate is ever needed, prioritize having
+   the parser emit `sql`, `config_reads`/`literals`, `platform_calls`,
+   `dynamic_constructs`, `conditional_compilation` and `halstead` — five of
+   the six skills with reduced confidence or non-measurement this run
+   (Control Flow, Runtime items, Maintainability, Migration, Database,
+   Configuration) trace directly back to one of these fields being absent
+   from the tree.

@@ -4,9 +4,26 @@ Adaptive, language-aware harness for identifying legacy source code, selecting a
 complexity analyses, orchestrating execution, generating traceable metric-level reports,
 and consolidating results into a unified code complexity artifact.
 
-**Input:** a parse tree — ANTLR, AST, or an upstream parser artifact.
+**Input:** a Java repository (or any parse tree — ANTLR, AST, or an upstream parser artifact).
 **Output:** one unified complexity artifact.
-**Shape:** one agent, twenty skills, one contract.
+**Shape:** three agents, twenty skills, one contract.
+
+---
+
+## Table of contents
+
+- [Architecture](#architecture)
+  - [Data flow](#data-flow)
+  - [Directory map](#directory-map)
+  - [The three layers, and why they are separate](#the-three-layers-and-why-they-are-separate)
+  - [Execution order](#execution-order)
+  - [Stage 1 has no skills, deliberately](#stage-1-has-no-skills-deliberately)
+- [The twenty complexities](#the-twenty-complexities)
+- [Run it](#run-it)
+- [The rule everything rests on](#the-rule-everything-rests-on)
+- [Audited, not asserted](#audited-not-asserted)
+- [Add complexity #21](#add-complexity-21)
+- [Known limits](#known-limits)
 
 ---
 
@@ -14,34 +31,28 @@ and consolidating results into a unified code complexity artifact.
 
 ## Data flow
 
-Three stages, each owning one job and handing off a documented artifact. Nothing
-downstream ever re-reads source code.
+Three stages, each owning one job and handing off a documented artifact. Each
+stage is one agent that calls one deterministic script — the agent decides
+*when* and *how* to run it and reports the outcome; the script is what
+actually does the work, not the other way around.
 
-```
-  Java repo
-      │
-      ▼
-┌─────────────────┐   agent: java-inventory
-│  0. INVENTORY   │   .claude/inventory/scanner.py
-└─────────────────┘   regex/heuristic. Declarations only — never enters a method body.
-      │
-      ▼  inventory_artifact.json            schema: docs/inventory-contract.md
-      │
-┌─────────────────┐   ── OWNED SEPARATELY, NOT IN THIS REPO ──
-│  1. PARSER      │   ANTLR / AST producer. Builds the Normalized Tree.
-└─────────────────┘
-      │
-      ▼  Normalized Tree (JSON)             schema: docs/analyzer-contract.md
-      │
-┌─────────────────┐   agent: complexity-analyzer
-│  2. COMPLEXITY  │   .claude/complexities/run_pipeline.py
-└─────────────────┘   discover → order → gate → run → merge
-      │
-      ▼  complexity_artifact.json  +  one report per complexity
+```mermaid
+flowchart TD
+    R[Java repo] --> S1
+    S1["Stage 1 — Inventory\nagent: java-inventory"] -->|inventory_artifact.json| S2
+    S2["Stage 2 — Parser\nagent: java-parser"] -->|Normalized Tree| S3
+    S3["Stage 3 — Complexity\nagent: complexity-analyzer"] -->|complexity_artifact.json\n+ one report per skill| OUT[Output]
 ```
 
-Stage 2 never sees source text. That is what makes the same 20 analyzers score
-COBOL, PL/SQL and Java without modification.
+| Stage | Agent | Agent file | Script the agent runs | What the script does | Produces | Schema |
+|---|---|---|---|---|---|---|
+| 1 — Inventory | `java-inventory` | `.claude/agents/1_inventory_agent.md` | `.claude/inventory/scanner.py` | Regex/heuristic scan. Declarations only — never enters a method body. | `inventory_artifact.json` | `docs/inventory-contract.md` |
+| 2 — Parser | `java-parser` | `.claude/agents/2_parser_agent.md` | `.claude/parser/parser.py` | Hand-written tokenizer, standard library only. Reads inside each method body — which stage 1 deliberately does not — and builds the control-flow graph, call graph and dependency graph. | `normalized_tree.json` (the Normalized Tree) | `docs/analyzer-contract.md` |
+| 3 — Complexity | `complexity-analyzer` | `.claude/agents/3_complexity_agent.md` | `.claude/complexities/run_pipeline.py` | discover → order → gate → run → merge across 20 skills | `complexity_artifact.json` + one report per skill | `docs/analyzer-contract.md` |
+
+Stage 3 never sees source text — only the Normalized Tree stage 2 produced.
+That is what makes the same 20 analyzers score COBOL, PL/SQL and Java without
+modification: stage 2 is the only place that changes per language.
 
 ## Directory map
 
@@ -59,6 +70,7 @@ adaptive-legacy-code-complexity-harness/
 │   │
 │   ├── agents/                     WHO orchestrates
 │   │   ├── 1_inventory_agent.md      name: java-inventory
+│   │   ├── 2_parser_agent.md         name: java-parser
 │   │   └── 3_complexity_agent.md     name: complexity-analyzer
 │   │
 │   ├── rules/                      Path-scoped instructions. Load only when
@@ -75,8 +87,11 @@ adaptive-legacy-code-complexity-harness/
 │   │   ├── run_pipeline.py         The runner
 │   │   └── _superseded_style_a/    Original Style-A analyzers, preserved
 │   │
-│   └── inventory/                  Stage 0                        ← product code
-│       └── scanner.py              Java repo scanner
+│   ├── inventory/                  Stage 1                        ← product code
+│   │   └── scanner.py              Java repo scanner
+│   │
+│   └── parser/                     Stage 2                        ← product code
+│       └── parser.py               Tokenizer + statement scanner; builds the Normalized Tree
 │
 ├── docs/
 │   ├── system-overview.md          Start here
@@ -114,19 +129,27 @@ Nothing holds a list of the 20. The agent and pipeline **discover** them by scan
 
 ## Execution order
 
-Bands are absolute. Within a band: dependency depth, then number — the numeric
-tie-break is what makes two runs over the same tree produce an identical plan.
+Dependency depth decides order first, not band. A skill that consumes another
+skill's finished report — declared in its own `depends_on` — never runs before
+that report exists, regardless of which band either one sits in. Band is only
+the tie-break among skills that don't depend on anything, which is most of
+them:
 
 ```
 size → structural → data → coupling → hazard → composite
 ```
 
-`size` runs first because later bands divide by it; computing it once centrally
-stops five analyzers deriving five slightly different sizes. `composite` runs last
-because Maintainability consumes size and branching, and Migration consumes
-Database, Testability, Runtime and Architectural — they cannot run earlier.
+Number (`sno`) is the final tie-break, so two runs over the same tree always
+produce an identical plan. Depth is primary rather than band because depth is
+derived from the real dependency graph in `depends_on`; band is a hand-assigned
+label with nothing enforcing it stays consistent with that graph. In practice
+`composite` still runs last — Maintainability consumes Cyclomatic and
+Structural, Testability consumes Cyclomatic and Coupling, and Migration
+consumes Control Flow, Database, Testability, Runtime and Architectural — but
+that is a consequence of today's dependencies, not a rule the sort enforces by
+band alone.
 
-## Stage 0 has no skills, deliberately
+## Stage 1 has no skills, deliberately
 
 Inventory is one deterministic scan, not twenty selectable analyses. There is
 nothing to discover or choose among at runtime, so it has a scanner and no

@@ -1,0 +1,55 @@
+{
+  "complexity_type": "structural_complexity",
+  "source_file": "SAMPLE-PROGRAM.cbl",
+  "language": "cobol",
+  "generated_at": "2026-08-10T21:36:37.530672+00:00",
+  "file_level": {
+    "total_complexity": 64,
+    "average_complexity": 21.33,
+    "max_complexity": 44,
+    "scope_count": 3,
+    "unit_count": 3,
+    "container_count": 1,
+    "max_hierarchy_depth": 1,
+    "size_imbalance_ratio": 2.06,
+    "structural_score": 6
+  },
+  "scopes": [
+    {
+      "scope_kind": "program",
+      "name": "SAMPLE-PROGRAM",
+      "start_line": 1,
+      "end_line": 100,
+      "scope_depth": 0,
+      "complexity": 100,
+      "in_totals": false
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "1000-MAIN-PARA",
+      "start_line": 45,
+      "end_line": 88,
+      "scope_depth": 1,
+      "complexity": 44,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "2000-SUB-PARA",
+      "start_line": 70,
+      "end_line": 80,
+      "scope_depth": 1,
+      "complexity": 11,
+      "in_totals": true
+    },
+    {
+      "scope_kind": "paragraph",
+      "name": "3000-EXCEPTION-PARA",
+      "start_line": 90,
+      "end_line": 98,
+      "scope_depth": 1,
+      "complexity": 9,
+      "in_totals": true
+    }
+  ]
+}
