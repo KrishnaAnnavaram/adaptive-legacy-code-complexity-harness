@@ -5,8 +5,8 @@ complexity analyses, orchestrating execution, generating traceable metric-level 
 and consolidating results into a unified code complexity artifact.
 
 **Input:** a Java repository (or any parse tree — ANTLR, AST, or an upstream parser artifact).
-**Output:** one unified complexity artifact.
-**Shape:** three agents, twenty skills, one contract.
+**Output:** one unified complexity artifact — and, optionally, the same artifact projected onto a target migration language.
+**Shape:** four agents, twenty skills, one contract.
 
 ---
 
@@ -20,6 +20,7 @@ and consolidating results into a unified code complexity artifact.
   - [Stage 1 has no skills, deliberately](#stage-1-has-no-skills-deliberately)
 - [The twenty complexities](#the-twenty-complexities)
 - [Run it](#run-it)
+- [Stage 4 — projecting onto a target language](#stage-4--projecting-onto-a-target-language)
 - [The rule everything rests on](#the-rule-everything-rests-on)
 - [Audited, not asserted](#audited-not-asserted)
 - [Add complexity #21](#add-complexity-21)
@@ -31,7 +32,7 @@ and consolidating results into a unified code complexity artifact.
 
 ## Data flow
 
-Three stages, each owning one job and handing off a documented artifact. Each
+Four stages, each owning one job and handing off a documented artifact. Each
 stage is one agent that calls one deterministic script — the agent decides
 *when* and *how* to run it and reports the outcome; the script is what
 actually does the work, not the other way around.
@@ -42,6 +43,10 @@ flowchart TD
     S1["Stage 1 — Inventory\nagent: java-inventory"] -->|inventory_artifact.json| S2
     S2["Stage 2 — Parser\nagent: java-parser"] -->|Normalized Tree| S3
     S3["Stage 3 — Complexity\nagent: complexity-analyzer"] -->|complexity_artifact.json\n+ one report per skill| OUT[Output]
+    S2 -->|Normalized Tree| S4
+    TL["target language\n(python, java, cobol, plsql, ...)"] --> S4
+    S4["Stage 4 — Target-Fit\nagent: target-fit-analyzer"] -->|target/&lt;lang&gt;/complexity_artifact.json\n+ one report per skill| OUT2[Target output]
+    S3 -.->|comparison / traceability only,\nnever the scoring mechanism| S4
 ```
 
 | Stage | Agent | Agent file | Script the agent runs | What the script does | Produces | Schema |
@@ -49,10 +54,15 @@ flowchart TD
 | 1 — Inventory | `java-inventory` | `.claude/agents/1_inventory_agent.md` | `.claude/inventory/scanner.py` | Regex/heuristic scan. Declarations only — never enters a method body. | `inventory_artifact.json` | `docs/inventory-contract.md` |
 | 2 — Parser | `java-parser` | `.claude/agents/2_parser_agent.md` | `.claude/parser/parser.py` | Hand-written tokenizer, standard library only. Reads inside each method body — which stage 1 deliberately does not — and builds the control-flow graph, call graph and dependency graph. | `normalized_tree.json` (the Normalized Tree) | `docs/analyzer-contract.md` |
 | 3 — Complexity | `complexity-analyzer` | `.claude/agents/3_complexity_agent.md` | `.claude/complexities/run_pipeline.py` | discover → order → gate → run → merge across 20 skills | `complexity_artifact.json` + one report per skill | `docs/analyzer-contract.md` |
+| 4 — Target-Fit | `target-fit-analyzer` | `.claude/agents/4_target_fit_agent.md` | `.claude/target_fit/target_fit.py` | Projects the Normalized Tree onto a named target language (drops units the target can't express, drops the class model if the target has none, strips volume fields no one can honestly project), then re-runs the SAME 20 skills — via `run_pipeline.py`'s own functions, never duplicated — against the projected tree | `target/<lang>/complexity_artifact.json` + one report per skill | `docs/target-fit-contract.md` |
 
 Stage 3 never sees source text — only the Normalized Tree stage 2 produced.
 That is what makes the same 20 analyzers score COBOL, PL/SQL and Java without
-modification: stage 2 is the only place that changes per language.
+modification: stage 2 is the only place that changes per language. Stage 4
+reuses that same fact from the other direction: because the 20 analyzers
+never assume a language, they can be run a second time against a *projected*
+tree and produce genuinely independent target-language scores — not a copy
+of stage 3's numbers, and not a guess.
 
 ## Directory map
 
@@ -71,7 +81,8 @@ adaptive-legacy-code-complexity-harness/
 │   ├── agents/                     WHO orchestrates
 │   │   ├── 1_inventory_agent.md      name: java-inventory
 │   │   ├── 2_parser_agent.md         name: java-parser
-│   │   └── 3_complexity_agent.md     name: complexity-analyzer
+│   │   ├── 3_complexity_agent.md     name: complexity-analyzer
+│   │   └── 4_target_fit_agent.md     name: target-fit-analyzer
 │   │
 │   ├── rules/                      Path-scoped instructions. Load only when
 │   │   └── analyzer-code.md        touching *.py under complexities/ or tools/.
@@ -90,13 +101,21 @@ adaptive-legacy-code-complexity-harness/
 │   ├── inventory/                  Stage 1                        ← product code
 │   │   └── scanner.py              Java repo scanner
 │   │
-│   └── parser/                     Stage 2                        ← product code
-│       └── parser.py               Tokenizer + statement scanner; builds the Normalized Tree
+│   ├── parser/                     Stage 2                        ← product code
+│   │   └── parser.py               Tokenizer + statement scanner; builds the Normalized Tree
+│   │
+│   └── target_fit/                 Stage 4                        ← product code
+│       ├── project_tree.py         Projects a Normalized Tree onto a target language
+│       ├── target_fit.py           Orchestrator: project → re-run the 20 skills → compare vs. stage 3
+│       ├── schema.md               What a target-language descriptor must declare
+│       └── languages/              One JSON per target (cobol, plsql, java, python, …), plus
+│                                    _pending/ for drafts not yet reviewed
 │
 ├── docs/
 │   ├── system-overview.md          Start here
 │   ├── inventory-contract.md       Shape of inventory_artifact.json
 │   ├── analyzer-contract.md        How to build complexity #21
+│   ├── target-fit-contract.md      How stage 4 projects a tree and stays honest about it
 │   └── architecture-decisions.md   Why it is built this way, and what would reverse it
 │
 ├── samples/
@@ -221,6 +240,45 @@ overall level L5   hotspots 3
 
 ---
 
+## Stage 4 — projecting onto a target language
+
+```bash
+python .claude/target_fit/target_fit.py samples/cobol_payroll.tree.json --target java
+```
+
+Answers a different question than stage 3: not "how complex is this code,"
+but "if this codebase's destination is language X, what does each of the 20
+measurements actually come out to." It does **not** carry stage 3's numbers
+forward or reweight them — it projects the Normalized Tree onto the target
+(dropping any unit whose control flow uses a construct the target can't
+express, e.g. COBOL `ALTER`/`GOTO` against a target with neither; dropping
+the class hierarchy if the target has no object model; stripping
+`loc`/`comment_lines`/`halstead`, because no honest ratio predicts the
+volume of code that doesn't exist yet), then runs the **same** 20 skills a
+second time — via `run_pipeline.py`'s own functions, never a duplicate
+implementation — against that projected tree.
+
+A target language is one descriptor file under
+`.claude/target_fit/languages/`, reviewed and promoted out of `_pending/`
+before it is trusted at full confidence — adding a new target is a new
+file, never a code change to this agent or to any of the 20 skills. Full
+mechanism, the honest edge cases, and known gaps: `docs/target-fit-contract.md`.
+
+```
+python .claude/target_fit/target_fit.py TREE.json --target python -o out
+```
+
+```
+outputs/<project>/target/<language>/
+  reports/NN_*.json          ← one per skill, same shape stage 3 writes
+  complexity_artifact.json   ← same overall structure as stage 3's, plus
+                                source_language/target_language/projection/
+                                comparison (vs. stage 3's real baseline,
+                                traceability only — never the scoring input)
+```
+
+---
+
 ## The rule everything rests on
 
 **A skill starved of its declared inputs returns `insufficient_input` naming the gap.
@@ -283,3 +341,14 @@ and pipeline discover it by scanning. Full contract in
   `insufficient_input` — which is a parser gap, not a clean codebase.
 - **`_superseded_style_a/`** holds the original Style-A analyzers, preserved unmodified.
   `tools/tree_bridge.py` converts a Style-A tree if you still have one.
+- **Stage 4 has no judge yet.** Unlike the 20 skills, target-language projection has no
+  adversarial audit or planted-defect canary — only hand-written unit tests
+  (`tests/test_target_fit.py`). One already found a real, pre-existing crash in
+  `18_configuration_complexity.py` (a `None` comparison it never guarded), exposed only
+  because stage 4 strips `loc` unconditionally — a reminder that this stage is useful
+  precisely because it stresses stage 3's skills in ways stage 3's own pipeline never did.
+- **Only three descriptor fields currently drive projection** (`supports_goto`,
+  `supports_alter_style_dynamic_jump`, `multiple_inheritance`). A descriptor's richer
+  fields (`numeric_model`, `exception_model`, `native_screen_io`, `native_sql_access`) are
+  read by the human-written report, not by the projection itself — a codebase relying on
+  fixed-point arithmetic or platform screen calls gets no score impact for that risk yet.

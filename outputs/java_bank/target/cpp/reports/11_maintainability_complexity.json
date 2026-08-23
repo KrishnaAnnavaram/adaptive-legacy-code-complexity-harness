@@ -1,0 +1,30 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Maintainability Complexity",
+  "confidence": {
+    "reasons": [
+      "required input absent"
+    ],
+    "score": 0.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "maintainability_complexity",
+  "inputs_missing_required": [
+    "loc"
+  ],
+  "inputs_used": [],
+  "items": [],
+  "language": "cpp",
+  "metrics": {},
+  "sno": 11,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "insufficient_input",
+  "status_reason": "tree does not carry required input(s): loc. Maintainability Complexity needs them to produce a meaningful score; returning a zero here would be indistinguishable from a clean result.",
+  "summary": {
+    "headline": "NOT MEASURED - tree does not carry required input(s): loc. Maintainability Complexity needs them to produce a meaningful score; returning a zero here would be indistinguishable from a clean result.",
+    "level": null,
+    "score": null
+  },
+  "tier": "composite"
+}

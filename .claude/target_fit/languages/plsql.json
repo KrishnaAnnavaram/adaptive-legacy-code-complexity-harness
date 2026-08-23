@@ -1,0 +1,24 @@
+{
+  "id": "plsql",
+  "display_name": "Oracle PL/SQL",
+  "paradigm": "procedural, embedded in the database engine",
+  "structured_control_flow_only": true,
+  "supports_goto": true,
+  "supports_alter_style_dynamic_jump": false,
+  "typing": "static",
+  "garbage_collected": false,
+  "manual_memory_management": false,
+  "numeric_model": {
+    "native_fixed_point": true,
+    "notes": "NUMBER is a native, exact fixed-point/arbitrary-precision type"
+  },
+  "exception_model": "exception sections (WHEN OTHERS, user-defined exceptions via RAISE)",
+  "concurrency_model": "none native to the language; concurrency is governed by the database's session and transaction model",
+  "native_screen_io": false,
+  "native_sql_access": "native - SQL is inline in the language, no driver layer",
+  "multiple_inheritance": null,
+  "multiple_inheritance_notes": "no object model in the general case; object types exist but are rarely load-bearing in legacy code",
+  "source": "drafted",
+  "reviewed": false,
+  "notes": "Drafted from general knowledge of the language, not yet checked by a project maintainer. Verify each field before treating target-fit findings derived from this file as final. GOTO exists in PL/SQL but is rare in practice; confirm against the actual codebase's usage before relying on this field."
+}

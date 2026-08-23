@@ -1,0 +1,28 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Database Complexity",
+  "confidence": {
+    "reasons": [
+      "required input absent"
+    ],
+    "score": 0.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "database_complexity",
+  "inputs_missing_required": [],
+  "inputs_used": [],
+  "items": [],
+  "language": "cpp",
+  "metrics": {},
+  "sno": 15,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "insufficient_input",
+  "status_reason": "tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+  "summary": {
+    "headline": "NOT MEASURED - tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+    "level": null,
+    "score": null
+  },
+  "tier": "hazard"
+}

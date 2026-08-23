@@ -1,0 +1,24 @@
+{
+  "id": "python",
+  "display_name": "Python",
+  "paradigm": "object-oriented / multi-paradigm, dynamically typed, interpreted",
+  "structured_control_flow_only": true,
+  "supports_goto": false,
+  "supports_alter_style_dynamic_jump": false,
+  "typing": "dynamic",
+  "garbage_collected": true,
+  "manual_memory_management": false,
+  "numeric_model": {
+    "native_fixed_point": false,
+    "notes": "decimal.Decimal is available in the standard library but is not the default numeric type; ordinary arithmetic uses binary float/int, which does not preserve COBOL COMP-3 / PL/SQL NUMBER precision unless Decimal is deliberately used everywhere"
+  },
+  "exception_model": "unchecked, class-based (try/except/finally)",
+  "concurrency_model": "GIL-bound threads for I/O-bound work; asyncio for cooperative concurrency; multiprocessing for true parallelism",
+  "native_screen_io": false,
+  "native_sql_access": "DB-API 2.0 drivers (e.g. sqlite3, psycopg2); no built-in ORM",
+  "multiple_inheritance": true,
+  "multiple_inheritance_notes": "native multiple inheritance with MRO (C3 linearization)",
+  "source": "drafted",
+  "reviewed": false,
+  "notes": "Drafted from general knowledge of the language, not yet checked by a project maintainer. Verify each field before treating target-fit findings derived from this file as final."
+}

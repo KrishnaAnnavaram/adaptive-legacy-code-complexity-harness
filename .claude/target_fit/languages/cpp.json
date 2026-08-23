@@ -1,0 +1,24 @@
+{
+  "id": "cpp",
+  "display_name": "C++",
+  "paradigm": "multi-paradigm - procedural, object-oriented, generic; compiled to native machine code",
+  "structured_control_flow_only": false,
+  "supports_goto": true,
+  "supports_alter_style_dynamic_jump": false,
+  "typing": "static",
+  "garbage_collected": false,
+  "manual_memory_management": true,
+  "numeric_model": {
+    "native_fixed_point": false,
+    "notes": "no native arbitrary-precision/fixed-point decimal type in the core language; exact-precision arithmetic requires a library (e.g. Boost.Multiprecision) or a hand-written fixed-point type"
+  },
+  "exception_model": "exceptions (try/catch/throw); commonly disabled entirely in embedded/performance-critical code, in which case error signaling reverts to return codes",
+  "concurrency_model": "native OS threads (std::thread, since C++11); no GIL; manual synchronization via mutexes/atomics",
+  "native_screen_io": false,
+  "native_sql_access": "none in the standard library; requires a third-party driver (e.g. libpqxx, SOCI, ODBC)",
+  "multiple_inheritance": true,
+  "multiple_inheritance_notes": "native multiple inheritance, including virtual inheritance to resolve diamond-shaped hierarchies",
+  "source": "drafted",
+  "reviewed": false,
+  "notes": "Drafted from general knowledge of the language, not yet checked by a project maintainer. Unlike Java/Python, C++ genuinely supports goto (inherited from C) - this is a real capability difference, not stylistic; it is simply discouraged in idiomatic modern C++. Verify every field before treating target-fit findings derived from this file as final."
+}

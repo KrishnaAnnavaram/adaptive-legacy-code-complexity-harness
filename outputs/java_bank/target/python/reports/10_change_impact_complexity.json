@@ -1,0 +1,665 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Change Impact Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [
+    {
+      "blast_radius": 5,
+      "direct_callers": 4,
+      "fan_out": 0,
+      "impact_ratio": 0.098,
+      "level": "L2",
+      "name": "audit",
+      "score": 0.098,
+      "unit": "com.example.bank.Account.audit"
+    },
+    {
+      "blast_radius": 4,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.078,
+      "level": "L2",
+      "name": "requirePositive",
+      "score": 0.078,
+      "unit": "com.example.bank.util.Validation.requirePositive"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "InsufficientFundsException",
+      "score": 0.059,
+      "unit": "com.example.bank.InsufficientFundsException.InsufficientFundsException"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "Money",
+      "score": 0.059,
+      "unit": "com.example.bank.Money.Money"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "java.util.ArrayList",
+      "score": 0.059,
+      "unit": "java.util.ArrayList"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "java.util.List",
+      "score": 0.059,
+      "unit": "java.util.List"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 3,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.039,
+      "unit": "com.example.bank.Account.withdraw"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "com.example.bank.Auditable",
+      "score": 0.039,
+      "unit": "com.example.bank.Auditable"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "rate",
+      "score": 0.039,
+      "unit": "com.example.bank.InterestPolicy.rate"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "Entry",
+      "score": 0.039,
+      "unit": "com.example.bank.TransactionLog$Entry.Entry"
+    }
+  ],
+  "id": "change_impact_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "call_graph",
+    "dependency_graph",
+    "units"
+  ],
+  "interpretation": "impact_ratio is the share of the system that transitively depends on a unit. It is the regression-test surface of any change to that unit, and the reason a one-line edit can require a full regression pass.",
+  "items": [
+    {
+      "blast_radius": 5,
+      "direct_callers": 4,
+      "fan_out": 0,
+      "impact_ratio": 0.098,
+      "level": "L2",
+      "name": "audit",
+      "score": 0.098,
+      "unit": "com.example.bank.Account.audit"
+    },
+    {
+      "blast_radius": 4,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.078,
+      "level": "L2",
+      "name": "requirePositive",
+      "score": 0.078,
+      "unit": "com.example.bank.util.Validation.requirePositive"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "InsufficientFundsException",
+      "score": 0.059,
+      "unit": "com.example.bank.InsufficientFundsException.InsufficientFundsException"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "Money",
+      "score": 0.059,
+      "unit": "com.example.bank.Money.Money"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "java.util.ArrayList",
+      "score": 0.059,
+      "unit": "java.util.ArrayList"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.059,
+      "level": "L2",
+      "name": "java.util.List",
+      "score": 0.059,
+      "unit": "java.util.List"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 3,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.039,
+      "unit": "com.example.bank.Account.withdraw"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "com.example.bank.Auditable",
+      "score": 0.039,
+      "unit": "com.example.bank.Auditable"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "rate",
+      "score": 0.039,
+      "unit": "com.example.bank.InterestPolicy.rate"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "Entry",
+      "score": 0.039,
+      "unit": "com.example.bank.TransactionLog$Entry.Entry"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.039,
+      "level": "L1",
+      "name": "com.example.bank.util.Validation",
+      "score": 0.039,
+      "unit": "com.example.bank.util.Validation"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 4,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "com.example.bank.Account",
+      "score": 0.02,
+      "unit": "com.example.bank.Account"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 2,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "deposit",
+      "score": 0.02,
+      "unit": "com.example.bank.Account.deposit"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "getBalance",
+      "score": 0.02,
+      "unit": "com.example.bank.Account.getBalance"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "getId",
+      "score": 0.02,
+      "unit": "com.example.bank.Account.getId"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "forBalance",
+      "score": 0.02,
+      "unit": "com.example.bank.AccountType.forBalance"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "findAccount",
+      "score": 0.02,
+      "unit": "com.example.bank.Bank.findAccount"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "com.example.bank.InterestPolicy",
+      "score": 0.02,
+      "unit": "com.example.bank.InterestPolicy"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 1,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "plus",
+      "score": 0.02,
+      "unit": "com.example.bank.Money.plus"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 1,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "record",
+      "score": 0.02,
+      "unit": "com.example.bank.TransactionLog.record"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "java.util.HashMap",
+      "score": 0.02,
+      "unit": "java.util.HashMap"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.02,
+      "level": "L1",
+      "name": "java.util.Map",
+      "score": 0.02,
+      "unit": "java.util.Map"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Account",
+      "score": 0.0,
+      "unit": "com.example.bank.Account.Account"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.AccountType",
+      "score": 0.0,
+      "unit": "com.example.bank.AccountType"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "AccountType",
+      "score": 0.0,
+      "unit": "com.example.bank.AccountType.AccountType"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "threshold",
+      "score": 0.0,
+      "unit": "com.example.bank.AccountType.threshold"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "audit",
+      "score": 0.0,
+      "unit": "com.example.bank.Auditable.audit"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.Bank",
+      "score": 0.0,
+      "unit": "com.example.bank.Bank"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "addAccount",
+      "score": 0.0,
+      "unit": "com.example.bank.Bank.addAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "classify",
+      "score": 0.0,
+      "unit": "com.example.bank.Bank.classify"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "describe",
+      "score": 0.0,
+      "unit": "com.example.bank.Bank.describe"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 6,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "transfer",
+      "score": 0.0,
+      "unit": "com.example.bank.Bank.transfer"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.CompoundInterestPolicy",
+      "score": 0.0,
+      "unit": "com.example.bank.CompoundInterestPolicy"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "CompoundInterestPolicy",
+      "score": 0.0,
+      "unit": "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "monthsToReach",
+      "score": 0.0,
+      "unit": "com.example.bank.CompoundInterestPolicy.monthsToReach"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 1,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "rate",
+      "score": 0.0,
+      "unit": "com.example.bank.CompoundInterestPolicy.rate"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.InsufficientFundsException",
+      "score": 0.0,
+      "unit": "com.example.bank.InsufficientFundsException"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "annualRate",
+      "score": 0.0,
+      "unit": "com.example.bank.InterestPolicy.annualRate"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.Money",
+      "score": 0.0,
+      "unit": "com.example.bank.Money"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "cents",
+      "score": 0.0,
+      "unit": "com.example.bank.Money.cents"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "currency",
+      "score": 0.0,
+      "unit": "com.example.bank.Money.currency"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "toDouble",
+      "score": 0.0,
+      "unit": "com.example.bank.Money.toDouble"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.SavingsAccount",
+      "score": 0.0,
+      "unit": "com.example.bank.SavingsAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "SavingsAccount",
+      "score": 0.0,
+      "unit": "com.example.bank.SavingsAccount.SavingsAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "applyInterest",
+      "score": 0.0,
+      "unit": "com.example.bank.SavingsAccount.applyInterest"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.0,
+      "unit": "com.example.bank.SavingsAccount.withdraw"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.TransactionLog",
+      "score": 0.0,
+      "unit": "com.example.bank.TransactionLog"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "com.example.bank.TransactionLog$Entry",
+      "score": 0.0,
+      "unit": "com.example.bank.TransactionLog$Entry"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "linked",
+      "score": 0.0,
+      "unit": "com.example.bank.TransactionLog.linked"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "totalFor",
+      "score": 0.0,
+      "unit": "com.example.bank.TransactionLog.totalFor"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Validation",
+      "score": 0.0,
+      "unit": "com.example.bank.util.Validation.Validation"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "isBlank",
+      "score": 0.0,
+      "unit": "com.example.bank.util.Validation.isBlank"
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_impact_ratio": 0.016,
+    "bands_applied": [
+      0.05,
+      0.15,
+      0.3,
+      0.5
+    ],
+    "components": 52,
+    "edges": 33,
+    "high_impact_components": 0,
+    "max_impact_ratio": 0.098
+  },
+  "sno": 10,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "52 component(s); 0 high-impact; worst change reaches 9% of the system",
+    "level": "L2",
+    "score": 0.1
+  },
+  "tier": "coupling"
+}

@@ -170,3 +170,38 @@ A timestamp in every report makes every diff non-empty and useless.
 directory. It carries its own `.git`, so `git add .` would either commit it as a
 broken submodule reference or absorb its history. Neither is cleanly recoverable
 once pushed.
+
+---
+
+## AD-12 — Target-language descriptors require review before use
+
+**Decision.** The Target-Fit agent (`4_target_fit_agent`) never scores a target
+language at full confidence unless its capability descriptor has been through a
+draft → stage → review → promote pipeline. A freshly drafted descriptor lands in
+`.claude/target_fit/languages/_pending/`; `target_fit.py` only ever reads from
+`.claude/target_fit/languages/`, the promoted directory. This applies uniformly —
+including to the four descriptors shipped with the agent (`cobol`, `plsql`,
+`java`, `python`), which currently carry `"reviewed": false` themselves.
+
+**Context.** This agent can draft a plausible-looking capability profile for
+almost any language on request, the same way an LLM can draft anything else on
+request. The temptation is to use that draft immediately, because it looks
+right and the alternative is a blocked run.
+
+**Why it mattered.** Using a draft immediately, then leaving it in place, means
+every future run against that target inherits an unverified profile with
+nothing in the file marking it as such — indistinguishable a month later from
+one that was actually checked. That is the same "clean zero from starved input"
+defect AD-02 already names, moved one layer up: from a missing tree field to a
+missing review of the knowledge used to interpret that field.
+
+**Rejected alternative.** Draft-and-use-immediately for any unrecognized
+target, with no staging step. Rejected because it silently drops the one
+guarantee the rest of this harness is built around, at exactly the layer most
+tempting to skip it — a description that "sounds obviously right" for a
+well-known language is not the same claim as one checked against that
+language's actual documented behavior.
+
+**Reversal trigger.** An automated way to verify a descriptor's fields against
+an authoritative source (e.g. a language spec parser) that makes human review
+redundant rather than skipped.

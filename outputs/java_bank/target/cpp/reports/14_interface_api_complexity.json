@@ -1,0 +1,376 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Interface / API Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "interface_api_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "units",
+    "meta",
+    "dependency_graph"
+  ],
+  "interpretation": "Surface is breadth x depth: many operations, wide parameter lists and heavy payloads each multiply the cost of a contract change, because every consumer must be found and re-tested.",
+  "items": [
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "SavingsAccount",
+      "op_score": 4.0,
+      "operation": "com.example.bank.SavingsAccount.SavingsAccount",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params": 4,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "Account",
+      "op_score": 3.0,
+      "operation": "com.example.bank.Account.Account",
+      "owner_type": "com.example.bank.Account",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "transfer",
+      "op_score": 3.0,
+      "operation": "com.example.bank.Bank.transfer",
+      "owner_type": "com.example.bank.Bank",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "record",
+      "op_score": 3.0,
+      "operation": "com.example.bank.TransactionLog.record",
+      "owner_type": "com.example.bank.TransactionLog",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "Money",
+      "op_score": 2.0,
+      "operation": "com.example.bank.Money.Money",
+      "owner_type": "com.example.bank.Money",
+      "params": 2,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "linked",
+      "op_score": 2.0,
+      "operation": "com.example.bank.TransactionLog.linked",
+      "owner_type": "com.example.bank.TransactionLog",
+      "params": 2,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "audit",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Account.audit",
+      "owner_type": "com.example.bank.Account",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "deposit",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Account.deposit",
+      "owner_type": "com.example.bank.Account",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "withdraw",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Account.withdraw",
+      "owner_type": "com.example.bank.Account",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "forBalance",
+      "op_score": 1.0,
+      "operation": "com.example.bank.AccountType.forBalance",
+      "owner_type": "com.example.bank.AccountType",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "audit",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Auditable.audit",
+      "owner_type": "com.example.bank.Auditable",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "addAccount",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Bank.addAccount",
+      "owner_type": "com.example.bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "classify",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Bank.classify",
+      "owner_type": "com.example.bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "describe",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Bank.describe",
+      "owner_type": "com.example.bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "findAccount",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Bank.findAccount",
+      "owner_type": "com.example.bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "CompoundInterestPolicy",
+      "op_score": 1.0,
+      "operation": "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "monthsToReach",
+      "op_score": 1.0,
+      "operation": "com.example.bank.CompoundInterestPolicy.monthsToReach",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "rate",
+      "op_score": 1.0,
+      "operation": "com.example.bank.CompoundInterestPolicy.rate",
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "InsufficientFundsException",
+      "op_score": 1.0,
+      "operation": "com.example.bank.InsufficientFundsException.InsufficientFundsException",
+      "owner_type": "com.example.bank.InsufficientFundsException",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "rate",
+      "op_score": 1.0,
+      "operation": "com.example.bank.InterestPolicy.rate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "plus",
+      "op_score": 1.0,
+      "operation": "com.example.bank.Money.plus",
+      "owner_type": "com.example.bank.Money",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "applyInterest",
+      "op_score": 1.0,
+      "operation": "com.example.bank.SavingsAccount.applyInterest",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "withdraw",
+      "op_score": 1.0,
+      "operation": "com.example.bank.SavingsAccount.withdraw",
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "totalFor",
+      "op_score": 1.0,
+      "operation": "com.example.bank.TransactionLog.totalFor",
+      "owner_type": "com.example.bank.TransactionLog",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "isBlank",
+      "op_score": 1.0,
+      "operation": "com.example.bank.util.Validation.isBlank",
+      "owner_type": "com.example.bank.util.Validation",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "requirePositive",
+      "op_score": 1.0,
+      "operation": "com.example.bank.util.Validation.requirePositive",
+      "owner_type": "com.example.bank.util.Validation",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "getBalance",
+      "op_score": 0.0,
+      "operation": "com.example.bank.Account.getBalance",
+      "owner_type": "com.example.bank.Account",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "getId",
+      "op_score": 0.0,
+      "operation": "com.example.bank.Account.getId",
+      "owner_type": "com.example.bank.Account",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "threshold",
+      "op_score": 0.0,
+      "operation": "com.example.bank.AccountType.threshold",
+      "owner_type": "com.example.bank.AccountType",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "annualRate",
+      "op_score": 0.0,
+      "operation": "com.example.bank.InterestPolicy.annualRate",
+      "owner_type": "com.example.bank.InterestPolicy",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "cents",
+      "op_score": 0.0,
+      "operation": "com.example.bank.Money.cents",
+      "owner_type": "com.example.bank.Money",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "currency",
+      "op_score": 0.0,
+      "operation": "com.example.bank.Money.currency",
+      "owner_type": "com.example.bank.Money",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "toDouble",
+      "op_score": 0.0,
+      "operation": "com.example.bank.Money.toDouble",
+      "owner_type": "com.example.bank.Money",
+      "params": 0,
+      "schemas": 0
+    }
+  ],
+  "language": "cpp",
+  "metrics": {
+    "avg_params_per_op": 1.12,
+    "bands_applied": [
+      15,
+      35,
+      55,
+      75
+    ],
+    "distinct_schemas": 0,
+    "exposed_operations": 33,
+    "external_api_contracts": 0,
+    "heavy_operations": 0,
+    "max_params_in_op": 4,
+    "total_parameters": 37
+  },
+  "sno": 14,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "33 exposed operation(s); avg 1.12 param(s)/op; 0 schema(s); 0 external API contract(s)",
+    "level": "L3",
+    "score": 35.8
+  },
+  "tier": "coupling"
+}

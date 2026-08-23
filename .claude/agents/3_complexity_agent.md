@@ -488,3 +488,4 @@ tells you nothing about the code, only about the suite.
 | Architecture review | `20_architectural_complexity.json` | Decomposition seams, dependency cycles |
 | Harness maintenance | `coverage.not_measured` | Which tree fields the parser should start emitting |
 | Human reviewer / stakeholder | `complexity_report.md` | Understanding the findings without reading JSON |
+| `4_target_fit_agent` | `complexity_artifact.json` | Comparison/traceability baseline only — never the mechanism that produces a target-language score; see `docs/target-fit-contract.md` |

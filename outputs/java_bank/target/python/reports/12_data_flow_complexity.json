@@ -1,0 +1,453 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Data Flow Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "data_flow_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "units",
+    "cfg"
+  ],
+  "interpretation": "shared_data_refs is the part that matters: a unit reading data that other units also touch is coupled through state, not just through calls, and cannot be moved without moving that state too.",
+  "items": [
+    {
+      "data_refs": 1,
+      "level": "L3",
+      "name": "transfer",
+      "outbound_calls": 8,
+      "owner_type": "com.example.bank.Bank",
+      "params_in": 3,
+      "score": 16.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.Bank.transfer"
+    },
+    {
+      "data_refs": 3,
+      "level": "L2",
+      "name": "Account",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 3,
+      "score": 12.0,
+      "shared_data_refs": 3,
+      "unit": "com.example.bank.Account.Account"
+    },
+    {
+      "data_refs": 2,
+      "level": "L2",
+      "name": "withdraw",
+      "outbound_calls": 3,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 1,
+      "score": 11.5,
+      "shared_data_refs": 2,
+      "unit": "com.example.bank.Account.withdraw"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "totalFor",
+      "outbound_calls": 4,
+      "owner_type": "com.example.bank.TransactionLog",
+      "params_in": 1,
+      "score": 10.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.TransactionLog.totalFor"
+    },
+    {
+      "data_refs": 2,
+      "level": "L2",
+      "name": "Money",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.Money",
+      "params_in": 2,
+      "score": 9.5,
+      "shared_data_refs": 2,
+      "unit": "com.example.bank.Money.Money"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "record",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.TransactionLog",
+      "params_in": 3,
+      "score": 9.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.TransactionLog.record"
+    },
+    {
+      "data_refs": 2,
+      "level": "L2",
+      "name": "plus",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.Money",
+      "params_in": 1,
+      "score": 8.5,
+      "shared_data_refs": 2,
+      "unit": "com.example.bank.Money.plus"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "linked",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.TransactionLog",
+      "params_in": 2,
+      "score": 8.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.TransactionLog.linked"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "deposit",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 1,
+      "score": 7.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Account.deposit"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "addAccount",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.Bank",
+      "params_in": 1,
+      "score": 7.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Bank.addAccount"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "SavingsAccount",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params_in": 4,
+      "score": 7.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.SavingsAccount.SavingsAccount"
+    },
+    {
+      "data_refs": 1,
+      "level": "L2",
+      "name": "applyInterest",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params_in": 1,
+      "score": 7.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.SavingsAccount.applyInterest"
+    },
+    {
+      "data_refs": 2,
+      "level": "L2",
+      "name": "audit",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 1,
+      "score": 6.5,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Account.audit"
+    },
+    {
+      "data_refs": 2,
+      "level": "L2",
+      "name": "forBalance",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.AccountType",
+      "params_in": 1,
+      "score": 6.5,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.AccountType.forBalance"
+    },
+    {
+      "data_refs": 3,
+      "level": "L1",
+      "name": "Entry",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.TransactionLog$Entry",
+      "params_in": 3,
+      "score": 6.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.TransactionLog$Entry.Entry"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "findAccount",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.Bank",
+      "params_in": 1,
+      "score": 5.5,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Bank.findAccount"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "rate",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params_in": 1,
+      "score": 5.5,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.CompoundInterestPolicy.rate"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "AccountType",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.AccountType",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.AccountType.AccountType"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "classify",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.Bank",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.Bank.classify"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "CompoundInterestPolicy",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.CompoundInterestPolicy.CompoundInterestPolicy"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "monthsToReach",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.CompoundInterestPolicy",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.CompoundInterestPolicy.monthsToReach"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "isBlank",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.util.Validation",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.util.Validation.isBlank"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "requirePositive",
+      "outbound_calls": 2,
+      "owner_type": "com.example.bank.util.Validation",
+      "params_in": 1,
+      "score": 4.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.util.Validation.requirePositive"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "getBalance",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Account.getBalance"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "getId",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Account",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Account.getId"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "threshold",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.AccountType",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.AccountType.threshold"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "cents",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Money",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Money.cents"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "currency",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Money",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Money.currency"
+    },
+    {
+      "data_refs": 1,
+      "level": "L1",
+      "name": "toDouble",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Money",
+      "params_in": 0,
+      "score": 3.0,
+      "shared_data_refs": 1,
+      "unit": "com.example.bank.Money.toDouble"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "withdraw",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.SavingsAccount",
+      "params_in": 1,
+      "score": 2.5,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.SavingsAccount.withdraw"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "annualRate",
+      "outbound_calls": 1,
+      "owner_type": "com.example.bank.InterestPolicy",
+      "params_in": 0,
+      "score": 1.5,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.InterestPolicy.annualRate"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "audit",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Auditable",
+      "params_in": 1,
+      "score": 1.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.Auditable.audit"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "describe",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.Bank",
+      "params_in": 1,
+      "score": 1.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.Bank.describe"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "InsufficientFundsException",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.InsufficientFundsException",
+      "params_in": 1,
+      "score": 1.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.InsufficientFundsException.InsufficientFundsException"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "rate",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.InterestPolicy",
+      "params_in": 1,
+      "score": 1.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.InterestPolicy.rate"
+    },
+    {
+      "data_refs": 0,
+      "level": "L1",
+      "name": "Validation",
+      "outbound_calls": 0,
+      "owner_type": "com.example.bank.util.Validation",
+      "params_in": 0,
+      "score": 0.0,
+      "shared_data_refs": 0,
+      "unit": "com.example.bank.util.Validation.Validation"
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_data_flow_score": 5.35,
+    "bands_applied": [
+      6,
+      12,
+      20,
+      32
+    ],
+    "distinct_data_elements": 16,
+    "max_data_flow_score": 16.0,
+    "per_module_score": {
+      "com.example.bank.Account": 43.0,
+      "com.example.bank.AccountType": 13.5,
+      "com.example.bank.Auditable": 1.0,
+      "com.example.bank.Bank": 33.5,
+      "com.example.bank.CompoundInterestPolicy": 13.5,
+      "com.example.bank.InsufficientFundsException": 1.0,
+      "com.example.bank.InterestPolicy": 2.5,
+      "com.example.bank.Money": 27.0,
+      "com.example.bank.SavingsAccount": 16.5,
+      "com.example.bank.TransactionLog": 27.0,
+      "com.example.bank.TransactionLog$Entry": 6.0,
+      "com.example.bank.util.Validation": 8.0
+    },
+    "shared_data_elements": 10,
+    "units": 36
+  },
+  "sno": 12,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "36 unit(s); max data-flow score 16.0; 10 shared data element(s); 0 data-heavy unit(s)",
+    "level": "L3",
+    "score": 16.0
+  },
+  "tier": "data"
+}
