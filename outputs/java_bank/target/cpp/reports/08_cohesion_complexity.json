@@ -1,0 +1,226 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Cohesion Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [
+    {
+      "fields": 2,
+      "kind": "class",
+      "lcom4": 3,
+      "lcom_hs": 0.875,
+      "level": "L3",
+      "methods": 5,
+      "name": "Bank",
+      "score": 3.0,
+      "shared_pairs": 1,
+      "total_pairs": 10,
+      "type_id": "com.example.bank.Bank"
+    },
+    {
+      "fields": 0,
+      "kind": "class",
+      "lcom4": 3,
+      "lcom_hs": 1.0,
+      "level": "L3",
+      "methods": 3,
+      "name": "Validation",
+      "score": 3.0,
+      "shared_pairs": 0,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.util.Validation"
+    }
+  ],
+  "id": "cohesion_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "units",
+    "types"
+  ],
+  "interpretation": "LCOM4 is the number of independent method clusters in a type. A value of N means the type can be split into N smaller types along the lines its own methods already draw - each cluster shares state the others do not.",
+  "items": [
+    {
+      "fields": 4,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.7,
+      "level": "L1",
+      "methods": 6,
+      "name": "Account",
+      "score": 1.0,
+      "shared_pairs": 9,
+      "total_pairs": 15,
+      "type_id": "com.example.bank.Account"
+    },
+    {
+      "fields": 4,
+      "kind": "enum",
+      "lcom4": 1,
+      "lcom_hs": 1.0,
+      "level": "L1",
+      "methods": 3,
+      "name": "AccountType",
+      "score": 1.0,
+      "shared_pairs": 3,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.AccountType"
+    },
+    {
+      "fields": 0,
+      "kind": "interface",
+      "lcom4": 1,
+      "lcom_hs": 0.0,
+      "level": "L1",
+      "methods": 1,
+      "name": "Auditable",
+      "score": 1.0,
+      "shared_pairs": 0,
+      "total_pairs": 0,
+      "type_id": "com.example.bank.Auditable"
+    },
+    {
+      "fields": 2,
+      "kind": "class",
+      "lcom4": 3,
+      "lcom_hs": 0.875,
+      "level": "L3",
+      "methods": 5,
+      "name": "Bank",
+      "score": 3.0,
+      "shared_pairs": 1,
+      "total_pairs": 10,
+      "type_id": "com.example.bank.Bank"
+    },
+    {
+      "fields": 1,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.0,
+      "level": "L1",
+      "methods": 3,
+      "name": "CompoundInterestPolicy",
+      "score": 1.0,
+      "shared_pairs": 3,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.CompoundInterestPolicy"
+    },
+    {
+      "fields": 0,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.0,
+      "level": "L1",
+      "methods": 1,
+      "name": "InsufficientFundsException",
+      "score": 1.0,
+      "shared_pairs": 0,
+      "total_pairs": 0,
+      "type_id": "com.example.bank.InsufficientFundsException"
+    },
+    {
+      "fields": 0,
+      "kind": "interface",
+      "lcom4": 1,
+      "lcom_hs": 1.0,
+      "level": "L1",
+      "methods": 2,
+      "name": "InterestPolicy",
+      "score": 1.0,
+      "shared_pairs": 0,
+      "total_pairs": 1,
+      "type_id": "com.example.bank.InterestPolicy"
+    },
+    {
+      "fields": 2,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.375,
+      "level": "L1",
+      "methods": 5,
+      "name": "Money",
+      "score": 1.0,
+      "shared_pairs": 8,
+      "total_pairs": 10,
+      "type_id": "com.example.bank.Money"
+    },
+    {
+      "fields": 1,
+      "kind": "class",
+      "lcom4": 2,
+      "lcom_hs": 0.5,
+      "level": "L2",
+      "methods": 3,
+      "name": "SavingsAccount",
+      "score": 2.0,
+      "shared_pairs": 1,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.SavingsAccount"
+    },
+    {
+      "fields": 1,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.0,
+      "level": "L1",
+      "methods": 3,
+      "name": "TransactionLog",
+      "score": 1.0,
+      "shared_pairs": 3,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.TransactionLog"
+    },
+    {
+      "fields": 3,
+      "kind": "class",
+      "lcom4": 1,
+      "lcom_hs": 0.0,
+      "level": "L1",
+      "methods": 1,
+      "name": "Entry",
+      "score": 1.0,
+      "shared_pairs": 0,
+      "total_pairs": 0,
+      "type_id": "com.example.bank.TransactionLog$Entry"
+    },
+    {
+      "fields": 0,
+      "kind": "class",
+      "lcom4": 3,
+      "lcom_hs": 1.0,
+      "level": "L3",
+      "methods": 3,
+      "name": "Validation",
+      "score": 3.0,
+      "shared_pairs": 0,
+      "total_pairs": 3,
+      "type_id": "com.example.bank.util.Validation"
+    }
+  ],
+  "language": "cpp",
+  "metrics": {
+    "avg_lcom4": 1.42,
+    "avg_lcom_hs": 0.454,
+    "bands_applied": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "low_cohesion_types": 2,
+    "types": 12,
+    "worst_lcom4": 3
+  },
+  "sno": 8,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "12 type(s); worst LCOM4 3; 2 type(s) with low cohesion (>=3 components)",
+    "level": "L3",
+    "score": 3.0
+  },
+  "tier": "coupling"
+}

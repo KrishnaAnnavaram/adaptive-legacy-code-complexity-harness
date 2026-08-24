@@ -1,0 +1,28 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Configuration Complexity",
+  "confidence": {
+    "reasons": [
+      "required input absent"
+    ],
+    "score": 0.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "configuration_complexity",
+  "inputs_missing_required": [],
+  "inputs_used": [],
+  "items": [],
+  "language": "python",
+  "metrics": {},
+  "sno": 18,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/samples/java_bank",
+  "status": "insufficient_input",
+  "status_reason": "tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+  "summary": {
+    "headline": "NOT MEASURED - tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+    "level": null,
+    "score": null
+  },
+  "tier": "hazard"
+}

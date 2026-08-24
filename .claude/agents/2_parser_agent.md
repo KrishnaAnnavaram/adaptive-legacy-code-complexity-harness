@@ -186,4 +186,5 @@ missing field — never a zero. On `samples/java_bank` the reference result is
 | Consumer | Reads | For |
 |---|---|---|
 | `3_complexity` (`complexity-analyzer`) | the whole Normalized Tree | Discovering, gating and running the 20 complexity skills |
+| `4_target_fit_agent` (`target-fit-analyzer`) | the whole Normalized Tree | Projecting it onto a target language and re-running the same 20 skills against the projected tree |
 | Harness maintenance | `coverage.not_measured` from the complexity run | Which tree fields this parser should start emitting next (e.g. `sql`, `config_reads`) |

@@ -1,0 +1,24 @@
+{
+  "id": "cobol",
+  "display_name": "COBOL",
+  "paradigm": "procedural, batch/transaction-oriented",
+  "structured_control_flow_only": false,
+  "supports_goto": true,
+  "supports_alter_style_dynamic_jump": true,
+  "typing": "static, weakly enforced via PICTURE clauses",
+  "garbage_collected": false,
+  "manual_memory_management": false,
+  "numeric_model": {
+    "native_fixed_point": true,
+    "notes": "COMP-3 (packed decimal) and other PICTURE numeric clauses are native, exact fixed-point types"
+  },
+  "exception_model": "none; error signaling via return/status codes (e.g. FILE STATUS, SQLCODE when embedded SQL is present)",
+  "concurrency_model": "none native to the language; concurrency is provided by the surrounding batch scheduler or CICS/IMS region",
+  "native_screen_io": true,
+  "native_sql_access": "embedded SQL (EXEC SQL) via a precompiler, when the program uses DB2/Oracle embedded SQL",
+  "multiple_inheritance": null,
+  "multiple_inheritance_notes": "no object model; not applicable",
+  "source": "drafted",
+  "reviewed": false,
+  "notes": "Drafted from general knowledge of the language, not yet checked by a project maintainer. Verify each field before treating target-fit findings derived from this file as final. PERFORM/GOTO/ALTER form COBOL's own control-flow vocabulary and should be reviewed carefully against the actual dialect in use (e.g. mainframe vs. Micro Focus)."
+}

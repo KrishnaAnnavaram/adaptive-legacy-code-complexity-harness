@@ -1,0 +1,24 @@
+{
+  "id": "java",
+  "display_name": "Java",
+  "paradigm": "object-oriented, statically compiled to a managed runtime (JVM)",
+  "structured_control_flow_only": true,
+  "supports_goto": false,
+  "supports_alter_style_dynamic_jump": false,
+  "typing": "static",
+  "garbage_collected": true,
+  "manual_memory_management": false,
+  "numeric_model": {
+    "native_fixed_point": false,
+    "notes": "java.math.BigDecimal is required for exact fixed-point/decimal arithmetic; no primitive type maps to COBOL COMP-3 or PL/SQL NUMBER directly"
+  },
+  "exception_model": "checked and unchecked exceptions (try/catch/finally)",
+  "concurrency_model": "native OS threads plus java.util.concurrent",
+  "native_screen_io": false,
+  "native_sql_access": "JDBC, with PreparedStatement for parameterized queries",
+  "multiple_inheritance": false,
+  "multiple_inheritance_notes": "interfaces only (default methods), no multiple implementation inheritance",
+  "source": "drafted",
+  "reviewed": false,
+  "notes": "Drafted from general knowledge of the language, not yet checked by a project maintainer. Verify each field before treating target-fit findings derived from this file as final."
+}
