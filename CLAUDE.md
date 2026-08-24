@@ -25,7 +25,8 @@ cat tree.json | python .claude/complexities/01_cyclomatic_complexity.py
 # list what is installed and what each needs
 python .claude/complexities/run_pipeline.py --list
 
-# project a Normalized Tree onto a target language and score it (agent 4)
+# project a Normalized Tree onto a target language and score it
+# (the target-fit-complexity skill, invoked by 3_complexity when a target language is named)
 python .claude/target_fit/target_fit.py outputs/<project>/normalized_tree.json --target python
 
 # audit the analyzers themselves — ALWAYS run before opening a PR
@@ -42,7 +43,7 @@ Expected: `measured 20/20 (100%)` and `20 pass 0 CRITICAL` with the canary flagg
 | `.claude/skills/` | 20 skills: **what** each complexity is and **when** to use it |
 | `.claude/complexities/` | **Product code.** The 20 implementations + `_core.py` + pipeline |
 | `.claude/inventory/` | **Product code.** Java repo scanner |
-| `.claude/target_fit/` | **Product code.** Agent 4 — scores a finished complexity run against one target language's capability descriptor |
+| `.claude/target_fit/` | **Product code.** Driven by the `target-fit-complexity` skill (invoked by `3_complexity` when a target language is named) — projects the tree onto one target language's capability descriptor and re-runs the 20 analyzers against it |
 | `docs/` | Contracts and architecture decisions |
 | `tools/` | Judge, canary, legacy tree bridge |
 

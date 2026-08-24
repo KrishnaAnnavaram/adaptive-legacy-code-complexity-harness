@@ -1,6 +1,9 @@
 """
-Target-Fit Analyzer (Agent 4)
-==============================
+Target-Fit Analyzer (the target-fit-complexity skill's orchestrator)
+====================================================================
+Invoked by the 3_complexity agent, via the target-fit-complexity skill, when
+a target language is named. Not a standalone agent.
+
 What is it?      A target-language counterpart to Agent 3. Takes a Normalized
                  Tree (Agent 2's output) and one target language, projects
                  the tree onto that target using generic, declared mapping

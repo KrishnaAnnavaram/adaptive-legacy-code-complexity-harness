@@ -1,6 +1,6 @@
 """
-Tests for Agent 4 (Target-Fit Analyzer): .claude/target_fit/project_tree.py
-and .claude/target_fit/target_fit.py.
+Tests for the target-fit-complexity skill (invoked by the 3_complexity agent):
+.claude/target_fit/project_tree.py and .claude/target_fit/target_fit.py.
 
 Standard library only (unittest), matching this repo's air-gapped-client
 convention. Run with:
@@ -241,7 +241,7 @@ class TestEndToEndJavaBank(unittest.TestCase):
 class TestObjectModelGateEndToEnd(unittest.TestCase):
     """A target descriptor with no object model must cause Cohesion (#8) and
     Inheritance (#13) to gate to insufficient_input for real, via the
-    central _core mechanism - not via a special-cased rule in Agent 4."""
+    central _core mechanism - not via a special-cased rule in the target-fit skill."""
 
     @unittest.skipUnless(os.path.isfile(JAVA_BANK_TREE), "outputs/java_bank/normalized_tree.json not present")
     def test_cobol_target_drops_types_and_gates_cohesion_and_inheritance(self):

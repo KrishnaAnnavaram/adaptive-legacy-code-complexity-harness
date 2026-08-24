@@ -83,6 +83,7 @@ edit here.
 | `OUTPUT_DIR` | Directory for reports and the artifact | No (default: `./out/`) |
 | `ONLY` | Comma-separated `sno` list to limit the run, e.g. `1,3,17` | No |
 | `LANGUAGE` | Override `tree.language` when the tree does not declare it | No |
+| `TARGET_LANGUAGE` | A destination language to *also* score the tree against, e.g. `python`, `java`, `cobol`, `plsql`. Present only when the request names one. Triggers the `target-fit-complexity` skill — see "Target language" below. | No |
 
 > The tree format is documented at the top of `.claude/complexities/_core.py` and in
 > [`docs/analyzer-contract.md`](../../docs/analyzer-contract.md). If you have a
@@ -156,6 +157,38 @@ python .claude/complexities/run_pipeline.py --list
 Step 7 is not part of `run_pipeline.py` — the pipeline script produces the JSON
 artifact only. Writing `complexity_report.md` is your job, done directly with
 the `Write` tool after the pipeline run completes.
+
+---
+
+## Target language (optional — triggers a skill)
+
+Everything above scores the tree in its **source** language. When the request
+*also* names a **target language** — "check complexity for target Python", "how
+complex would the Java version be", "target: cobol" — that is a second, distinct
+question: *what does each of the 20 metrics come out to if this codebase's
+destination is language X?* You answer it by invoking the **`target-fit-complexity`
+skill** (via the `Skill` tool), not by re-weighting the source numbers.
+
+```
+Did the request name a target language?
+  NO  -> Do the normal source-side run (steps 0–7) and stop. Do NOT invoke the
+         skill. Never assume a target that was not stated.
+  YES -> 1. Ensure the source-side pass exists: if complexity_artifact.json is
+            already on disk for this tree (its OUTPUT_DIR), reuse it and skip the
+            source run; if not, run steps 0–7 first to produce it.
+         2. Invoke the target-fit-complexity skill with TREE and TARGET_LANGUAGE.
+            The skill projects the tree onto the target and runs the SAME 20
+            analyzers against the projected tree, then compares to the source
+            baseline. It writes its own target-side artifact and report under
+            <tree_dir>/target/<target>/.
+```
+
+The source pass runs **at most once** — reuse it if present, produce it if not,
+and always run the target pass when a target was named. The skill owns all the
+projection discipline (dropping unexpressible-jump units, stripping volume
+fields, descriptor review status); this agent's job is only to detect the named
+target and hand off. If more than one target is named, invoke the skill once per
+target — each writes its own sibling `target/<lang>/` directory.
 
 ---
 
@@ -488,4 +521,4 @@ tells you nothing about the code, only about the suite.
 | Architecture review | `20_architectural_complexity.json` | Decomposition seams, dependency cycles |
 | Harness maintenance | `coverage.not_measured` | Which tree fields the parser should start emitting |
 | Human reviewer / stakeholder | `complexity_report.md` | Understanding the findings without reading JSON |
-| `4_target_fit_agent` | `complexity_artifact.json` | Comparison/traceability baseline only — never the mechanism that produces a target-language score; see `docs/target-fit-contract.md` |
+| `target-fit-complexity` skill | `complexity_artifact.json` | Comparison/traceability baseline only — never the mechanism that produces a target-language score. Invoked by this agent when the request names a target language; see the "Target language" section above and `docs/target-fit-contract.md` |

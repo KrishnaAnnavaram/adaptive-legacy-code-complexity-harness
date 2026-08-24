@@ -727,7 +727,7 @@ The real mechanism, traceable entirely to
   (`metrics.total_loc: 0` in the report, and every item's own `"loc": 0`).
 - Because the field is only optional, `_core.run()`'s central gate does
   **not** block Migration Complexity — it still runs, but its own
-  already-existing internal code (not anything this Agent 4 run wrote or
+  already-existing internal code (not anything this target-fit skill run wrote or
   patched) substitutes zero wherever it would have read `loc`, per the
   `fields_stripped_caveat` this run's own `projection` block states in full.
 - The report's own metrics confirm this mechanically: every item's
