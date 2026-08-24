@@ -175,15 +175,16 @@ once pushed.
 
 ## AD-12 — Target-language descriptors require review before use
 
-**Decision.** The Target-Fit agent (`4_target_fit_agent`) never scores a target
+**Decision.** The Target-Fit skill (`target-fit-complexity`, invoked by
+`3_complexity` when a target language is named) never scores a target
 language at full confidence unless its capability descriptor has been through a
 draft → stage → review → promote pipeline. A freshly drafted descriptor lands in
 `.claude/target_fit/languages/_pending/`; `target_fit.py` only ever reads from
 `.claude/target_fit/languages/`, the promoted directory. This applies uniformly —
-including to the four descriptors shipped with the agent (`cobol`, `plsql`,
+including to the four descriptors shipped with the skill (`cobol`, `plsql`,
 `java`, `python`), which currently carry `"reviewed": false` themselves.
 
-**Context.** This agent can draft a plausible-looking capability profile for
+**Context.** This skill can draft a plausible-looking capability profile for
 almost any language on request, the same way an LLM can draft anything else on
 request. The temptation is to use that draft immediately, because it looks
 right and the alternative is a blocked run.

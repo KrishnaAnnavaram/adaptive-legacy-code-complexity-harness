@@ -1,7 +1,8 @@
-# How the Target-Fit agent stays honest about a language it wasn't given
+# How the Target-Fit skill stays honest about a language it wasn't given
 
 Companion to [`docs/analyzer-contract.md`](analyzer-contract.md), scoped to
-the fourth agent. Its input shape is different on purpose - a Normalized
+the `target-fit-complexity` skill (invoked by the `3_complexity` agent when a
+target language is named). Its input shape is different on purpose - a Normalized
 Tree plus one language descriptor, projected into a second tree, then run
 through the same 20 analyzers a second time - so this contract is its own
 document rather than an exception carved into the first one.
@@ -71,7 +72,7 @@ the four shipped descriptors are not exempt.
 
 ## The third rule: project, don't guess a score
 
-Earlier versions of this agent read Agent 3's *finished numbers* and either
+Earlier versions of this target-fit path read Agent 3's *finished numbers* and either
 carried them forward or reweighted them by category. That design is gone.
 The current one computes every target score for real, by building a second
 tree and running the real analyzers against it - because a source-language
@@ -98,7 +99,7 @@ names a specific source or target language:**
    Cohesion Complexity (#8) and Inheritance Complexity (#13) then gate to
    `insufficient_input` through the exact same central mechanism
    (`Tree.require(spec)` in `_core.py`) every analyzer already uses for any
-   missing required field - no special-casing inside Agent 4 for this.
+   missing required field - no special-casing inside the target-fit skill for this.
 
 3. **Volume fields.** `loc`, `comment_lines` and `halstead` are stripped from
    every unit, unconditionally, for every target. There is no honest way to
@@ -131,8 +132,8 @@ step correctly drops confidence and names `loc` in `confidence.reasons`.
 **This means a target score can differ from the source baseline for a
 reason that has nothing to do with the target language** - it reflects an
 optional field defaulting toward zero inside an already-existing analyzer,
-not a genuine reduction in effort. This is not a defect to patch (Agent 4
-must not modify the 20 analyzers), and it is not silently hidden either -
+not a genuine reduction in effort. This is not a defect to patch (the
+target-fit skill must not modify the 20 analyzers), and it is not silently hidden either -
 `project_tree.py`'s own log carries a `fields_stripped_caveat` entry stating
 this plainly, and every comparison delta should be checked against that
 specific report's `confidence.reasons` before being read as a real finding.
