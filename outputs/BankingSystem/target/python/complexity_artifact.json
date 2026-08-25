@@ -1,0 +1,635 @@
+{
+  "artifact_version": "1.0",
+  "by_tier": {
+    "composite": [
+      {
+        "id": "maintainability_complexity",
+        "level": null,
+        "score": null,
+        "sno": 11,
+        "status": "insufficient_input"
+      },
+      {
+        "id": "testability_complexity",
+        "level": "L3",
+        "score": 24.0,
+        "sno": 16,
+        "status": "ok"
+      },
+      {
+        "id": "migration_complexity",
+        "level": "L3",
+        "score": 21.0,
+        "sno": 19,
+        "status": "ok"
+      }
+    ],
+    "coupling": [
+      {
+        "id": "coupling_complexity",
+        "level": "L1",
+        "score": 4.0,
+        "sno": 4,
+        "status": "ok"
+      },
+      {
+        "id": "cohesion_complexity",
+        "level": "L2",
+        "score": 2.0,
+        "sno": 8,
+        "status": "ok"
+      },
+      {
+        "id": "dependency_complexity",
+        "level": "L3",
+        "score": 45.7,
+        "sno": 9,
+        "status": "ok"
+      },
+      {
+        "id": "change_impact_complexity",
+        "level": "L2",
+        "score": 0.11,
+        "sno": 10,
+        "status": "ok"
+      },
+      {
+        "id": "inheritance_complexity",
+        "level": "L2",
+        "score": 2.0,
+        "sno": 13,
+        "status": "ok"
+      },
+      {
+        "id": "interface_api_complexity",
+        "level": "L3",
+        "score": 36.2,
+        "sno": 14,
+        "status": "ok"
+      },
+      {
+        "id": "architectural_complexity",
+        "level": "L1",
+        "score": 7.2,
+        "sno": 20,
+        "status": "ok"
+      }
+    ],
+    "data": [
+      {
+        "id": "data_flow_complexity",
+        "level": "L5",
+        "score": 144.0,
+        "sno": 12,
+        "status": "ok"
+      }
+    ],
+    "hazard": [
+      {
+        "id": "database_complexity",
+        "level": null,
+        "score": null,
+        "sno": 15,
+        "status": "insufficient_input"
+      },
+      {
+        "id": "configuration_complexity",
+        "level": null,
+        "score": null,
+        "sno": 18,
+        "status": "insufficient_input"
+      }
+    ],
+    "size": [
+      {
+        "id": "structural_complexity",
+        "level": "L2",
+        "score": 0.32,
+        "sno": 7,
+        "status": "ok"
+      }
+    ],
+    "structural": [
+      {
+        "id": "cyclomatic_complexity",
+        "level": "L1",
+        "score": 5.0,
+        "sno": 1,
+        "status": "ok"
+      },
+      {
+        "id": "cognitive_complexity",
+        "level": "L2",
+        "score": 8.0,
+        "sno": 2,
+        "status": "ok"
+      },
+      {
+        "id": "control_flow_complexity",
+        "level": "L1",
+        "score": 0.0,
+        "sno": 3,
+        "status": "ok"
+      },
+      {
+        "id": "nesting_complexity",
+        "level": "L1",
+        "score": 2.0,
+        "sno": 5,
+        "status": "ok"
+      },
+      {
+        "id": "npath_complexity",
+        "level": "L1",
+        "score": 16.0,
+        "sno": 6,
+        "status": "ok"
+      },
+      {
+        "id": "runtime_complexity",
+        "level": "L3",
+        "score": 25.0,
+        "sno": 17,
+        "status": "ok"
+      }
+    ]
+  },
+  "comparison": [
+    {
+      "id": "structural_complexity",
+      "sno": 7,
+      "source_level": "L2",
+      "source_score": 0.32,
+      "source_status": "ok",
+      "target_level": "L2",
+      "target_score": 0.32,
+      "target_status": "ok"
+    },
+    {
+      "id": "cyclomatic_complexity",
+      "sno": 1,
+      "source_level": "L1",
+      "source_score": 5.0,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 5.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "cognitive_complexity",
+      "sno": 2,
+      "source_level": "L2",
+      "source_score": 8.0,
+      "source_status": "ok",
+      "target_level": "L2",
+      "target_score": 8.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "control_flow_complexity",
+      "sno": 3,
+      "source_level": "L1",
+      "source_score": 0.0,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 0.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "nesting_complexity",
+      "sno": 5,
+      "source_level": "L1",
+      "source_score": 2.0,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 2.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "npath_complexity",
+      "sno": 6,
+      "source_level": "L1",
+      "source_score": 16.0,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 16.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "runtime_complexity",
+      "sno": 17,
+      "source_level": "L3",
+      "source_score": 25.0,
+      "source_status": "ok",
+      "target_level": "L3",
+      "target_score": 25.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "data_flow_complexity",
+      "sno": 12,
+      "source_level": "L5",
+      "source_score": 144.0,
+      "source_status": "ok",
+      "target_level": "L5",
+      "target_score": 144.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "coupling_complexity",
+      "sno": 4,
+      "source_level": "L1",
+      "source_score": 4.0,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 4.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "cohesion_complexity",
+      "sno": 8,
+      "source_level": "L2",
+      "source_score": 2.0,
+      "source_status": "ok",
+      "target_level": "L2",
+      "target_score": 2.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "dependency_complexity",
+      "sno": 9,
+      "source_level": "L3",
+      "source_score": 45.7,
+      "source_status": "ok",
+      "target_level": "L3",
+      "target_score": 45.7,
+      "target_status": "ok"
+    },
+    {
+      "id": "change_impact_complexity",
+      "sno": 10,
+      "source_level": "L2",
+      "source_score": 0.11,
+      "source_status": "ok",
+      "target_level": "L2",
+      "target_score": 0.11,
+      "target_status": "ok"
+    },
+    {
+      "id": "inheritance_complexity",
+      "sno": 13,
+      "source_level": "L2",
+      "source_score": 2.0,
+      "source_status": "ok",
+      "target_level": "L2",
+      "target_score": 2.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "interface_api_complexity",
+      "sno": 14,
+      "source_level": "L3",
+      "source_score": 36.2,
+      "source_status": "ok",
+      "target_level": "L3",
+      "target_score": 36.2,
+      "target_status": "ok"
+    },
+    {
+      "id": "architectural_complexity",
+      "sno": 20,
+      "source_level": "L1",
+      "source_score": 7.2,
+      "source_status": "ok",
+      "target_level": "L1",
+      "target_score": 7.2,
+      "target_status": "ok"
+    },
+    {
+      "id": "database_complexity",
+      "sno": 15,
+      "source_level": null,
+      "source_score": null,
+      "source_status": "insufficient_input",
+      "target_level": null,
+      "target_score": null,
+      "target_status": "insufficient_input"
+    },
+    {
+      "id": "configuration_complexity",
+      "sno": 18,
+      "source_level": null,
+      "source_score": null,
+      "source_status": "insufficient_input",
+      "target_level": null,
+      "target_score": null,
+      "target_status": "insufficient_input"
+    },
+    {
+      "id": "maintainability_complexity",
+      "sno": 11,
+      "source_level": "L5",
+      "source_score": 37.8,
+      "source_status": "ok",
+      "target_level": null,
+      "target_score": null,
+      "target_status": "insufficient_input"
+    },
+    {
+      "id": "testability_complexity",
+      "sno": 16,
+      "source_level": "L3",
+      "source_score": 24.0,
+      "source_status": "ok",
+      "target_level": "L3",
+      "target_score": 24.0,
+      "target_status": "ok"
+    },
+    {
+      "id": "migration_complexity",
+      "sno": 19,
+      "source_level": "L3",
+      "source_score": 23.6,
+      "source_status": "ok",
+      "target_level": "L3",
+      "target_score": 21.0,
+      "target_status": "ok"
+    }
+  ],
+  "confidence": {
+    "reasons": [
+      "target descriptor for 'python' has not been human-reviewed yet (see .claude/target_fit/languages/_pending/README.md) - every score in this artifact is provisional"
+    ],
+    "score": 0.6
+  },
+  "coverage": {
+    "analyzers_discovered": 20,
+    "analyzers_error": 0,
+    "analyzers_insufficient_input": 3,
+    "analyzers_ok": 17,
+    "completeness": 0.85,
+    "not_measured": [
+      {
+        "id": "database_complexity",
+        "reason": "tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+        "sno": 15
+      },
+      {
+        "id": "configuration_complexity",
+        "reason": "tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+        "sno": 18
+      },
+      {
+        "id": "maintainability_complexity",
+        "reason": "tree does not carry required input(s): loc. Maintainability Complexity needs them to produce a meaningful score; returning a zero here would be indistinguishable from a clean result.",
+        "sno": 11
+      }
+    ]
+  },
+  "descriptor_reviewed": false,
+  "descriptor_source": "drafted",
+  "generated_at": "2026-08-25T18:06:25+00:00",
+  "hotspots": [],
+  "overall": {
+    "level": "L5",
+    "mean_confidence": 0.92,
+    "mean_level": 2.12
+  },
+  "pipeline_version": "1.0.0",
+  "projection": {
+    "fields_stripped_caveat": "For an analyzer that declares one of these fields REQUIRED (e.g. Maintainability Complexity needs loc), stripping it correctly gates the metric to insufficient_input - the honest outcome. But for an analyzer that only declares it OPTIONAL (e.g. Migration Complexity), the analyzer's own existing internal code substitutes a default of zero for the missing value rather than refusing to score - this is pre-existing, already-audited behavior of that analyzer (and its confidence score drops accordingly, naming loc in confidence.reasons), not something this projection can or should patch. A target score that moved compared to the source baseline for a reason like this reflects a stripped optional field defaulting toward zero, not a genuine reduction in target-language effort - check each metric's own confidence.reasons before reading a score difference as a real finding.",
+    "fields_stripped_every_unit": [
+      "loc",
+      "comment_lines",
+      "halstead"
+    ],
+    "fields_stripped_reason": "loc/comment_lines/halstead describe the volume of source-language text; projecting them onto a target without real target code would require an invented verbosity ratio, which this design refuses to do",
+    "object_model_dropped": false,
+    "object_model_dropped_reason": null,
+    "source_language": "java",
+    "target_language": "python",
+    "units_dropped": [],
+    "units_projected": 38,
+    "units_total_source": 38
+  },
+  "reports": [
+    {
+      "confidence": 0.85,
+      "headline": "38 unit(s), 1,149 line(s); top 3 unit(s) hold 32% of the code; 4 outlier(s)",
+      "id": "structural_complexity",
+      "level": "L2",
+      "score": 0.32,
+      "sno": 7,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.9,
+      "headline": "38 unit(s); max v(G) 5; 70 test case(s) needed for branch coverage; 0 unit(s) above threshold",
+      "id": "cyclomatic_complexity",
+      "level": "L1",
+      "score": 5.0,
+      "sno": 1,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.9,
+      "headline": "38 unit(s); max cognitive 8; 0 unit(s) hard because of NESTING rather than branch count",
+      "id": "cognitive_complexity",
+      "level": "L2",
+      "score": 8.0,
+      "sno": 2,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.8,
+      "headline": "38/38 unit(s) fully structured; 0 not mechanically translatable; 0 contain ALTER",
+      "id": "control_flow_complexity",
+      "level": "L1",
+      "score": 0.0,
+      "sno": 3,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "38 unit(s); deepest nesting 2; 0 unit(s) at depth >= 4; 33 flat",
+      "id": "nesting_complexity",
+      "level": "L1",
+      "score": 2.0,
+      "sno": 5,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.85,
+      "headline": "38 unit(s); worst NPath 16; 0 unit(s) beyond exhaustive path testing",
+      "id": "npath_complexity",
+      "level": "L1",
+      "score": 16.0,
+      "sno": 6,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "38 unit(s); 0 super-linear; 0 with I/O or SQL inside a loop; 1 recursive",
+      "id": "runtime_complexity",
+      "level": "L3",
+      "score": 25.0,
+      "sno": 17,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "38 unit(s); max data-flow score 144.0; 11 shared data element(s); 9 data-heavy unit(s)",
+      "id": "data_flow_complexity",
+      "level": "L5",
+      "score": 144.0,
+      "sno": 12,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "38 unit(s); 0 hub(s); 35 independently extractable; 10 isolated",
+      "id": "coupling_complexity",
+      "level": "L1",
+      "score": 4.0,
+      "sno": 4,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "21 type(s); worst LCOM4 2; 0 type(s) with low cohesion (>=3 components)",
+      "id": "cohesion_complexity",
+      "level": "L2",
+      "score": 2.0,
+      "sno": 8,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "50 module(s); 115 external dependency/ies; longest chain 3; 0 dependency cycle(s)",
+      "id": "dependency_complexity",
+      "level": "L3",
+      "score": 45.7,
+      "sno": 9,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "85 component(s); 0 high-impact; worst change reaches 10% of the system",
+      "id": "change_impact_complexity",
+      "level": "L2",
+      "score": 0.11,
+      "sno": 10,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "21 type(s); max inheritance depth 2; widest base has 2 child(ren); 0 deep hierarchy(ies)",
+      "id": "inheritance_complexity",
+      "level": "L2",
+      "score": 2.0,
+      "sno": 13,
+      "status": "ok"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "34 exposed operation(s); avg 0.88 param(s)/op; 0 schema(s); 0 external API contract(s)",
+      "id": "interface_api_complexity",
+      "level": "L3",
+      "score": 36.2,
+      "sno": 14,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.9,
+      "headline": "50 module(s); 0 dependency cycle(s) covering 0 module(s); 0 layering violation(s); 1 hub unit(s)",
+      "id": "architectural_complexity",
+      "level": "L1",
+      "score": 7.2,
+      "sno": 20,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.0,
+      "headline": "NOT MEASURED - tree carries none of: sql, cursors, transactions. Database Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+      "id": "database_complexity",
+      "level": null,
+      "score": null,
+      "sno": 15,
+      "status": "insufficient_input"
+    },
+    {
+      "confidence": 0.0,
+      "headline": "NOT MEASURED - tree carries none of: config_reads, literals, conditional_compilation, feature_flags. Configuration Complexity needs at least one of them; returning a zero here would be indistinguishable from a clean result.",
+      "id": "configuration_complexity",
+      "level": null,
+      "score": null,
+      "sno": 18,
+      "status": "insufficient_input"
+    },
+    {
+      "confidence": 0.0,
+      "headline": "NOT MEASURED - tree does not carry required input(s): loc. Maintainability Complexity needs them to produce a meaningful score; returning a zero here would be indistinguishable from a clean result.",
+      "id": "maintainability_complexity",
+      "level": null,
+      "score": null,
+      "sno": 11,
+      "status": "insufficient_input"
+    },
+    {
+      "confidence": 1.0,
+      "headline": "38 unit(s); ~70 test case(s) for branch coverage; 4 unit(s) blocked or hostile to isolation",
+      "id": "testability_complexity",
+      "level": "L3",
+      "score": 24.0,
+      "sno": 16,
+      "status": "ok"
+    },
+    {
+      "confidence": 0.5,
+      "headline": "38 unit(s); 1 require rearchitecture or rebuild; ~3% of the work is plausibly automatable; 0 translation blocker(s) found",
+      "id": "migration_complexity",
+      "level": "L3",
+      "score": 21.0,
+      "sno": 19,
+      "status": "ok"
+    }
+  ],
+  "source_baseline": {
+    "available": true,
+    "note": "Read only for the comparison section below - never used to compute any target score in this artifact.",
+    "path": "C:\\Users\\kaaja\\Downloads\\adaptive-legacy-code-complexity-harness-main\\adaptive-legacy-code-complexity-harness-main\\outputs\\BankingSystem\\complexity_artifact.json"
+  },
+  "source_language": "java",
+  "target_language": "python",
+  "tree": {
+    "capabilities": {
+      "call_graph": true,
+      "cfg": true,
+      "comment_lines": false,
+      "conditional_compilation": false,
+      "config_reads": false,
+      "cursors": false,
+      "dependency_graph": true,
+      "dynamic_constructs": false,
+      "feature_flags": false,
+      "globals": true,
+      "halstead": false,
+      "layers": false,
+      "literals": false,
+      "loc": false,
+      "meta": true,
+      "params": true,
+      "platform_calls": false,
+      "references": true,
+      "sql": false,
+      "transactions": false,
+      "types": true,
+      "units": true,
+      "writes": true
+    },
+    "language": "python",
+    "path": "outputs/BankingSystem/normalized_tree.json",
+    "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+    "units": 38
+  }
+}

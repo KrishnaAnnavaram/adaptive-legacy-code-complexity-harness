@@ -18,6 +18,7 @@ and consolidating results into a unified code complexity artifact.
   - [The three layers, and why they are separate](#the-three-layers-and-why-they-are-separate)
   - [Execution order](#execution-order)
   - [Stage 1 has no skills, deliberately](#stage-1-has-no-skills-deliberately)
+  - [Agent 3 up close — the complexity run and the target-fit skill](#agent-3-up-close--the-complexity-run-and-the-target-fit-skill)
 - [The twenty complexities](#the-twenty-complexities)
 - [The top 5 complexities, in depth](#the-top-5-complexities-in-depth)
   - [1. Cyclomatic Complexity](#1-cyclomatic-complexity)
@@ -191,6 +192,59 @@ nothing to discover or choose among at runtime, so it has a scanner and no
 ```bash
 python .claude/inventory/scanner.py --repo-root <path-to-java-repo> -o out
 ```
+
+---
+
+## Agent 3 up close — the complexity run and the target-fit skill
+
+Agent 3 (`complexity-analyzer`) always does one thing: run the 20 analyzers over
+the Normalized Tree and consolidate them into a source-side artifact. It does a
+**second** thing *only when the request names a target language* — it invokes the
+`target-fit-complexity` **skill**, which projects the tree onto that target and
+runs the very same 20 analyzers again against the projected tree. No target named,
+no skill; the source-side run stands alone.
+
+The diagram below is the whole decision, end to end — the left half is Agent 3's
+own run, the right half is the skill's work:
+
+```mermaid
+flowchart TD
+    IN["Normalized Tree<br/>(+ optional TARGET_LANGUAGE)"] --> CORE
+
+    subgraph CORE["Agent 3 — source-side run (always)"]
+        direction TB
+        D1["DISCOVER — scan .claude/complexities/NN_*.py"] --> D2["ORDER — dependency depth, then tier, then sno"]
+        D2 --> D3["GATE — check each SPEC.requires;<br/>unmet → insufficient_input, never a zero"]
+        D3 --> D4["RUN the 20 analyzers"]
+        D4 --> D5["CONSOLIDATE"]
+    end
+
+    CORE --> SRC["complexity_artifact.json<br/>+ complexity_report.md<br/>(source language)"]
+
+    SRC --> Q{"Target language<br/>named in the request?"}
+    Q -->|No| DONE(["Done — source-side only"])
+    Q -->|Yes| INVOKE["Agent 3 invokes the<br/>target-fit-complexity SKILL"]
+
+    subgraph SKILL["target-fit-complexity skill — target-side run (on demand)"]
+        direction TB
+        S0{"source complexity_artifact.json<br/>already on disk?"}
+        S0 -->|Yes| REUSE["reuse it as the baseline<br/>(skip re-running the source pass)"]
+        S0 -->|No| RUNSRC["run the source pass first, then continue"]
+        REUSE --> P
+        RUNSRC --> P
+        P["PROJECT the tree (project_tree.py):<br/>• drop units with unexpressible jumps (GOTO/ALTER)<br/>• drop types if target has no object model<br/>• strip loc / comment_lines / halstead"]
+        P --> R2["RUN the SAME 20 analyzers on the projected tree<br/>(run_pipeline.py's own functions — not duplicated)"]
+        R2 --> CMP["COMPARE vs. the source baseline<br/>(traceability only — never the scoring mechanism)"]
+    end
+
+    INVOKE --> SKILL
+    CMP --> OUT["target/&lt;lang&gt;/complexity_artifact.json<br/>+ complexity_report.md"]
+```
+
+Two guarantees this flow keeps: the **source pass runs at most once** (reused if
+already present, produced if not), and the target scores are **computed for real**
+against the projected tree — the source artifact is read only to build the
+comparison, never to produce a target number.
 
 ---
 
