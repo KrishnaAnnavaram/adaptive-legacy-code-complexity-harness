@@ -1,0 +1,579 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Cyclomatic Complexity",
+  "confidence": {
+    "reasons": [
+      "optional input 'loc' absent"
+    ],
+    "score": 0.9
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "cyclomatic_complexity",
+  "inputs_missing_optional": [
+    "loc"
+  ],
+  "inputs_used": [
+    "units",
+    "cfg"
+  ],
+  "items": [
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "main",
+      "owner_type": "Application",
+      "score": 1.0,
+      "start_line": 7,
+      "unit": "Application.main"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "FOR": 1,
+        "IF": 1
+      },
+      "dominant_construct": "FOR",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "score": 3.0,
+      "start_line": 15,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "score": 1.0,
+      "start_line": 29,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "score": 1.0,
+      "start_line": 35,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "score": 1.0,
+      "start_line": 41,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "cyclomatic": 4,
+      "decision_points": 3,
+      "decisions_by_kind": {
+        "FOR": 1,
+        "IF": 2
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 4,
+      "name": "findAccount",
+      "owner_type": "Bank.Bank",
+      "score": 4.0,
+      "start_line": 47,
+      "unit": "Bank.Bank.findAccount"
+    },
+    {
+      "cyclomatic": 4,
+      "decision_points": 3,
+      "decisions_by_kind": {
+        "IF": 3
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 4,
+      "name": "deposit",
+      "owner_type": "Bank.Bank",
+      "score": 4.0,
+      "start_line": 65,
+      "unit": "Bank.Bank.deposit"
+    },
+    {
+      "cyclomatic": 5,
+      "decision_points": 4,
+      "decisions_by_kind": {
+        "IF": 4
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 5,
+      "name": "withdraw",
+      "owner_type": "Bank.Bank",
+      "score": 5.0,
+      "start_line": 86,
+      "unit": "Bank.Bank.withdraw"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "FOR": 1,
+        "IF": 1
+      },
+      "dominant_construct": "FOR",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "display",
+      "owner_type": "Bank.Bank",
+      "score": 3.0,
+      "start_line": 110,
+      "unit": "Bank.Bank.display"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getAccounts",
+      "owner_type": "Bank.Bank",
+      "score": 1.0,
+      "start_line": 145,
+      "unit": "Bank.Bank.getAccounts"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "setAccounts",
+      "owner_type": "Bank.Bank",
+      "score": 1.0,
+      "start_line": 149,
+      "unit": "Bank.Bank.setAccounts"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "IF": 1
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "BankAccount",
+      "owner_type": "Bank.BankAccount",
+      "score": 2.0,
+      "start_line": 20,
+      "unit": "Bank.BankAccount.BankAccount"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "IF": 1
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "deposit",
+      "owner_type": "Bank.BankAccount",
+      "score": 2.0,
+      "start_line": 31,
+      "unit": "Bank.BankAccount.deposit"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "AND": 1,
+        "IF": 1
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "withdraw",
+      "owner_type": "Bank.BankAccount",
+      "score": 3.0,
+      "start_line": 39,
+      "unit": "Bank.BankAccount.withdraw"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getbalance",
+      "owner_type": "Bank.BankAccount",
+      "score": 1.0,
+      "start_line": 53,
+      "unit": "Bank.BankAccount.getbalance"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "toString",
+      "owner_type": "Bank.BankAccount",
+      "score": 1.0,
+      "start_line": 59,
+      "unit": "Bank.BankAccount.toString"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "CurrentAccount",
+      "owner_type": "Bank.CurrentAccount",
+      "score": 1.0,
+      "start_line": 12,
+      "unit": "Bank.CurrentAccount.CurrentAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "SavingsAccount",
+      "owner_type": "Bank.SavingsAccount",
+      "score": 1.0,
+      "start_line": 15,
+      "unit": "Bank.SavingsAccount.SavingsAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getNetBalance",
+      "owner_type": "Bank.SavingsAccount",
+      "score": 1.0,
+      "start_line": 21,
+      "unit": "Bank.SavingsAccount.getNetBalance"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "IF": 1
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "withdraw",
+      "owner_type": "Bank.SavingsAccount",
+      "score": 2.0,
+      "start_line": 27,
+      "unit": "Bank.SavingsAccount.withdraw"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "StudentAccount",
+      "owner_type": "Bank.StudentAccount",
+      "score": 1.0,
+      "start_line": 10,
+      "unit": "Bank.StudentAccount.StudentAccount"
+    },
+    {
+      "cyclomatic": 5,
+      "decision_points": 4,
+      "decisions_by_kind": {
+        "CATCH": 2,
+        "IF": 2
+      },
+      "dominant_construct": "CATCH",
+      "level": "L1",
+      "min_test_cases": 5,
+      "name": "Read",
+      "owner_type": "Data.FileIO",
+      "score": 5.0,
+      "start_line": 16,
+      "unit": "Data.FileIO.Read"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "CATCH": 1
+      },
+      "dominant_construct": "CATCH",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "Write",
+      "owner_type": "Data.FileIO",
+      "score": 2.0,
+      "start_line": 43,
+      "unit": "Data.FileIO.Write"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "AccNotFound",
+      "owner_type": "Exceptions.AccNotFound",
+      "score": 1.0,
+      "start_line": 9,
+      "unit": "Exceptions.AccNotFound.AccNotFound"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "InvalidAmount",
+      "owner_type": "Exceptions.InvalidAmount",
+      "score": 1.0,
+      "start_line": 9,
+      "unit": "Exceptions.InvalidAmount.InvalidAmount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "MaxBalance",
+      "owner_type": "Exceptions.MaxBalance",
+      "score": 1.0,
+      "start_line": 10,
+      "unit": "Exceptions.MaxBalance.MaxBalance"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "MaxWithdraw",
+      "owner_type": "Exceptions.MaxWithdraw",
+      "score": 1.0,
+      "start_line": 12,
+      "unit": "Exceptions.MaxWithdraw.MaxWithdraw"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "AddAccount",
+      "owner_type": "GUI.AddAccount",
+      "score": 1.0,
+      "start_line": 25,
+      "unit": "GUI.AddAccount.AddAccount"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "OR": 2
+      },
+      "dominant_construct": "OR",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "AddCurrentAccount",
+      "owner_type": "GUI.AddCurrentAccount",
+      "score": 3.0,
+      "start_line": 31,
+      "unit": "GUI.AddCurrentAccount.AddCurrentAccount"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "OR": 2
+      },
+      "dominant_construct": "OR",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "AddSavingsAccount",
+      "owner_type": "GUI.AddSavingsAccount",
+      "score": 3.0,
+      "start_line": 30,
+      "unit": "GUI.AddSavingsAccount.AddSavingsAccount"
+    },
+    {
+      "cyclomatic": 3,
+      "decision_points": 2,
+      "decisions_by_kind": {
+        "OR": 2
+      },
+      "dominant_construct": "OR",
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "AddStudentAccount",
+      "owner_type": "GUI.AddStudentAccount",
+      "score": 3.0,
+      "start_line": 30,
+      "unit": "GUI.AddStudentAccount.AddStudentAccount"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "DepositAcc",
+      "owner_type": "GUI.DepositAcc",
+      "score": 1.0,
+      "start_line": 35,
+      "unit": "GUI.DepositAcc.DepositAcc"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "DisplayList",
+      "owner_type": "GUI.DisplayList",
+      "score": 1.0,
+      "start_line": 31,
+      "unit": "GUI.DisplayList.DisplayList"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "IF": 1
+      },
+      "dominant_construct": "IF",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "UpdateDisplay",
+      "owner_type": "GUI.GUIForm",
+      "score": 2.0,
+      "start_line": 16,
+      "unit": "GUI.GUIForm.UpdateDisplay"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "Login",
+      "owner_type": "GUI.Login",
+      "score": 1.0,
+      "start_line": 40,
+      "unit": "GUI.Login.Login"
+    },
+    {
+      "cyclomatic": 2,
+      "decision_points": 1,
+      "decisions_by_kind": {
+        "AND": 1
+      },
+      "dominant_construct": "AND",
+      "level": "L1",
+      "min_test_cases": 2,
+      "name": "initialize",
+      "owner_type": "GUI.Login",
+      "score": 2.0,
+      "start_line": 47,
+      "unit": "GUI.Login.initialize"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "Menu",
+      "owner_type": "GUI.Menu",
+      "score": 1.0,
+      "start_line": 32,
+      "unit": "GUI.Menu.Menu"
+    },
+    {
+      "cyclomatic": 1,
+      "decision_points": 0,
+      "decisions_by_kind": {},
+      "dominant_construct": null,
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "WithdrawAcc",
+      "owner_type": "GUI.WithdrawAcc",
+      "score": 1.0,
+      "start_line": 37,
+      "unit": "GUI.WithdrawAcc.WithdrawAcc"
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_cyclomatic": 1.84,
+    "band_source": "default",
+    "bands_applied": [
+      10,
+      20,
+      35,
+      50
+    ],
+    "max_cyclomatic": 5,
+    "min_test_cases_total": 70,
+    "total_cyclomatic": 70,
+    "units": 38,
+    "units_above_threshold": 0
+  },
+  "sno": 1,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "38 unit(s); max v(G) 5; 70 test case(s) needed for branch coverage; 0 unit(s) above threshold",
+    "level": "L1",
+    "score": 5.0
+  },
+  "tier": "structural"
+}

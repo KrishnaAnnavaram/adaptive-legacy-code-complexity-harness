@@ -1,0 +1,995 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Change Impact Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "java.awt.Font",
+      "score": 0.107,
+      "unit": "java.awt.Font"
+    },
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "javax.swing.JFrame",
+      "score": 0.107,
+      "unit": "javax.swing.JFrame"
+    },
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "javax.swing.JLabel",
+      "score": 0.107,
+      "unit": "javax.swing.JLabel"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "Bank.*",
+      "score": 0.095,
+      "unit": "Bank.*"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.awt.event.ActionEvent",
+      "score": 0.095,
+      "unit": "java.awt.event.ActionEvent"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.awt.event.ActionListener",
+      "score": 0.095,
+      "unit": "java.awt.event.ActionListener"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.FileInputStream",
+      "score": 0.095,
+      "unit": "java.io.FileInputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.FileOutputStream",
+      "score": 0.095,
+      "unit": "java.io.FileOutputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.IOException",
+      "score": 0.095,
+      "unit": "java.io.IOException"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.ObjectInputStream",
+      "score": 0.095,
+      "unit": "java.io.ObjectInputStream"
+    }
+  ],
+  "id": "change_impact_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "call_graph",
+    "dependency_graph",
+    "units"
+  ],
+  "interpretation": "impact_ratio is the share of the system that transitively depends on a unit. It is the regression-test surface of any change to that unit, and the reason a one-line edit can require a full regression pass.",
+  "items": [
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "java.awt.Font",
+      "score": 0.107,
+      "unit": "java.awt.Font"
+    },
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "javax.swing.JFrame",
+      "score": 0.107,
+      "unit": "javax.swing.JFrame"
+    },
+    {
+      "blast_radius": 9,
+      "direct_callers": 9,
+      "fan_out": 0,
+      "impact_ratio": 0.107,
+      "level": "L2",
+      "name": "javax.swing.JLabel",
+      "score": 0.107,
+      "unit": "javax.swing.JLabel"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "Bank.*",
+      "score": 0.095,
+      "unit": "Bank.*"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.awt.event.ActionEvent",
+      "score": 0.095,
+      "unit": "java.awt.event.ActionEvent"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.awt.event.ActionListener",
+      "score": 0.095,
+      "unit": "java.awt.event.ActionListener"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.FileInputStream",
+      "score": 0.095,
+      "unit": "java.io.FileInputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.FileOutputStream",
+      "score": 0.095,
+      "unit": "java.io.FileOutputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.IOException",
+      "score": 0.095,
+      "unit": "java.io.IOException"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.ObjectInputStream",
+      "score": 0.095,
+      "unit": "java.io.ObjectInputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "java.io.ObjectOutputStream",
+      "score": 0.095,
+      "unit": "java.io.ObjectOutputStream"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "javax.swing.JButton",
+      "score": 0.095,
+      "unit": "javax.swing.JButton"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "javax.swing.JOptionPane",
+      "score": 0.095,
+      "unit": "javax.swing.JOptionPane"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "javax.swing.JPanel",
+      "score": 0.095,
+      "unit": "javax.swing.JPanel"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "javax.swing.SwingConstants",
+      "score": 0.095,
+      "unit": "javax.swing.SwingConstants"
+    },
+    {
+      "blast_radius": 8,
+      "direct_callers": 8,
+      "fan_out": 0,
+      "impact_ratio": 0.095,
+      "level": "L2",
+      "name": "javax.swing.border.EmptyBorder",
+      "score": 0.095,
+      "unit": "javax.swing.border.EmptyBorder"
+    },
+    {
+      "blast_radius": 7,
+      "direct_callers": 7,
+      "fan_out": 6,
+      "impact_ratio": 0.083,
+      "level": "L2",
+      "name": "Data.FileIO",
+      "score": 0.083,
+      "unit": "Data.FileIO"
+    },
+    {
+      "blast_radius": 7,
+      "direct_callers": 4,
+      "fan_out": 0,
+      "impact_ratio": 0.083,
+      "level": "L2",
+      "name": "java.io.Serializable",
+      "score": 0.083,
+      "unit": "java.io.Serializable"
+    },
+    {
+      "blast_radius": 6,
+      "direct_callers": 4,
+      "fan_out": 0,
+      "impact_ratio": 0.071,
+      "level": "L2",
+      "name": "Exceptions.MaxBalance",
+      "score": 0.071,
+      "unit": "Exceptions.MaxBalance"
+    },
+    {
+      "blast_radius": 6,
+      "direct_callers": 4,
+      "fan_out": 0,
+      "impact_ratio": 0.071,
+      "level": "L2",
+      "name": "Exceptions.MaxWithdraw",
+      "score": 0.071,
+      "unit": "Exceptions.MaxWithdraw"
+    },
+    {
+      "blast_radius": 6,
+      "direct_callers": 6,
+      "fan_out": 0,
+      "impact_ratio": 0.071,
+      "level": "L2",
+      "name": "java.awt.SystemColor",
+      "score": 0.071,
+      "unit": "java.awt.SystemColor"
+    },
+    {
+      "blast_radius": 6,
+      "direct_callers": 6,
+      "fan_out": 0,
+      "impact_ratio": 0.071,
+      "level": "L2",
+      "name": "javax.swing.JTextField",
+      "score": 0.071,
+      "unit": "javax.swing.JTextField"
+    },
+    {
+      "blast_radius": 5,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.06,
+      "level": "L2",
+      "name": "getAccounts",
+      "score": 0.06,
+      "unit": "Bank.Bank.getAccounts"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 3,
+      "impact_ratio": 0.036,
+      "level": "L1",
+      "name": "Bank.BankAccount",
+      "score": 0.036,
+      "unit": "Bank.BankAccount"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.036,
+      "level": "L1",
+      "name": "Exceptions.AccNotFound",
+      "score": 0.036,
+      "unit": "Exceptions.AccNotFound"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.036,
+      "level": "L1",
+      "name": "Exceptions.InvalidAmount",
+      "score": 0.036,
+      "unit": "Exceptions.InvalidAmount"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 3,
+      "fan_out": 0,
+      "impact_ratio": 0.036,
+      "level": "L1",
+      "name": "InvalidAmount",
+      "score": 0.036,
+      "unit": "Exceptions.InvalidAmount.InvalidAmount"
+    },
+    {
+      "blast_radius": 3,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.036,
+      "level": "L1",
+      "name": "MaxBalance",
+      "score": 0.036,
+      "unit": "Exceptions.MaxBalance.MaxBalance"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 1,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "findAccount",
+      "score": 0.024,
+      "unit": "Bank.Bank.findAccount"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "getbalance",
+      "score": 0.024,
+      "unit": "Bank.BankAccount.getbalance"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 1,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.024,
+      "unit": "Bank.BankAccount.withdraw"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "AccNotFound",
+      "score": 0.024,
+      "unit": "Exceptions.AccNotFound.AccNotFound"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "java.awt.Point",
+      "score": 0.024,
+      "unit": "java.awt.Point"
+    },
+    {
+      "blast_radius": 2,
+      "direct_callers": 2,
+      "fan_out": 0,
+      "impact_ratio": 0.024,
+      "level": "L1",
+      "name": "javax.swing.DefaultListModel",
+      "score": 0.024,
+      "unit": "javax.swing.DefaultListModel"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 1,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "deposit",
+      "score": 0.012,
+      "unit": "Bank.BankAccount.deposit"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "CurrentAccount",
+      "score": 0.012,
+      "unit": "Bank.CurrentAccount.CurrentAccount"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 3,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "Bank.SavingsAccount",
+      "score": 0.012,
+      "unit": "Bank.SavingsAccount"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "SavingsAccount",
+      "score": 0.012,
+      "unit": "Bank.SavingsAccount.SavingsAccount"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "StudentAccount",
+      "score": 0.012,
+      "unit": "Bank.StudentAccount.StudentAccount"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "Read",
+      "score": 0.012,
+      "unit": "Data.FileIO.Read"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "Write",
+      "score": 0.012,
+      "unit": "Data.FileIO.Write"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "MaxWithdraw",
+      "score": 0.012,
+      "unit": "Exceptions.MaxWithdraw.MaxWithdraw"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "DisplayList",
+      "score": 0.012,
+      "unit": "GUI.DisplayList.DisplayList"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 1,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "GUI.GUIForm",
+      "score": 0.012,
+      "unit": "GUI.GUIForm"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "initialize",
+      "score": 0.012,
+      "unit": "GUI.Login.initialize"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "java.awt.EventQueue",
+      "score": 0.012,
+      "unit": "java.awt.EventQueue"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "java.awt.Image",
+      "score": 0.012,
+      "unit": "java.awt.Image"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.Icon",
+      "score": 0.012,
+      "unit": "javax.swing.Icon"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.ImageIcon",
+      "score": 0.012,
+      "unit": "javax.swing.ImageIcon"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.JList",
+      "score": 0.012,
+      "unit": "javax.swing.JList"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.JPasswordField",
+      "score": 0.012,
+      "unit": "javax.swing.JPasswordField"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.JScrollPane",
+      "score": 0.012,
+      "unit": "javax.swing.JScrollPane"
+    },
+    {
+      "blast_radius": 1,
+      "direct_callers": 1,
+      "fan_out": 0,
+      "impact_ratio": 0.012,
+      "level": "L1",
+      "name": "javax.swing.ScrollPaneConstants",
+      "score": 0.012,
+      "unit": "javax.swing.ScrollPaneConstants"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Application",
+      "score": 0.0,
+      "unit": "Application"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "main",
+      "score": 0.0,
+      "unit": "Application.main"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 6,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Bank.Bank",
+      "score": 0.0,
+      "unit": "Bank.Bank"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 3,
+      "fan_out": 7,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "addAccount",
+      "score": 0.0,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 4,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "deposit",
+      "score": 0.0,
+      "unit": "Bank.Bank.deposit"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "display",
+      "score": 0.0,
+      "unit": "Bank.Bank.display"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "setAccounts",
+      "score": 0.0,
+      "unit": "Bank.Bank.setAccounts"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 6,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.0,
+      "unit": "Bank.Bank.withdraw"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "BankAccount",
+      "score": 0.0,
+      "unit": "Bank.BankAccount.BankAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "toString",
+      "score": 0.0,
+      "unit": "Bank.BankAccount.toString"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Bank.CurrentAccount",
+      "score": 0.0,
+      "unit": "Bank.CurrentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "getNetBalance",
+      "score": 0.0,
+      "unit": "Bank.SavingsAccount.getNetBalance"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "withdraw",
+      "score": 0.0,
+      "unit": "Bank.SavingsAccount.withdraw"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Bank.StudentAccount",
+      "score": 0.0,
+      "unit": "Bank.StudentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 11,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.AddAccount",
+      "score": 0.0,
+      "unit": "GUI.AddAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "AddAccount",
+      "score": 0.0,
+      "unit": "GUI.AddAccount.AddAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 13,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.AddCurrentAccount",
+      "score": 0.0,
+      "unit": "GUI.AddCurrentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "AddCurrentAccount",
+      "score": 0.0,
+      "unit": "GUI.AddCurrentAccount.AddCurrentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 12,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.AddSavingsAccount",
+      "score": 0.0,
+      "unit": "GUI.AddSavingsAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "AddSavingsAccount",
+      "score": 0.0,
+      "unit": "GUI.AddSavingsAccount.AddSavingsAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 12,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.AddStudentAccount",
+      "score": 0.0,
+      "unit": "GUI.AddStudentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "AddStudentAccount",
+      "score": 0.0,
+      "unit": "GUI.AddStudentAccount.AddStudentAccount"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 16,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.DepositAcc",
+      "score": 0.0,
+      "unit": "GUI.DepositAcc"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "DepositAcc",
+      "score": 0.0,
+      "unit": "GUI.DepositAcc.DepositAcc"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 12,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.DisplayList",
+      "score": 0.0,
+      "unit": "GUI.DisplayList"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "UpdateDisplay",
+      "score": 0.0,
+      "unit": "GUI.GUIForm.UpdateDisplay"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 9,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.Login",
+      "score": 0.0,
+      "unit": "GUI.Login"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 1,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Login",
+      "score": 0.0,
+      "unit": "GUI.Login.Login"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 15,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.Menu",
+      "score": 0.0,
+      "unit": "GUI.Menu"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 2,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "Menu",
+      "score": 0.0,
+      "unit": "GUI.Menu.Menu"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 18,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "GUI.WithdrawAcc",
+      "score": 0.0,
+      "unit": "GUI.WithdrawAcc"
+    },
+    {
+      "blast_radius": 0,
+      "direct_callers": 0,
+      "fan_out": 0,
+      "impact_ratio": 0.0,
+      "level": "L1",
+      "name": "WithdrawAcc",
+      "score": 0.0,
+      "unit": "GUI.WithdrawAcc.WithdrawAcc"
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_impact_ratio": 0.031,
+    "bands_applied": [
+      0.05,
+      0.15,
+      0.3,
+      0.5
+    ],
+    "components": 85,
+    "edges": 169,
+    "high_impact_components": 0,
+    "max_impact_ratio": 0.107
+  },
+  "sno": 10,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "85 component(s); 0 high-impact; worst change reaches 10% of the system",
+    "level": "L2",
+    "score": 0.11
+  },
+  "tier": "coupling"
+}

@@ -1,0 +1,1057 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Testability Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "derived_from": [
+    "Cyclomatic Complexity",
+    "Coupling",
+    "Global State",
+    "Side Effects"
+  ],
+  "hotspots": [],
+  "id": "testability_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "units",
+    "cfg",
+    "references",
+    "globals",
+    "writes",
+    "call_graph",
+    "dependency_graph",
+    "meta"
+  ],
+  "interpretation": {
+    "blocked": "Few paths but cannot be reached in isolation. Introduce a seam FIRST; this is where characterization testing stalls.",
+    "hostile": "Many paths AND heavy friction. Highest-risk units in the estate - refactor for testability before attempting either tests or translation.",
+    "laborious": "Many paths but few obstacles - predictable grind, safe to estimate.",
+    "tractable": "Callable in isolation; cover the paths and move on."
+  },
+  "items": [
+    {
+      "blockers": [
+        "static / no substitution seam - cannot be isolated"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 4.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "main",
+      "owner_type": "Application",
+      "profile": "tractable",
+      "score": 6.5,
+      "test_burden": 0.5,
+      "test_friction": 6.0,
+      "unit": "Application.main"
+    },
+    {
+      "blockers": [
+        "5 collaborator(s) to stub"
+      ],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 7.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 3,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 11.0,
+      "test_burden": 1.5,
+      "test_friction": 9.5,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "blockers": [
+        "5 collaborator(s) to stub"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 7.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 10.0,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "blockers": [
+        "5 collaborator(s) to stub"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 7.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 10.0,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "blockers": [
+        "5 collaborator(s) to stub"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 7.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "addAccount",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 10.0,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "unit": "Bank.Bank.addAccount"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 4,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 4,
+      "name": "findAccount",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 5.5,
+      "test_burden": 2.0,
+      "test_friction": 3.5,
+      "unit": "Bank.Bank.findAccount"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 4,
+      "friction_breakdown": {
+        "collaborators_to_stub": 6.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 4,
+      "name": "deposit",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 10.0,
+      "test_burden": 2.0,
+      "test_friction": 8.0,
+      "unit": "Bank.Bank.deposit"
+    },
+    {
+      "blockers": [
+        "6 collaborator(s) to stub"
+      ],
+      "cyclomatic": 5,
+      "friction_breakdown": {
+        "collaborators_to_stub": 9.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 5,
+      "name": "withdraw",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 13.5,
+      "test_burden": 2.5,
+      "test_friction": 11.0,
+      "unit": "Bank.Bank.withdraw"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 3,
+      "name": "display",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 5.0,
+      "test_burden": 1.5,
+      "test_friction": 3.5,
+      "unit": "Bank.Bank.display"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getAccounts",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 4.5,
+      "test_burden": 0.5,
+      "test_friction": 4.0,
+      "unit": "Bank.Bank.getAccounts"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "setAccounts",
+      "owner_type": "Bank.Bank",
+      "profile": "tractable",
+      "score": 7.0,
+      "test_burden": 0.5,
+      "test_friction": 6.5,
+      "unit": "Bank.Bank.setAccounts"
+    },
+    {
+      "blockers": [
+        "4 hidden input(s) not passed as parameters",
+        "4 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 8.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 3.0,
+        "shared_state_writes": 10.0
+      },
+      "level": "L3",
+      "min_test_cases": 2,
+      "name": "BankAccount",
+      "owner_type": "Bank.BankAccount",
+      "profile": "blocked",
+      "score": 24.0,
+      "test_burden": 1.0,
+      "test_friction": 23.0,
+      "unit": "Bank.BankAccount.BankAccount"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 2,
+      "name": "deposit",
+      "owner_type": "Bank.BankAccount",
+      "profile": "tractable",
+      "score": 9.0,
+      "test_burden": 1.0,
+      "test_friction": 8.0,
+      "unit": "Bank.BankAccount.deposit"
+    },
+    {
+      "blockers": [
+        "2 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 4.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 3,
+      "name": "withdraw",
+      "owner_type": "Bank.BankAccount",
+      "profile": "tractable",
+      "score": 11.5,
+      "test_burden": 1.5,
+      "test_friction": 10.0,
+      "unit": "Bank.BankAccount.withdraw"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getbalance",
+      "owner_type": "Bank.BankAccount",
+      "profile": "tractable",
+      "score": 4.5,
+      "test_burden": 0.5,
+      "test_friction": 4.0,
+      "unit": "Bank.BankAccount.getbalance"
+    },
+    {
+      "blockers": [
+        "3 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 6.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "toString",
+      "owner_type": "Bank.BankAccount",
+      "profile": "tractable",
+      "score": 8.5,
+      "test_burden": 0.5,
+      "test_friction": 8.0,
+      "unit": "Bank.BankAccount.toString"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 3.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "CurrentAccount",
+      "owner_type": "Bank.CurrentAccount",
+      "profile": "tractable",
+      "score": 9.0,
+      "test_burden": 0.5,
+      "test_friction": 8.5,
+      "unit": "Bank.CurrentAccount.CurrentAccount"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 3.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "SavingsAccount",
+      "owner_type": "Bank.SavingsAccount",
+      "profile": "tractable",
+      "score": 9.0,
+      "test_burden": 0.5,
+      "test_friction": 8.5,
+      "unit": "Bank.SavingsAccount.SavingsAccount"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "getNetBalance",
+      "owner_type": "Bank.SavingsAccount",
+      "profile": "tractable",
+      "score": 5.0,
+      "test_burden": 0.5,
+      "test_friction": 4.5,
+      "unit": "Bank.SavingsAccount.getNetBalance"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 3.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 2,
+      "name": "withdraw",
+      "owner_type": "Bank.SavingsAccount",
+      "profile": "tractable",
+      "score": 7.0,
+      "test_burden": 1.0,
+      "test_friction": 6.0,
+      "unit": "Bank.SavingsAccount.withdraw"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 3.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "StudentAccount",
+      "owner_type": "Bank.StudentAccount",
+      "profile": "tractable",
+      "score": 9.0,
+      "test_burden": 0.5,
+      "test_friction": 8.5,
+      "unit": "Bank.StudentAccount.StudentAccount"
+    },
+    {
+      "blockers": [
+        "static / no substitution seam - cannot be isolated",
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 5,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 4.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 5,
+      "name": "Read",
+      "owner_type": "Data.FileIO",
+      "profile": "tractable",
+      "score": 13.0,
+      "test_burden": 2.5,
+      "test_friction": 10.5,
+      "unit": "Data.FileIO.Read"
+    },
+    {
+      "blockers": [
+        "static / no substitution seam - cannot be isolated",
+        "1 hidden input(s) not passed as parameters"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 4.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L2",
+      "min_test_cases": 2,
+      "name": "Write",
+      "owner_type": "Data.FileIO",
+      "profile": "tractable",
+      "score": 9.0,
+      "test_burden": 1.0,
+      "test_friction": 8.0,
+      "unit": "Data.FileIO.Write"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 1.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "AccNotFound",
+      "owner_type": "Exceptions.AccNotFound",
+      "profile": "tractable",
+      "score": 1.5,
+      "test_burden": 0.5,
+      "test_friction": 1.0,
+      "unit": "Exceptions.AccNotFound.AccNotFound"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 1.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "InvalidAmount",
+      "owner_type": "Exceptions.InvalidAmount",
+      "profile": "tractable",
+      "score": 1.5,
+      "test_burden": 0.5,
+      "test_friction": 1.0,
+      "unit": "Exceptions.InvalidAmount.InvalidAmount"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 1.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "MaxBalance",
+      "owner_type": "Exceptions.MaxBalance",
+      "profile": "tractable",
+      "score": 1.5,
+      "test_burden": 0.5,
+      "test_friction": 1.0,
+      "unit": "Exceptions.MaxBalance.MaxBalance"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 1.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "MaxWithdraw",
+      "owner_type": "Exceptions.MaxWithdraw",
+      "profile": "tractable",
+      "score": 1.5,
+      "test_burden": 0.5,
+      "test_friction": 1.0,
+      "unit": "Exceptions.MaxWithdraw.MaxWithdraw"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "AddAccount",
+      "owner_type": "GUI.AddAccount",
+      "profile": "tractable",
+      "score": 6.0,
+      "test_burden": 0.5,
+      "test_friction": 5.5,
+      "unit": "GUI.AddAccount.AddAccount"
+    },
+    {
+      "blockers": [
+        "4 hidden input(s) not passed as parameters",
+        "4 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 8.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 10.0
+      },
+      "level": "L3",
+      "min_test_cases": 3,
+      "name": "AddCurrentAccount",
+      "owner_type": "GUI.AddCurrentAccount",
+      "profile": "blocked",
+      "score": 21.5,
+      "test_burden": 1.5,
+      "test_friction": 20.0,
+      "unit": "GUI.AddCurrentAccount.AddCurrentAccount"
+    },
+    {
+      "blockers": [
+        "4 hidden input(s) not passed as parameters",
+        "4 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 8.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 10.0
+      },
+      "level": "L3",
+      "min_test_cases": 3,
+      "name": "AddSavingsAccount",
+      "owner_type": "GUI.AddSavingsAccount",
+      "profile": "blocked",
+      "score": 21.5,
+      "test_burden": 1.5,
+      "test_friction": 20.0,
+      "unit": "GUI.AddSavingsAccount.AddSavingsAccount"
+    },
+    {
+      "blockers": [
+        "4 hidden input(s) not passed as parameters",
+        "4 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 3,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 8.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 10.0
+      },
+      "level": "L3",
+      "min_test_cases": 3,
+      "name": "AddStudentAccount",
+      "owner_type": "GUI.AddStudentAccount",
+      "profile": "blocked",
+      "score": 21.5,
+      "test_burden": 1.5,
+      "test_friction": 20.0,
+      "unit": "GUI.AddStudentAccount.AddStudentAccount"
+    },
+    {
+      "blockers": [
+        "3 hidden input(s) not passed as parameters",
+        "3 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 6.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 7.5
+      },
+      "level": "L3",
+      "min_test_cases": 1,
+      "name": "DepositAcc",
+      "owner_type": "GUI.DepositAcc",
+      "profile": "tractable",
+      "score": 16.0,
+      "test_burden": 0.5,
+      "test_friction": 15.5,
+      "unit": "GUI.DepositAcc.DepositAcc"
+    },
+    {
+      "blockers": [
+        "2 hidden input(s) not passed as parameters",
+        "2 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 4.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 5.0
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "DisplayList",
+      "owner_type": "GUI.DisplayList",
+      "profile": "tractable",
+      "score": 11.5,
+      "test_burden": 0.5,
+      "test_friction": 11.0,
+      "unit": "GUI.DisplayList.DisplayList"
+    },
+    {
+      "blockers": [
+        "static / no substitution seam - cannot be isolated",
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 1.0,
+        "missing_seam": 4.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 2,
+      "name": "UpdateDisplay",
+      "owner_type": "GUI.GUIForm",
+      "profile": "tractable",
+      "score": 12.0,
+      "test_burden": 1.0,
+      "test_friction": 11.0,
+      "unit": "GUI.GUIForm.UpdateDisplay"
+    },
+    {
+      "blockers": [],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 1.5,
+        "environmental_effects": 0,
+        "hidden_inputs": 0.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 0.0
+      },
+      "level": "L1",
+      "min_test_cases": 1,
+      "name": "Login",
+      "owner_type": "GUI.Login",
+      "profile": "tractable",
+      "score": 3.0,
+      "test_burden": 0.5,
+      "test_friction": 2.5,
+      "unit": "GUI.Login.Login"
+    },
+    {
+      "blockers": [
+        "3 hidden input(s) not passed as parameters",
+        "3 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 2,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 6.0,
+        "infrastructure": 1.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 7.5
+      },
+      "level": "L3",
+      "min_test_cases": 2,
+      "name": "initialize",
+      "owner_type": "GUI.Login",
+      "profile": "tractable",
+      "score": 15.5,
+      "test_burden": 1.0,
+      "test_friction": 14.5,
+      "unit": "GUI.Login.initialize"
+    },
+    {
+      "blockers": [
+        "1 hidden input(s) not passed as parameters",
+        "1 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 3.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 2.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 2.5
+      },
+      "level": "L2",
+      "min_test_cases": 1,
+      "name": "Menu",
+      "owner_type": "GUI.Menu",
+      "profile": "tractable",
+      "score": 10.0,
+      "test_burden": 0.5,
+      "test_friction": 9.5,
+      "unit": "GUI.Menu.Menu"
+    },
+    {
+      "blockers": [
+        "3 hidden input(s) not passed as parameters",
+        "3 write(s) to shared state - test must reset it"
+      ],
+      "cyclomatic": 1,
+      "friction_breakdown": {
+        "collaborators_to_stub": 0.0,
+        "environmental_effects": 0,
+        "hidden_inputs": 6.0,
+        "infrastructure": 2.0,
+        "missing_seam": 0.0,
+        "non_determinism": 0.0,
+        "parameter_count": 0.0,
+        "setup_burden": 0.0,
+        "shared_state_writes": 7.5
+      },
+      "level": "L3",
+      "min_test_cases": 1,
+      "name": "WithdrawAcc",
+      "owner_type": "GUI.WithdrawAcc",
+      "profile": "tractable",
+      "score": 16.0,
+      "test_burden": 0.5,
+      "test_friction": 15.5,
+      "unit": "GUI.WithdrawAcc.WithdrawAcc"
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_test_burden": 0.9,
+    "avg_test_friction": 8.9,
+    "avg_testability_score": 9.8,
+    "hard_to_test_units": 0,
+    "max_testability_score": 24.0,
+    "min_test_cases_total": 70,
+    "profile_distribution": {
+      "blocked": 4,
+      "hostile": 0,
+      "laborious": 0,
+      "tractable": 34
+    },
+    "units": 38,
+    "units_with_hidden_inputs": 24,
+    "units_with_nondeterminism": 0
+  },
+  "sno": 16,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "38 unit(s); ~70 test case(s) for branch coverage; 4 unit(s) blocked or hostile to isolation",
+    "level": "L3",
+    "score": 24.0
+  },
+  "tier": "composite"
+}

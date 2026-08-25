@@ -1,0 +1,386 @@
+{
+  "analyzer_version": "2.0.0",
+  "complexity": "Interface / API Complexity",
+  "confidence": {
+    "reasons": [],
+    "score": 1.0
+  },
+  "contract_version": "2.0",
+  "hotspots": [],
+  "id": "interface_api_complexity",
+  "inputs_missing_optional": [],
+  "inputs_used": [
+    "units",
+    "meta",
+    "dependency_graph"
+  ],
+  "interpretation": "Surface is breadth x depth: many operations, wide parameter lists and heavy payloads each multiply the cost of a contract change, because every consumer must be found and re-tested.",
+  "items": [
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "addAccount",
+      "op_score": 4.0,
+      "operation": "Bank.Bank.addAccount",
+      "owner_type": "Bank.Bank",
+      "params": 4,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "BankAccount",
+      "op_score": 3.0,
+      "operation": "Bank.BankAccount.BankAccount",
+      "owner_type": "Bank.BankAccount",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "CurrentAccount",
+      "op_score": 3.0,
+      "operation": "Bank.CurrentAccount.CurrentAccount",
+      "owner_type": "Bank.CurrentAccount",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "SavingsAccount",
+      "op_score": 3.0,
+      "operation": "Bank.SavingsAccount.SavingsAccount",
+      "owner_type": "Bank.SavingsAccount",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L2",
+      "name": "StudentAccount",
+      "op_score": 3.0,
+      "operation": "Bank.StudentAccount.StudentAccount",
+      "owner_type": "Bank.StudentAccount",
+      "params": 3,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "deposit",
+      "op_score": 2.0,
+      "operation": "Bank.Bank.deposit",
+      "owner_type": "Bank.Bank",
+      "params": 2,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "withdraw",
+      "op_score": 2.0,
+      "operation": "Bank.Bank.withdraw",
+      "owner_type": "Bank.Bank",
+      "params": 2,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "main",
+      "op_score": 1.0,
+      "operation": "Application.main",
+      "owner_type": "Application",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "findAccount",
+      "op_score": 1.0,
+      "operation": "Bank.Bank.findAccount",
+      "owner_type": "Bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "setAccounts",
+      "op_score": 1.0,
+      "operation": "Bank.Bank.setAccounts",
+      "owner_type": "Bank.Bank",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "deposit",
+      "op_score": 1.0,
+      "operation": "Bank.BankAccount.deposit",
+      "owner_type": "Bank.BankAccount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "withdraw",
+      "op_score": 1.0,
+      "operation": "Bank.BankAccount.withdraw",
+      "owner_type": "Bank.BankAccount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "withdraw",
+      "op_score": 1.0,
+      "operation": "Bank.SavingsAccount.withdraw",
+      "owner_type": "Bank.SavingsAccount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "AccNotFound",
+      "op_score": 1.0,
+      "operation": "Exceptions.AccNotFound.AccNotFound",
+      "owner_type": "Exceptions.AccNotFound",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "InvalidAmount",
+      "op_score": 1.0,
+      "operation": "Exceptions.InvalidAmount.InvalidAmount",
+      "owner_type": "Exceptions.InvalidAmount",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "MaxBalance",
+      "op_score": 1.0,
+      "operation": "Exceptions.MaxBalance.MaxBalance",
+      "owner_type": "Exceptions.MaxBalance",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "MaxWithdraw",
+      "op_score": 1.0,
+      "operation": "Exceptions.MaxWithdraw.MaxWithdraw",
+      "owner_type": "Exceptions.MaxWithdraw",
+      "params": 1,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "display",
+      "op_score": 0.0,
+      "operation": "Bank.Bank.display",
+      "owner_type": "Bank.Bank",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "getAccounts",
+      "op_score": 0.0,
+      "operation": "Bank.Bank.getAccounts",
+      "owner_type": "Bank.Bank",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "getbalance",
+      "op_score": 0.0,
+      "operation": "Bank.BankAccount.getbalance",
+      "owner_type": "Bank.BankAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "toString",
+      "op_score": 0.0,
+      "operation": "Bank.BankAccount.toString",
+      "owner_type": "Bank.BankAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "getNetBalance",
+      "op_score": 0.0,
+      "operation": "Bank.SavingsAccount.getNetBalance",
+      "owner_type": "Bank.SavingsAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "Read",
+      "op_score": 0.0,
+      "operation": "Data.FileIO.Read",
+      "owner_type": "Data.FileIO",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "Write",
+      "op_score": 0.0,
+      "operation": "Data.FileIO.Write",
+      "owner_type": "Data.FileIO",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "AddAccount",
+      "op_score": 0.0,
+      "operation": "GUI.AddAccount.AddAccount",
+      "owner_type": "GUI.AddAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "AddCurrentAccount",
+      "op_score": 0.0,
+      "operation": "GUI.AddCurrentAccount.AddCurrentAccount",
+      "owner_type": "GUI.AddCurrentAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "AddSavingsAccount",
+      "op_score": 0.0,
+      "operation": "GUI.AddSavingsAccount.AddSavingsAccount",
+      "owner_type": "GUI.AddSavingsAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "AddStudentAccount",
+      "op_score": 0.0,
+      "operation": "GUI.AddStudentAccount.AddStudentAccount",
+      "owner_type": "GUI.AddStudentAccount",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "DepositAcc",
+      "op_score": 0.0,
+      "operation": "GUI.DepositAcc.DepositAcc",
+      "owner_type": "GUI.DepositAcc",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "DisplayList",
+      "op_score": 0.0,
+      "operation": "GUI.DisplayList.DisplayList",
+      "owner_type": "GUI.DisplayList",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "UpdateDisplay",
+      "op_score": 0.0,
+      "operation": "GUI.GUIForm.UpdateDisplay",
+      "owner_type": "GUI.GUIForm",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "Login",
+      "op_score": 0.0,
+      "operation": "GUI.Login.Login",
+      "owner_type": "GUI.Login",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "Menu",
+      "op_score": 0.0,
+      "operation": "GUI.Menu.Menu",
+      "owner_type": "GUI.Menu",
+      "params": 0,
+      "schemas": 0
+    },
+    {
+      "binding": "",
+      "level": "L1",
+      "name": "WithdrawAcc",
+      "op_score": 0.0,
+      "operation": "GUI.WithdrawAcc.WithdrawAcc",
+      "owner_type": "GUI.WithdrawAcc",
+      "params": 0,
+      "schemas": 0
+    }
+  ],
+  "language": "python",
+  "metrics": {
+    "avg_params_per_op": 0.88,
+    "bands_applied": [
+      15,
+      35,
+      55,
+      75
+    ],
+    "distinct_schemas": 0,
+    "exposed_operations": 34,
+    "external_api_contracts": 0,
+    "heavy_operations": 0,
+    "max_params_in_op": 4,
+    "total_parameters": 30
+  },
+  "sno": 14,
+  "source_file": "D:/adaptive-legacy-code-complexity-harness/input/BankingSystem",
+  "status": "ok",
+  "status_reason": null,
+  "summary": {
+    "headline": "34 exposed operation(s); avg 0.88 param(s)/op; 0 schema(s); 0 external API contract(s)",
+    "level": "L3",
+    "score": 36.2
+  },
+  "tier": "coupling"
+}
