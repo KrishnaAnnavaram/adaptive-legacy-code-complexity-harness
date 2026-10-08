@@ -37,12 +37,7 @@
 > vocabulary are in [`docs/ste-style-guide.md`](docs/ste-style-guide.md). Each term in the
 > [Glossary](#18-glossary) has only one meaning.
 
-> [!WARNING]
-> Do not commit the folder `plsql_to_brd/`. It is a separate repository with its own `.git` folder.
-> If you commit it, git records a broken submodule reference or absorbs its history. The cleanup is difficult after a push.
-> Do not use a target-language score as a final value. All five descriptors have `"reviewed": false`, so each target score is provisional.
-
----
+>
 
 The harness measures the complexity of legacy code from a **parse tree**, not from source text.
 Twenty analyzers read one language-neutral shape, the Normalized Tree. Thus, the same analyzers score Java, COBOL and PL/SQL with no change.
