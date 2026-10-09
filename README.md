@@ -82,6 +82,7 @@ This README is the **one location that explains all of the harness**. It gives t
    - 4.1 [Full flow](#41-full-flow)
    - 4.2 [Execution order](#42-execution-order)
    - 4.3 [The life cycle of one run](#43-the-life-cycle-of-one-run)
+   - 4.4 [Who does which step](#44-who-does-which-step)
 5. 🔵 [Stage 1 · Inventory](#5-stage-1--inventory)
 6. 🟢 [Stage 2 · Parser](#6-stage-2--parser)
 7. 🟣 [Stage 3 · Complexity](#7-stage-3--complexity)
@@ -174,6 +175,41 @@ The harness has three layers. Each layer has one job and changes for one reason.
 | **Analyzer** (implementation) | How is the number calculated? | `.claude/complexities/` | The algorithm changes |
 
 Skill *N* pairs with analyzer *N* by number. For example, `skills/runtime-complexity/` pairs with `complexities/17_runtime_complexity.py`.
+
+```mermaid
+flowchart LR
+    subgraph AG["Agents: .claude/agents/"]
+        A1["1_inventory_agent.md<br/>java-inventory"]
+        A2["2_parser_agent.md<br/>java-parser"]
+        A3["3_complexity_agent.md<br/>complexity-analyzer"]
+    end
+    subgraph SK["Skills: .claude/skills/"]
+        S01["cyclomatic-complexity/SKILL.md"]
+        SNN["19 other complexity skills"]
+        STF["target-fit-complexity/SKILL.md"]
+    end
+    subgraph IM["Implementation"]
+        SC["inventory/scanner.py"]
+        PA["parser/parser.py"]
+        RP["complexities/run_pipeline.py"]
+        AN01["complexities/01_cyclomatic_complexity.py"]
+        ANN["complexities/NN_*.py"]
+        CORE["complexities/_core.py<br/>contract and gate"]
+        TF["target_fit/target_fit.py"]
+    end
+    A1 --> SC
+    A2 --> PA
+    A3 --> RP
+    RP -- "discover, read SPEC" --> AN01
+    RP -- "discover, read SPEC" --> ANN
+    S01 -. "pairs by number" .- AN01
+    SNN -. "pairs by number" .- ANN
+    A3 -- "target named" --> STF
+    STF --> TF
+    TF -- "reuses discover, order,<br/>execute, consolidate" --> RP
+    AN01 --> CORE
+    ANN --> CORE
+```
 
 No file holds a list of the 20 analyzers. The agent and the pipeline **discover** them. They scan `.claude/complexities/[0-9][0-9]_*.py` and read the `SPEC` of each file. If you add `21_*.py`, it joins the next run with no other change.
 
@@ -371,7 +407,70 @@ Depth is the first key because it comes from the real dependency graph in `depen
 - Testability (16) depends on Cyclomatic (1) and Coupling (4).
 - Migration (19) depends on Control Flow (3), Database (15), Testability (16), Runtime (17) and Architectural (20).
 
+The diagram shows the plan that `order()` makes from today's SPECs. Solid arrows are the run order. Dotted arrows are `depends_on` edges.
+
+```mermaid
+flowchart LR
+    subgraph D0["Depth 0, in tier order"]
+        T1["size<br/>07"] --> T2["structural<br/>01, 02, 03, 05, 06, 17"] --> T3["data<br/>12"] --> T4["coupling<br/>04, 08, 09, 10, 13, 14, 20"] --> T5["hazard<br/>15, 18"]
+    end
+    subgraph D1["Depth 1, composite"]
+        C11["11 Maintainability"]
+        C16["16 Testability"]
+    end
+    subgraph D2["Depth 2, composite"]
+        C19["19 Migration"]
+    end
+    T5 --> C11 --> C16 --> C19
+    T1 -. "7" .-> C11
+    T2 -. "1" .-> C11
+    T2 -. "1" .-> C16
+    T4 -. "4" .-> C16
+    T2 -. "3, 17" .-> C19
+    T4 -. "20" .-> C19
+    T5 -. "15" .-> C19
+    C16 -. "16" .-> C19
+```
+
 ### 4.3 The life cycle of one run
+
+```mermaid
+stateDiagram-v2
+    state "Requested" as Requested
+    state "Tree validated" as Validated
+    state "Analyzers discovered" as Discovered
+    state "Plan ordered" as Ordered
+    state "Reports consolidated" as Consolidated
+    state "JSON files written" as Written
+    state "Human report written" as Human
+    state "Target pass" as Target
+    state "Stopped, tree not valid" as Rejected
+    state "Each analyzer in plan order" as Each {
+        state "Gate in _core.run" as Gate
+        state "analyze(tree)" as Analyze
+        [*] --> Gate
+        Gate --> insufficient_input: required input absent
+        Gate --> Analyze: inputs present
+        Analyze --> ok: report normalized
+        Analyze --> error: exception caught
+        insufficient_input --> [*]
+        ok --> [*]
+        error --> [*]
+    }
+    [*] --> Requested
+    Requested --> Rejected: tree absent or not JSON
+    Requested --> Validated: tree exists and parses
+    Validated --> Discovered: NN_*.py with SPEC and analyze
+    Discovered --> Ordered: depth, tier, sno
+    Ordered --> Each
+    Each --> Consolidated: consolidate
+    Consolidated --> Written: reports and complexity_artifact.json
+    Written --> Human: Agent 3 Write tool
+    Human --> Target: target language named
+    Human --> [*]: no target named
+    Target --> [*]: one target pass for each target
+    Rejected --> [*]
+```
 
 1. The operator asks Agent 3 to analyze a tree, and can name a target language.
 2. Agent 3 checks that the tree exists and is valid JSON.
@@ -385,6 +484,45 @@ Depth is the first key because it comes from the real dependency graph in `depen
 10. Agent 3 writes `complexity_report.md` with the `Write` tool. No script writes this file.
 11. If the request named a target language, Agent 3 calls the target-fit skill one time for each target.
 
+### 4.4 Who does which step
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor OP as Operator
+    participant A3 as Agent 3 complexity-analyzer
+    participant RP as run_pipeline.py
+    participant CORE as _core.run
+    participant AN as Analyzer NN_*.py
+    participant FS as OUTPUT_DIR
+    participant TF as target-fit skill, target_fit.py
+    OP->>A3: analyze TREE, optional target language
+    A3->>A3: check that TREE exists and parses as JSON
+    A3->>RP: python run_pipeline.py TREE -o OUTPUT_DIR
+    RP->>RP: discover() and order()
+    loop each analyzer in plan order
+        RP->>CORE: run(analyze, SPEC, tree)
+        CORE->>CORE: tree.require(SPEC)
+        alt required input absent
+            CORE-->>RP: status insufficient_input
+        else inputs present
+            CORE->>AN: analyze(tree), upstream reports for composites
+            AN-->>CORE: raw report
+            CORE-->>RP: normalized envelope, ok or error
+        end
+    end
+    RP->>RP: consolidate()
+    RP->>FS: reports/NN_id.json and complexity_artifact.json
+    RP-->>A3: measured N of 20, overall level, hotspots
+    A3->>FS: complexity_report.md with the Write tool
+    opt target language named
+        A3->>TF: TREE and TARGET_LANGUAGE
+        TF->>RP: same discover, order, execute, consolidate on the projected tree
+        TF->>FS: target/LANG/ reports and complexity_artifact.json
+    end
+    A3-->>OP: coverage first, then levels and hotspots
+```
+
 ---
 
 ## 5. Stage 1 · Inventory
@@ -395,6 +533,30 @@ Depth is the first key because it comes from the real dependency graph in `depen
 |---|---|
 | A repository root | `OUTPUT_DIR/inventory_artifact.json` |
 
+```mermaid
+flowchart TD
+    IN[/"--repo-root, --exclude-dirs, -o"/] --> V{"Root exists<br/>and is a folder?"}
+    V -- "no" --> E1[/"error, exit 1"/]
+    V -- "yes" --> W["walk: sorted rglob,<br/>skip the excluded folders"]
+    W --> CL{"classify_file"}
+    CL -- ".java" --> J["process_java_file:<br/>package, imports, top-level types"]
+    CL -- "pom.xml, build.gradle,<br/>.gradle, .kts" --> B["build_registry"]
+    CL -- ".xml, .properties,<br/>.yml, .yaml" --> C["config_registry"]
+    CL -- ".sql" --> S["sql_registry"]
+    J --> Z{"Zero .java files?"}
+    B --> Z
+    C --> Z
+    S --> Z
+    Z -- "yes" --> E2[/"empty_repository issue,<br/>artifact written, exit 2"/]
+    Z -- "no" --> R["resolve_all_edges, second pass:<br/>IMPORT, IMPORT_STATIC,<br/>EXTENDS, IMPLEMENTS"]
+    R --> RS{"Target is a type<br/>of this repository?"}
+    RS -- "yes" --> RT["resolved: true"]
+    RS -- "no" --> RF["resolved: false,<br/>kept, not guessed"]
+    RT --> CY["detect_inheritance_cycles<br/>warning only"]
+    RF --> CY
+    CY --> OUT[/"inventory_artifact.json:<br/>file_registry, dependency_graph, issues"/]
+```
+
 **Procedure** (`scanner.py`)
 
 1. Check that the repository root exists and is a folder.
@@ -402,7 +564,7 @@ Depth is the first key because it comes from the real dependency graph in `depen
 3. Classify each file: Java source, build, configuration, SQL or unclassified.
 4. Register each top-level type (class, interface, enum, record, annotation) with its package, file and line.
 5. After all types are known, resolve the `import`, `extends` and `implements` edges in a second pass. A file that is read early can extend a type in a file that is read later.
-6. If no `.java` file is found, stop with exit code 2.
+6. If no `.java` file is found, write the artifact with an `empty_repository` issue and stop with exit code 2.
 7. Print the summary: file, type and edge counts, and the number of issues.
 
 **Rules**
@@ -424,6 +586,31 @@ The full field-by-field schema is in [`docs/inventory-contract.md`](docs/invento
 |---|---|
 | `inventory_artifact.json` (preferred) or a repository root | `OUTPUT_DIR/normalized_tree.json` |
 
+```mermaid
+flowchart TD
+    IN[/"--inventory or --repo-root"/] --> RR{"Repo root<br/>is a folder?"}
+    RR -- "no" --> E2[/"repo root not found, exit 2"/]
+    RR -- "yes" --> DF["discover_java_files:<br/>sorted, excluded folders skipped"]
+    DF --> LX["lex: tokens and comment lines"]
+    DF -- "file cannot be read" --> IS["issue: file_read_error"]
+    LX --> SP["structure_pass: package, types,<br/>nested types, fields, methods"]
+    SP --> CFG["CfgBuilder for each method:<br/>IF, FOR, WHILE, CATCH, CALL"]
+    SP --> RW["extract_refs_writes:<br/>field references and writes"]
+    SP --> CA["extract_calls: this, super, fields,<br/>params, locals, static TypeName, new Type"]
+    CFG --> UN["units"]
+    RW --> UN
+    CA -- "receiver type resolved" --> CG["call_graph"]
+    CA -- "not resolved" --> NO["left out of the call graph"]
+    SP --> TY["types: extends, implements"]
+    TY -- "internal" --> DG["dependency_graph"]
+    INV[/"Inventory IMPORT edges"/] -- "internal, db,<br/>library, external" --> DG
+    UN --> Z{"Zero .java files?"}
+    Z -- "yes" --> E3[/"no file written, exit 2"/]
+    Z -- "no" --> OUT[/"normalized_tree.json<br/>summary on stderr"/]
+    CG --> OUT
+    DG --> OUT
+```
+
 **Procedure** (`parser.py`)
 
 1. Check that the inventory artifact is valid JSON, and that its `meta.repo_root` (or `--repo-root`) is a folder.
@@ -437,7 +624,7 @@ The full field-by-field schema is in [`docs/inventory-contract.md`](docs/invento
 
 **Rules**
 
-- **Never invent a fact.** A method body that the parser cannot scan still gives a unit with an empty `SEQUENCE` CFG, and an `issue`. A call with a receiver type that the parser cannot infer is not in the call graph.
+- **Never invent a fact.** A method with no body still gives a unit with an empty `SEQUENCE` CFG. A file that the parser cannot read gives a `file_read_error` issue. The parser prints the number of issues on stderr. It does not write the issues into the tree. A call with a receiver type that the parser cannot infer is not in the call graph.
 - **Traceability.** Each unit traces to a type, a file and a line span. Each CFG node has its source line.
 - **Known limits** (listed at the top of `parser.py`):
   - Overloads resolve by name and number of arguments only.
@@ -458,8 +645,24 @@ The full field-by-field schema is in [`docs/inventory-contract.md`](docs/invento
 | `TREE` | The path to the Normalized Tree JSON | Yes |
 | `OUTPUT_DIR` | The folder for the reports and the artifact | No (default `./out/`) |
 | `ONLY` | A comma-separated list of `sno` values, for example `1,3,17` | No |
-| `LANGUAGE` | A replacement for `tree.language` when the tree does not declare one | No |
+| `LANGUAGE` | A replacement for `tree.language` when the tree does not declare one. `run_pipeline.py` has no option for this parameter. | No |
 | `TARGET_LANGUAGE` | A target language to score as well. It starts the target-fit skill. | No |
+
+```mermaid
+flowchart TD
+    IN[/"TREE, OUTPUT_DIR, ONLY,<br/>TARGET_LANGUAGE"/] --> V{"TREE exists and<br/>parses as JSON?"}
+    V -- "no" --> UP[/"Report an upstream defect.<br/>Do not change the tree"/]
+    V -- "yes" --> RUN["run_pipeline.py TREE -o OUTPUT_DIR<br/>--only ONLY"]
+    RUN --> COV{"Measured 20 of 20?"}
+    COV -- "no" --> HL["Put the coverage gap<br/>in the headline"]
+    COV -- "yes" --> RES["Overall level, mean level,<br/>hotspots"]
+    HL --> RES
+    RES --> HR["Write complexity_report.md<br/>with the Write tool"]
+    HR --> TG{"TARGET_LANGUAGE<br/>named?"}
+    TG -- "no" --> DONE[/"Source pass only"/]
+    TG -- "yes" --> SK["Call target-fit-complexity<br/>one time for each target"]
+    SK --> TOUT[/"target/LANG/ artifact<br/>and reports"/]
+```
 
 **Rules for Agent 3**
 
@@ -473,6 +676,54 @@ The full field-by-field schema is in [`docs/inventory-contract.md`](docs/invento
 ### 7.1 The Normalized Tree
 
 The header of `.claude/complexities/_core.py` documents the shape. This is a short version:
+
+```mermaid
+erDiagram
+    TREE ||--o{ UNIT : "units"
+    TREE ||--o{ TYPE : "types"
+    TREE ||--|| CALLGRAPH : "call_graph"
+    TREE ||--|| DEPGRAPH : "dependency_graph"
+    TYPE ||--o{ UNIT : "methods"
+    UNIT ||--|| CFGNODE : "cfg"
+    CFGNODE ||--o{ CFGNODE : "children"
+    CALLGRAPH ||--o{ CALLEDGE : "edges"
+    DEPGRAPH ||--o{ DEPEDGE : "edges"
+    TREE {
+        string language
+        string source_file
+    }
+    UNIT {
+        string id
+        string name
+        string owner_type
+        int loc
+        int comment_lines
+        list params
+        list references
+        list writes
+        list sql
+        list config_reads
+    }
+    TYPE {
+        string id
+        string kind
+        string module
+        list extends
+        list implements
+    }
+    CFGNODE {
+        string node_type
+    }
+    CALLEDGE {
+        string from
+        string to
+    }
+    DEPEDGE {
+        string from
+        string to
+        string kind
+    }
+```
 
 ```
 tree = {
@@ -508,6 +759,22 @@ The CFG `node_type` vocabulary is uppercase and language-neutral:
 
 All analyzers return the same envelope, so a harness merges the results with no special case. `_core.py` does these jobs for each analyzer:
 
+```mermaid
+stateDiagram-v2
+    state "tree.require(SPEC)" as Gate
+    state "analyze(tree)" as Analyze
+    state "normalize()" as Normalize
+    [*] --> Gate
+    Gate --> insufficient_input: a requires field absent, or none of requires_any
+    Gate --> Analyze: inputs present
+    Analyze --> error: exception raised
+    Analyze --> Normalize: raw report
+    Normalize --> ok: envelope filled, confidence lowered for each absent optional input
+    insufficient_input --> [*]: exit code 2
+    error --> [*]: exit code 1
+    ok --> [*]: exit code 0
+```
+
 | Job | Location |
 |---|---|
 | Check `requires` before `analyze` runs | `_core.run()` |
@@ -529,6 +796,22 @@ The five levels are `L1` trivial, `L2` low, `L3` moderate, `L4` high and `L5` se
 
 `consolidate()` merges all reports into `complexity_artifact.json`. It never calculates a score again. Each number traces to one report.
 
+```mermaid
+flowchart LR
+    R[/"Reports of all analyzers"/] --> ST{"status"}
+    R --> BT["by_tier and reports:<br/>one row for each analyzer"]
+    ST -- "insufficient_input or error" --> NM["coverage.not_measured<br/>with the reason"]
+    ST -- "ok" --> OV["overall: worst level,<br/>mean_level, mean_confidence"]
+    ST -- "ok" --> PU["Roll up each unit:<br/>the level from each analyzer"]
+    PU --> HC{"2 or more analyzers<br/>at L4 or L5?"}
+    HC -- "yes" --> HS["hotspots: most analyzers first,<br/>maximum 25"]
+    HC -- "no" --> NH["Not a hotspot"]
+    NM --> ART[("complexity_artifact.json")]
+    OV --> ART
+    BT --> ART
+    HS --> ART
+```
+
 | Field | Contents |
 |---|---|
 | `artifact_version`, `pipeline_version`, `generated_at` | Version `1.0`, pipeline `1.0.0`, one UTC timestamp for the run |
@@ -549,6 +832,18 @@ Agent 3 also writes `complexity_report.md` for a reader with no technical backgr
 - the reports in `OUTPUT_DIR/reports/`
 - the **Purpose** and **Method** sections of each `SKILL.md`
 - `inventory_artifact.json` and the Normalized Tree
+
+```mermaid
+flowchart LR
+    S1[/"complexity_artifact.json"/] --> A3["Agent 3<br/>Write tool"]
+    S2[/"reports/NN_id.json"/] --> A3
+    S3[/"SKILL.md: Purpose and Method"/] --> A3
+    S4[/"inventory_artifact.json<br/>and the Normalized Tree"/] --> A3
+    A3 --> T{"Each claim traces<br/>to one source?"}
+    T -- "no" --> DROP["Remove the claim"]
+    T -- "yes" --> MD[/"complexity_report.md<br/>12 sections in a fixed sequence"/]
+    MD --> NM["Complexities not measured get<br/>the same weight as measured ones"]
+```
 
 The report has 12 sections in a fixed sequence: title, table of contents, about this report, about this codebase, why we ran this analysis, the pipeline steps, the overall score, the order of analysis, what was measured, one deep section for each measured complexity, the complexities not measured, and the conclusion. It never scores again, and it gives a missing measurement the same weight as a measured one.
 
@@ -582,6 +877,93 @@ Each analyzer reads a tree, never source text. Thus, the same script scores COBO
 | | 19 | Migration | Volume against blockers, mapped to a migration strategy for each unit | `units`, `cfg` | `sql`, `platform_calls`, `dynamic_constructs`, `dependency_graph`, `conditional_compilation`, `loc` | 3, 15, 16, 17, 20 |
 
 Migration (19) gives a strategy for each unit: rehost, replatform, refactor, rearchitect or rebuild.
+
+The six diagrams below show one tier each: the tree fields that the analyzers require, what each analyzer measures, and its level thresholds from `BANDS` in the analyzer file. Dotted arrows are optional inputs.
+
+**Tier `size`**
+
+```mermaid
+flowchart LR
+    U[/"units"/] --> S7["07 Structural<br/>size and statement count for each unit"]
+    O[/"cfg, loc, comment_lines"/] -.-> S7
+    S7 --> C["Concentration: share of the code<br/>in the largest 10 % of units"]
+    S7 --> SP["Spread and outlier count"]
+    C --> L["Thresholds<br/>0.25, 0.40, 0.60, 0.80"]
+    L --> OUT[/"reports/07_structural_complexity.json"/]
+```
+
+**Tier `structural`**
+
+```mermaid
+flowchart LR
+    IN[/"units and cfg"/] --> A01["01 Cyclomatic<br/>1 + decision nodes<br/>10, 20, 35, 50 by default"]
+    IN --> A02["02 Cognitive<br/>1 + nesting depth for each break<br/>5, 15, 25, 40"]
+    IN --> A03["03 Control Flow<br/>GOTO, ALTER, PERFORM THRU,<br/>fall-through, multiple exits<br/>0, 3, 8, 16"]
+    IN --> A05["05 Nesting<br/>maximum and mean depth<br/>3, 5, 7, 9 by default"]
+    IN --> A06["06 NPath<br/>product of construct factors<br/>200, 2000, 20000, 200000"]
+    IN --> A17["17 Runtime<br/>growth class from loop nesting,<br/>recursion, I/O in loops<br/>5, 14, 30, 60"]
+    CG[/"call_graph"/] -.-> A17
+    A01 --> C11["Used by composites<br/>11, 16 and 19"]
+    A03 --> C11
+    A17 --> C11
+```
+
+**Tier `data`**
+
+```mermaid
+flowchart LR
+    U[/"units"/] --> A12["12 Data Flow"]
+    ANY[/"one of: references, params"/] --> A12
+    CFG[/"cfg"/] -.-> A12
+    A12 --> P1["Parameters in"]
+    A12 --> P2["Distinct data elements touched"]
+    A12 --> P3["Data out through calls"]
+    A12 --> P4["Shared state:<br/>weighted hardest"]
+    P1 --> SC["Score for each unit<br/>6, 12, 20, 32"]
+    P2 --> SC
+    P3 --> SC
+    P4 --> SC
+```
+
+**Tier `coupling`**
+
+```mermaid
+flowchart LR
+    CG[/"call_graph"/] --> A04["04 Coupling<br/>fan-in, fan-out, flow squared, shape<br/>4, 16, 64, 256"]
+    CG --> A10["10 Change Impact<br/>backward reach, blast radius<br/>0.05, 0.15, 0.30, 0.50"]
+    TY[/"types"/] --> A08["08 Cohesion<br/>LCOM4 and LCOM-HS<br/>1, 2, 3, 5"]
+    TY --> A13["13 Inheritance<br/>DIT and NOC<br/>1, 2, 4, 6"]
+    DG[/"dependency_graph"/] --> A09["09 Dependency<br/>edge kinds, instability, cycles,<br/>longest chain, 15, 35, 55, 75"]
+    DG --> A20["20 Architectural<br/>cycles, Martin zones, layer<br/>violations, hubs, 10, 22, 40, 65"]
+    UP[/"units with types or params"/] --> A14["14 Interface / API<br/>exposed operations, parameters,<br/>payloads, integrations<br/>15, 35, 55, 75"]
+    A04 --> C16["Used by composite 16"]
+    A20 --> C19["Used by composite 19"]
+```
+
+**Tier `hazard`**
+
+```mermaid
+flowchart LR
+    U[/"units"/] --> A15["15 Database<br/>SQL surface, schema reach, shape,<br/>dynamic SQL, transactions,<br/>SQL inside a loop<br/>8, 18, 32, 55"]
+    Q1[/"one of: sql, cursors,<br/>transactions"/] --> A15
+    U --> A18["18 Configuration<br/>external surface, build variants,<br/>hard-coded values, scatter<br/>5, 12, 24, 42"]
+    Q2[/"one of: config_reads, literals,<br/>conditional_compilation, feature_flags"/] --> A18
+    J{"Tree from parser.py?"} -- "yes, fields absent" --> NI[/"insufficient_input<br/>for 15 and 18"/]
+    A15 --> C19["Used by composite 19"]
+```
+
+**Tier `composite`**
+
+```mermaid
+flowchart LR
+    R1[/"Reports 01, 07"/] -. "not passed,<br/>calculated again from the tree" .-> A11["11 Maintainability<br/>MI, inverted<br/>85, 70, 50, 30"]
+    R2[/"Reports 01, 04"/] -. "not passed,<br/>calculated again from the tree" .-> A16["16 Testability<br/>test burden and test friction<br/>6, 14, 26, 44"]
+    R3[/"Reports 15, 17, 20<br/>status ok"/] -- "passed by run_pipeline.py" --> A19["19 Migration<br/>volume and blockers<br/>8, 20, 38, 65"]
+    A16 -- "testability report" --> A19
+    R4[/"Report 03"/] -. "not passed,<br/>no key in _UPSTREAM_KEYS" .-> A19
+    A19 --> ST{"Strategy for each unit"}
+    ST --> S1[/"rehost, replatform,<br/>refactor, rearchitect, rebuild"/]
+```
 
 To see what is installed and what each analyzer needs, run `python .claude/complexities/run_pipeline.py --list`.
 
@@ -747,6 +1129,24 @@ flowchart LR
 
 **Purpose.** Answer a different question from Stage 3. Not "how complex is this code", but "if the destination of this codebase is language X, what is each of the 20 measurements?"
 
+```mermaid
+flowchart TD
+    IN[/"normalized_tree.json and --target"/] --> FD{"languages/TARGET.json<br/>exists?"}
+    FD -- "no" --> STOP[/"insufficient_input,<br/>list of available targets"/]
+    FD -- "yes" --> PT["project_tree<br/>with the descriptor"]
+    PT --> PIPE["run_pipeline: discover, order,<br/>execute, consolidate<br/>on the projected tree"]
+    PIPE --> REV{"Descriptor<br/>reviewed?"}
+    REV -- "yes" --> C1["confidence 1.0"]
+    REV -- "no" --> C6["confidence 0.6<br/>with a reason"]
+    C1 --> SA{"Source artifact found?<br/>--source-artifact or next to the tree"}
+    C6 --> SA
+    SA -- "yes" --> CMP["build_comparison<br/>source and target, sno by sno"]
+    SA -- "no" --> EMP["Comparison empty,<br/>target scores not changed"]
+    CMP --> OUT[/"target/TARGET/ reports<br/>and complexity_artifact.json"/]
+    EMP --> OUT
+    OUT --> HR["Agent writes<br/>complexity_report.md"]
+```
+
 Stage 4 is the `target-fit-complexity` **skill**, not a separate agent. Ask Agent 3 for a run and **name a target language**, for example "check complexity for target Python". The agent finds the named target and calls the skill. If the request names no target, the skill does not run. Agent 3 never assumes a target. If the request names more than one target, Agent 3 calls the skill one time for each target.
 
 Stage 4 does **not** copy the Stage 3 numbers or weight them again. It projects the Normalized Tree onto the target, then runs the **same** 20 analyzers a second time on the projected tree. It uses the functions `discover()`, `order()`, `execute()` and `consolidate()` of `run_pipeline.py`. It has no copy of their code.
@@ -775,6 +1175,24 @@ Normalized Tree  +  Target descriptor
 
 The rules are generic and come from the descriptor. No rule names a specific source or target language.
 
+```mermaid
+flowchart TD
+    IN[/"Source tree and descriptor"/] --> U["For each unit"]
+    U --> J{"CFG has GOTO, ALTER,<br/>PERFORM_THRU or FALL_THROUGH?"}
+    J -- "no" --> STRIP["Strip loc, comment_lines, halstead"]
+    J -- "yes" --> F{"Descriptor flag true?<br/>supports_goto or<br/>supports_alter_style_dynamic_jump"}
+    F -- "yes" --> STRIP
+    F -- "no" --> DROP["Drop the unit,<br/>record it in units_dropped"]
+    STRIP --> KEPT["Kept units"]
+    KEPT --> OM{"multiple_inheritance<br/>is null?"}
+    OM -- "yes" --> NT["types = empty,<br/>object_model_dropped true"]
+    OM -- "no" --> KT["Keep types"]
+    NT --> OUT[/"Projected tree: language = target id,<br/>projected_from = source language"/]
+    KT --> OUT
+    DROP --> LOG[/"Projection log"/]
+    OUT --> LOG
+```
+
 1. **Jump constructs.** If the CFG of a unit contains `GOTO`, `ALTER`, `PERFORM_THRU` or `FALL_THROUGH` (the `JUMP_NODES` set of `_core.py`), and the descriptor says that the target cannot express it (`supports_goto`, `supports_alter_style_dynamic_jump`), the unit is dropped. The skill does not try a mechanical rewrite. `projection.units_dropped` records the reason. If the target supports the construct, the node stays.
 2. **Object model.** If `multiple_inheritance` is `null` in the descriptor (no object model, as for COBOL and PL/SQL), `types` is dropped. Cohesion (8) and Inheritance (13) then give `insufficient_input` through the usual central gate.
 3. **Volume fields.** `loc`, `comment_lines` and `halstead` are stripped from each unit, for each target, always. Nobody can project the size of code that does not exist yet, and the skill does not invent a ratio. Structural (7) declares `loc` optional, so it still runs with lower confidence and counts CFG nodes. Maintainability (11) declares `loc` required, so it gives `insufficient_input`.
@@ -786,6 +1204,22 @@ All other fields describe what the code *does*, not the language. They go throug
 ### 10.2 Target descriptors and their review
 
 A target language is one descriptor file in `.claude/target_fit/languages/`. The file name is the language id: `python.json` answers `--target python`. `schema.md` lists the fields.
+
+```mermaid
+stateDiagram-v2
+    state "Draft in languages/_pending/" as Draft
+    state "Checked by a person" as Checked
+    state "Live, reviewed true" as Reviewed
+    state "Live, reviewed false" as Unreviewed
+    [*] --> Draft: write ID.json, source drafted, reviewed false
+    Draft --> Checked: check each field against real documentation
+    Checked --> Reviewed: move into languages/, set reviewed true
+    [*] --> Unreviewed: all 5 descriptors today
+    Unreviewed --> Checked: review in place
+    Draft --> Draft: no run reads _pending/
+    Reviewed --> [*]: target confidence 1.0
+    Unreviewed --> [*]: target confidence 0.6
+```
 
 | Required field | Meaning |
 |---|---|
@@ -838,6 +1272,25 @@ outputs/<project>/target/<language>/
 | `source_baseline` | Whether the source artifact was found, and its path |
 | `comparison` | For each `sno`: source status, score and level, and target status, score and level |
 
+The diagram shows where each added field comes from.
+
+```mermaid
+flowchart LR
+    PIPE["consolidate on the<br/>projected tree"] --> BASE["Stage 3 fields:<br/>coverage, overall, by_tier,<br/>hotspots, reports"]
+    TREE[/"Source tree"/] --> SL["source_language"]
+    DESC[/"Descriptor"/] --> DS["descriptor_source,<br/>descriptor_reviewed, confidence"]
+    PLOG[/"Projection log"/] --> PJ["projection"]
+    SRC[/"Source complexity_artifact.json"/] --> SB["source_baseline"]
+    SRC --> CMP["comparison"]
+    BASE --> CMP
+    BASE --> ART[("target/LANG/<br/>complexity_artifact.json")]
+    SL --> ART
+    DS --> ART
+    PJ --> ART
+    SB --> ART
+    CMP --> ART
+```
+
 By default, `target_fit.py` looks for `complexity_artifact.json` next to the tree file. `--source-artifact` gives a different path. `-o` changes the output folder from `<tree_dir>/target/<target>/`.
 
 ---
@@ -851,6 +1304,27 @@ python tools/judge.py samples/cobol_payroll.tree.json --self-test
 ```
 
 The judge runs 10 checks on each analyzer:
+
+```mermaid
+flowchart TD
+    IN[/"Tree, --self-test, --json"/] --> LD["load_analyzers: 20 NN_*.py,<br/>plus 99_canary with --self-test"]
+    LD --> J["judge_one: checks C1 to C10<br/>for each analyzer"]
+    J --> F{"Failed checks?"}
+    F -- "none" --> P[/"PASS"/]
+    F -- "C2, C4, C5 or C10" --> CR[/"CRITICAL"/]
+    F -- "other checks only" --> MI[/"MINOR"/]
+    P --> SUM["Print: N pass, N minor, N CRITICAL"]
+    CR --> SUM
+    MI --> SUM
+    SUM --> ST{"--self-test?"}
+    ST -- "no" --> EX{"Any CRITICAL?"}
+    ST -- "yes" --> CA{"Canary CRITICAL?"}
+    CA -- "no" --> STF[/"SELF-TEST FAILED, exit 1"/]
+    CA -- "yes" --> OKC["self-test OK,<br/>canary not counted"]
+    OKC --> EX
+    EX -- "yes" --> E1[/"exit 1"/]
+    EX -- "no" --> E0[/"exit 0"/]
+```
 
 | Check | What it checks |
 |---|---|
@@ -922,6 +1396,26 @@ There is no `requirements.txt` and no package to install.
 ### 13.3 Run the stages
 
 Run each command from the repository root.
+
+The diagram shows the order of the commands and the files that connect them.
+
+```mermaid
+flowchart LR
+    REPO[/"Java repository"/] --> SC["scanner.py --repo-root"]
+    SC --> INV[("inventory_artifact.json")]
+    INV --> PA["parser.py --inventory"]
+    REPO -. "--repo-root" .-> PA
+    PA --> NT[("normalized_tree.json")]
+    STA[/"Style-A tree"/] --> TB["tools/tree_bridge.py"]
+    TB --> NT
+    UPT[/"Upstream tree"/] --> NT
+    NT --> RP["run_pipeline.py"]
+    RP --> ART[("complexity_artifact.json<br/>and reports/")]
+    NT --> TF["target_fit.py --target"]
+    ART -. "comparison only" .-> TF
+    TF --> TART[("target/LANG/<br/>complexity_artifact.json")]
+    NT --> JD["tools/judge.py --self-test"]
+```
 
 ```bash
 # Stage 1: scan a Java repository
